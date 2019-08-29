@@ -62,15 +62,22 @@ export default {
         async login() {
             let user = await this.UserLogin();
             if (user) {
-                await this.$router.push('/usersetting');
+                
                 await location.reload();
                 
             }
             
         },
 
+         
+
         async load() {
-            await this.getUser();
+            let checkUser = await this.checkToken();
+            if(checkUser){
+                await this.getUser();
+                await this.$router.push('/usersetting');
+            }
+            
             /*await axios.get('/api/users')
             .then((r) => {
             this.userList=r.data;

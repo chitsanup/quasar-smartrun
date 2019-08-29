@@ -4,7 +4,7 @@ import { make } from 'vuex-pathify'
 
 const state = {
     form: {},
-    user:{},
+    user: {},
     listuser: [],
 
 }
@@ -26,7 +26,8 @@ const actions = {
 
     },
     async UserRegister(context, params) {
-        let result = axios.post('/api/auth/signup', state.form)
+        alert(JSON.stringify(state.form));
+        let result = await axios.post('/api/auth/signup', state.form)
             .then((r) => {
                 alert('Save Data Success');
                 state.form = {};
@@ -38,8 +39,13 @@ const actions = {
 
         return result;
     },
+
+    async checkToken(){
+        let token = localStorage.getItem('api_token');
+        return (token)?true:false;
+    },
     async UserLogin(context, params) {
-        let result = axios.post('/api/auth/login', state.user)
+        let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
                 alert('เข้าสู่ระบบสำเร็จ');
                 state.form = {};
@@ -47,6 +53,20 @@ const actions = {
                 return true;
             }).catch((e) => {
                 alert('เข้าสู่ระบบไม่สำเร็จ');
+                return false;
+            });
+
+        return result;
+    },
+    async CheckEmail(context, params) { 
+        let result = await axios.post('/api/auth/login',params)
+            .then((r) => {
+                alert('เข้าสู่ระบบสำเร็จ');
+                state.form = {};
+                localStorage.setItem('api_token', r.data.access_token);
+                return true;
+            }).catch((e) => {
+                
                 return false;
             });
 
@@ -75,6 +95,8 @@ const actions = {
     },
     async UserLogout(context, params) {
         await axios.get('/api/auth/logout');
+        state.listuser = {};
+        await localStorage.clear()  
         alert('ออกจากระบบ');
 
     },

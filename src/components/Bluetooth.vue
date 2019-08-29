@@ -11,6 +11,7 @@
     <q-btn color="primary" type="submit" label="เชื่อมต่อ" />
     <hr />
     <pre>{{listuser}}</pre>
+    
   </div>
 </template>
 
@@ -66,8 +67,8 @@ export default {
       ble.startScan(
         [],
         device => {
-          this.devices = device.name;
-          console.log(device.name);
+          this.devices = device;
+          console.log(device);
 
           //ble.connect();
         },

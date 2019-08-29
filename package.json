@@ -1,30 +1,37 @@
 {
   "name": "smartrun",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Smartrun",
-  "cordovaId": "org.Smart.Run",
-  "author": "",
   "private": true,
+  "description": "A Quasar Framework app",
+  "author": "",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "android" : "quasar dev -m cordova -T android",
+    "all" : "quasar build -m cordova -T android && cd src-cordova && cordova run android --release -- --keystore=keystore.jks --storePassword=password --alias=user --password=password && cd ../    " 
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "quasar": "^1.0.0",
     "sweetalert2": "^8.16.3",
+    "vuetify": "^2.0.10",
     "vuex-pathify": "^1.2.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.0.0"
+    "@quasar/app": "^1.0.0",
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-vuetify": "^0.6.3",
+    "vuetify-loader": "^1.2.2"
   },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ],
+  "cordovaId": "org.Smart.Run",
   "engines": {
     "node": ">= 8.9.0",
     "npm": ">= 5.6.0",
     "yarn": ">= 1.6.0"
   },
-  "browserslist": [
-    "last 1 version, not dead, ie >= 11"
-  ]
+  "productName": "Smartrun"
 }

@@ -17,7 +17,7 @@
     </q-form>
     </div>
     <pre>{{listuser}}</pre>
-    <q-btn @click.prevent="logout()" label="ออกจากระบบ" type="submit" color="warning" />
+    <q-btn @click="logout()" label="ออกจากระบบ"   color="warning" />
     
     
 </div>
@@ -36,34 +36,13 @@ export default {
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{
-    /*email:{
-        type : String,
-        default : 'อีเมล'
-    },
-    name:{
-        type : String,
-        default : 'ชื่อ'
-    },
-    age:{
-        type : String,
-        default : 'อายุ'
-    },
-    gender:{
-        type : String,
-        default : 'เพศ'
-    }*/
+   
 },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
     return {
         
-        user:{
-            id:0,
-            email:'',
-            name:'',
-            age:'',
-            gender:''
-        }
+        
         };
     }, 
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -85,8 +64,7 @@ methods:{
     ...call('authen/*'),
     async logout(){
             await this.UserLogout();
-            await this.$router.push('/userlogin');
-            await location.reload();
+            await this.$router.replace('/userlogin'); 
         },
     async load(){
         await this.getUser();
