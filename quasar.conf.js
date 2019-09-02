@@ -55,6 +55,8 @@ module.exports = function (ctx) {
         'QBreadcrumbsEl',
         'QImg',
         'QAvatar',
+        'QHeader',
+        'QFooter',
       ],
 
       directives: [

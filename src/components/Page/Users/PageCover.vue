@@ -1,12 +1,19 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="pa-0">
-    <div>
-        <q-btn flat icon="mdi-watch-variant" align="left" @click="$router.replace('/userprofile')" 
-        label="ตั้งค่าอุปกรณ์" style="width: 100%;font-size: 20px" type="submit" color="grey-9" />
+<div>
+    <div class="pa-2 bg-red-12 text-white" style="height: 150px">
+        <q-toolbar>
+            <q-btn @click="$router.push(goPage)" flat round dense icon="mdi-chevron-left" />
+        </q-toolbar>
 
+        <center>
+            <div  class="q-gutter-sm">
+                <q-avatar size="80px">
+                    <img  src="https://cdn.quasar.dev/img/avatar.png">
+                </q-avatar>
+            </div>
+        </center>
     </div>
-    <hr>
 
 </div>
 </template>
@@ -25,6 +32,9 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
+        goPage:{
+            default:('/')
+        }
 
     },
     /*-------------------------DataVarible---------------------------------------*/

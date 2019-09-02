@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/userprofile',
-    component: () => import('pages/Usersetting.vue'),
+    component: () => import('pages/Userprofile.vue'),
    
   },
   {

@@ -1,13 +1,18 @@
 <template>
   <div>
-    <center><editprofile/></center></div>
+    <pagecover goPage='/userprofile'/>
+    <editprofile/>
+    
+    </div>
 </template>
 
 <script>
 import editprofile from "../components/Page/Users/Editprofile"
+import pagecover from "../components/Page/Users/PageCover"
 export default {
   components:{
-      editprofile
+      editprofile,
+      pagecover
     }
 }
 </script>

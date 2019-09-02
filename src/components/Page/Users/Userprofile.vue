@@ -1,26 +1,28 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pa-md" style="max-width: 400px">
+<div class="colunm pa-0" style="width: 100%;font-size: 15px">
 
-    <div class="row">
-        <p>อีเมล :</p>{{listuser.email}}
+     <div class="q-pl-md q-pt-md  row">
+        อีเมล : {{listuser.email}}
     </div>
-    <div class="row">
-        <p>ชื่อ :</p>{{listuser.name}}
+    <hr>
+    <div class="q-pl-md row">
+        ชื่อ : {{listuser.name}}
     </div>
-    <div class="row">
-        <p>เพศ :</p>{{listuser.gender}}
+    <hr>
+    <div class="q-pl-md row">
+        เพศ : {{listuser.gender}}
     </div>
-    <div class="row">
-        <p>อายุ :</p>{{listuser.age}}
+    <hr>
+    <div class="q-pl-md row">
+        อายุ : {{listuser.age}} ปี
     </div>
-
+    <hr>
+    <center>
     <div>
-        <q-btn @click="$router.push('/editprofile')" label="แก้ไขข้อมูล" color="primary" />
+        <q-btn @click="$router.push('/editprofile')" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
     </div>
-    <div>
-        <q-btn @click="logout()" label="ออกจากระบบ" color="warning" />
-    </div>
+    </center>
 
 </div>
 </template>

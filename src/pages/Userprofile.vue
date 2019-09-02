@@ -1,0 +1,32 @@
+<template>
+  <div>
+    
+    <pagecover goPage='/'/>
+    <userprofile/>
+    <br>
+    <div>
+       <logout/>
+    </div>
+     
+    
+  </div>
+  
+  
+</template>
+
+<script>
+import userprofile from "../components/Page/Users/UserProfile"
+import pagecover from "../components/Page/Users/PageCover"
+import logout from "../components/Page/Users/LogoutButton"
+export default {
+  components:{
+      userprofile,
+      pagecover,
+      logout
+    }
+}
+</script>
+
+<style>
+
+</style>

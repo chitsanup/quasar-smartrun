@@ -1,13 +1,13 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="pa-0 column">
-    <div class="bg-red-12 text-white" style="height: 150px">
+<div>
+    <div class="pa-2 bg-red-12 text-white" style="height: 150px">
         <q-toolbar>
-            <q-btn flat round dense icon="mdi-chevron-left" />
+            <q-btn @click="$router.push('/')" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
 
         <center>
-            <q-toolbar inset>
+            <q-toolbar>
                 <q-toolbar-title style="font-size: 30px">ตั้งค่า
                     <q-icon name="mdi-settings-outline" />
                 </q-toolbar-title>

@@ -2,20 +2,19 @@
  <template>
 <div class="q-pa-md" >
     <!----<pre>{{listuser}}</pre>---->
-    
+        <center>
         <q-form @submit.prevent="update()" class="q-gutter-md">
             <q-input disable square outlined v-model="listuser.email" label="อีเมล" />
             <q-input square outlined v-model="listuser.name" label="ชื่อ" />
             <q-input  type="number" square outlined v-model="listuser.age" label="อายุ" />
             <q-input square outlined v-model="listuser.gender" label="เพศ" />
-            <div>
-                <q-btn label="บันทึกข้อมูล" type="submit" color="primary" />
+            <div class="q-gutter-xl q-pa-md">
+                <q-btn label="ยกเลิก" style="width:30%" @click="$router.push('/userprofile')" color="deep-orange" />
+                
+                <q-btn label="บันทึกข้อมูล" style="width:30%" type="submit" color="green-6" />
             </div>
         </q-form>
-        <div>
-            <q-btn label="ยกเลิก" @click="$router.push('/userprofile')" color="primary" />
-        </div>
-    
+        </center>
 
 </div>
 </template>

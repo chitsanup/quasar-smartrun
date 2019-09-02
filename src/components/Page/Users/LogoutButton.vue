@@ -1,16 +1,15 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="pa-0">
-    <div>
-        <q-btn flat icon="mdi-watch-variant" align="left" @click="$router.replace('/userprofile')" 
-        label="ตั้งค่าอุปกรณ์" style="width: 100%;font-size: 20px" type="submit" color="grey-9" />
-
-    </div>
-    <hr>
-
+<div>
+    <center>
+        <div>
+            <q-btn @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
+        </div>
+    </center>
 </div>
 </template>
 
+    
 <script>
 import {
     get,
@@ -44,15 +43,27 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        ...sync('authen/*'),
+        ...sync('authen/*')
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
-        /******* Methods default run ******/
-        load: async function () {
-            await this.getUser()
-        }
+
+        async logout() {
+            await this.userLogout();
+            await this.$router.replace('/login');
+        },
+
+        async load() {
+            //await this.getUser();
+            /*await axios.get('/api/users')
+            .then((r) => {
+            this.userList=r.data;
+            }).catch((e) => { 
+
+             });*/
+        },
+
     },
 }
 </script>

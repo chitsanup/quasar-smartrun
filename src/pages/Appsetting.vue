@@ -2,8 +2,8 @@
   <div>
     <cover/>
     <settinguser/>
+    
     <settingdevice/>
-      <q-btn @click="$router.replace('/userprofile')" label="setting user" type="submit" color="primary" />
   </div>
 </template>
 
