@@ -1,21 +1,32 @@
 <template>
-  <div>
-    <q-btn @click="$router.push('/userlogin')" label="login" type="submit" color="primary" />
-      <q-btn @click="$router.push('/userregister')" label="register" type="submit" color="primary" />
-      <q-btn @click="$router.push('/appsetting')" label="setting" type="submit" color="primary" />
-      <bluetooth/>
-      <facebook/>
-  </div>
+<div>
+    <cover />
+    <div class="row">
+        <device />
+        <q-space/>
+        <history />
+    </div>
+    <hr/>
+    <center><mode/></center>
+    
+
+
+</div>
 </template>
 
 <script>
-import bluetooth from '../components/Bluetooth'
-import facebook from '../components/FacebookLogin'
+import cover from '../components/Page/Home/HomeCover'
+import device from '../components/Page/Home/Device'
+import history from '../components/Page/Home/HistoryButton'
+import mode from '../components/Page/Home/Mode'
+
 export default {
-  components:{
-    bluetooth,
-    facebook
-  }
+    components: {
+        cover,
+        device,
+        history,
+        mode,
+    }
 }
 </script>
 

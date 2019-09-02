@@ -25,7 +25,10 @@ const actions = {
             });
 
     },
-    async UserRegister(context, params) {
+
+     
+
+    async userRegister(context, params) { 
         alert(JSON.stringify(state.form));
         let result = await axios.post('/api/auth/signup', state.form)
             .then((r) => {
@@ -44,7 +47,7 @@ const actions = {
         let token = localStorage.getItem('api_token');
         return (token)?true:false;
     },
-    async UserLogin(context, params) {
+    async userLogin(context, params) {
         let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
                 alert('เข้าสู่ระบบสำเร็จ');
@@ -58,7 +61,7 @@ const actions = {
 
         return result;
     },
-    async CheckEmail(context, params) { 
+    async checkEmail(context, params) { 
         let result = await axios.post('/api/auth/login',params)
             .then((r) => {
                 alert('เข้าสู่ระบบสำเร็จ');
@@ -74,8 +77,8 @@ const actions = {
     },
 
 
-    async Userupdate(context, params) {
-        let load = axios.put('/api/users' + state.form)
+    async updateUser(context, params) {
+        let load = await axios.put(`/api/edit/${state.listuser.id}`,state.listuser)
             .then((r) => {
                 alert('Update Data Success');
                 return true;
@@ -83,6 +86,9 @@ const actions = {
                 alert('Error Update');
                 return false;
             });
+       await actions.getUser();
+       return load;
+       
     },
 
     async destroyUser(context, params) {
@@ -93,8 +99,13 @@ const actions = {
                 alert('Error Delete');
             });
     },
-    async UserLogout(context, params) {
-        await axios.get('/api/auth/logout');
+    async userLogout(context, params) { 
+        let load = axios.get('/api/auth/logout')
+        .then((r) => {
+            alert('Logout Data Success');
+        }).catch((e) => {
+            alert('Error Logout');
+        });
         state.listuser = {};
         await localStorage.clear()  
         alert('ออกจากระบบ');

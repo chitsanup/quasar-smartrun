@@ -1,6 +1,11 @@
 <template>
 <div>
-<register/>
+  <center>
+    <div>
+        <logo />
+    </div>
+    <register />
+    </center>
 </div>
 </template>
 
@@ -8,10 +13,12 @@
 </style>
 
 <script>
-import register from "../components/RegisterForm"
+import register from "../components/Page/Regis/RegisterForm"
+import logo from "../components/Share/Logo"
 export default {
-    components:{
-      register
+    components: {
+        register,
+        logo
     }
 }
 </script>

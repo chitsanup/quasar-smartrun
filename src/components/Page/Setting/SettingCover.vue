@@ -1,8 +1,20 @@
 <!----------Make By YourName---------------->
  <template>
-<div id="q-app">
+<div class="pa-0 column">
+    <div class="bg-red-12 text-white" style="height: 150px">
+        <q-toolbar>
+            <q-btn flat round dense icon="mdi-chevron-left" />
+        </q-toolbar>
 
-    <router-view />
+        <center>
+            <q-toolbar inset>
+                <q-toolbar-title style="font-size: 30px">ตั้งค่า
+                    <q-icon name="mdi-settings-outline" />
+                </q-toolbar-title>
+            </q-toolbar>
+        </center>
+    </div>
+
 </div>
 </template>
 
@@ -12,7 +24,6 @@ import {
     sync,
     call
 } from "vuex-pathify";
-
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -31,7 +42,6 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        //await this.checkToken();
         /**** Call loading methods*/
         this.load();
     },
@@ -41,20 +51,14 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-
+        ...sync('authen/*'),
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        async checkToken() {
-            let token = localStorage.getItem('api_token');
-            if (!token) {
-                await this.$router.replace('/login');
-            }
-        },
-
+        ...call('authen/*'),
         /******* Methods default run ******/
         load: async function () {
-
+            await this.getUser()
         }
     },
 }

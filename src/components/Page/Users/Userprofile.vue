@@ -1,8 +1,27 @@
 <!----------Make By YourName---------------->
  <template>
-<div id="q-app">
+<div class="q-pa-md" style="max-width: 400px">
 
-    <router-view />
+    <div class="row">
+        <p>อีเมล :</p>{{listuser.email}}
+    </div>
+    <div class="row">
+        <p>ชื่อ :</p>{{listuser.name}}
+    </div>
+    <div class="row">
+        <p>เพศ :</p>{{listuser.gender}}
+    </div>
+    <div class="row">
+        <p>อายุ :</p>{{listuser.age}}
+    </div>
+
+    <div>
+        <q-btn @click="$router.push('/editprofile')" label="แก้ไขข้อมูล" color="primary" />
+    </div>
+    <div>
+        <q-btn @click="logout()" label="ออกจากระบบ" color="warning" />
+    </div>
+
 </div>
 </template>
 
@@ -12,7 +31,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-
+import axios from "axios"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -31,9 +50,9 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        //await this.checkToken();
         /**** Call loading methods*/
         this.load();
+
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
     async beforeRouteEnter(to, from, next) {
@@ -41,21 +60,27 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-
+        ...sync('authen/*')
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        async checkToken() {
-            let token = localStorage.getItem('api_token');
-            if (!token) {
-                await this.$router.replace('/login');
-            }
+        ...call('authen/*'),
+
+        async logout() {
+            await this.userLogout();
+            await this.$router.replace('/login');
         },
 
-        /******* Methods default run ******/
-        load: async function () {
+        async load() {
+            await this.getUser();
+            /*await axios.get('/api/users')
+            .then((r) => {
+            this.userList=r.data;
+            }).catch((e) => { 
 
-        }
+             });*/
+        },
+
     },
 }
 </script>

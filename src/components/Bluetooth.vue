@@ -1,123 +1,119 @@
 <!----------Make By YourName---------------->
  <template>
-  <div>
+<div>
     <h2>Test Bluetooth</h2>
-    <q-btn color="primary" type="submit" @click="blueToothScan" label="สแกน" />
-    <br />
-    <br />
-    <hr />
+    <q-btn color="primary" @click="blueToothScan" label="สแกน" />
 
-    <pre>{{devices}}</pre>
-    <q-btn color="primary" type="submit" label="เชื่อมต่อ" />
     <hr />
+    <form @submit="blueToothConect">
+        
+        <div class="row">{{devices}} </div>
+        <q-btn color="primary" type="submit" label="เชื่อมต่อ" />
+
+        <hr />
+    </form>
     <pre>{{listuser}}</pre>
-    
-  </div>
+
+</div>
 </template>
 
-    
 <script>
-import { get, sync, call } from "vuex-pathify";
-import { setTimeout } from "timers";
+import {
+    get,
+    sync,
+    call
+} from "vuex-pathify";
+import {
+    setTimeout
+} from "timers";
 
 export default {
-  name: "Root",
-  /*-------------------------Load Component---------------------------------------*/
-  components: {},
-  /*-------------------------Set Component---------------------------------------*/
-  props: {},
-  /*-------------------------DataVarible---------------------------------------*/
-  data() {
-    return {
-      devices: []
-    };
-  },
-  /*-------------------------Run Methods when Start this Page------------------------------------------*/
-  async mounted() {
-    /**** Call loading methods*/
-    this.load();
-  },
-  /*-------------------------Run Methods when Start Routed------------------------------------------*/
-  async beforeRouteEnter(to, from, next) {
-    next();
-  },
-  /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
-  computed: {
-    ...sync("authen/*")
-  },
-  /*-------------------------Methods------------------------------------------*/
-  methods: {
-    ...call("authen/*"),
-    async blueToothStatus() {
-      ble.isEnabled(
-        function() {
-          alert("Bluetooth Open!");
-        },
-        function() {
-          ble.showBluetoothSettings();
-          //ble.readRSSI(device_id, success, failure);
-          location.reload();
-        }
-      );
+    name: "Root",
+    /*-------------------------Load Component---------------------------------------*/
+    components: {},
+    /*-------------------------Set Component---------------------------------------*/
+    props: {},
+    /*-------------------------DataVarible---------------------------------------*/
+    data() {
+        return {
+            devices: []
+        };
     },
-
-    getDevice(device) {},
-
-    async blueToothScan() {
-      ble.startScan(
-        [],
-        device => {
-          this.devices = device;
-          console.log(device);
-
-          //ble.connect();
-        },
-        function(err) {
-          console.log(err);
-        }
-      );
-      setTimeout(
-        ble.stopScan,
-        7000,
-        function() {
-          ble.stopScan();
-          console.log("Scan complete");
-        },
-
-        function() {
-          console.log("stopScan failed");
-        }
-      );
-      //ble.stopScan(this.success, this.failure);
+    /*-------------------------Run Methods when Start this Page------------------------------------------*/
+    async mounted() {
+        /**** Call loading methods*/
+        this.load();
     },
-    async blueToothRead() {
-      var rssiSample;
-      ble.connect(
-        device_id,
-        function(device) {
-          rssiSample = setInterval(function() {
-            ble.readRSSI(
-              device_id,
-              function(rssi) {
-                console.log("read RSSI", rssi, "with device", device_id);
-              },
-              function(err) {
-                console.error("unable to read RSSI", err);
-                clearInterval(rssiSample);
-              }
+    /*-------------------------Run Methods when Start Routed------------------------------------------*/
+    async beforeRouteEnter(to, from, next) {
+        next();
+    },
+    /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
+    computed: {
+        ...sync("authen/*")
+    },
+    /*-------------------------Methods------------------------------------------*/
+    methods: {
+        ...call("authen/*"),
+        async blueToothStatus() {
+            ble.isEnabled(
+                await
+                function () {
+                    alert("Bluetooth Open!");
+                },
+                await
+                function () {
+                    ble.showBluetoothSettings();
+                    //ble.readRSSI(device_id, success, failure);
+                    location.reload();
+                }
             );
-          }, 5000);
         },
-        function(err) {
-          console.error("error connecting to device");
-        }
-      );
-    },
 
-    /******* Methods default run ******/
-    load: async function() {
-      await this.blueToothStatus();
-    }
-  }
-};
+        getDevice(device) {},
+
+        async blueToothScan() {
+
+            ble.startScan(
+                [],
+                device => {
+                    this.devices = device;
+                    console.log(device);
+
+                    //ble.connect();
+                },
+                function (err) {
+                    console.log(err);
+                }
+            );
+            setTimeout(
+                ble.stopScan,
+                7000,
+                function () {
+                    ble.stopScan();
+                    console.log("Scan complete");
+                },
+
+                function () {
+                    console.log("stopScan failed");
+                }
+            );
+            //ble.stopScan(this.success, this.failure);
+        },
+        async blueToothConect() {
+            ble.connect({}, function(){
+                        
+                        console.log("เชื่อมต่อสำเร็จ")
+                    }, function () {
+                        console.log("เชื่อมต่อไม่สำเร็จ")});
+                },
+
+                /******* Methods default run ******/
+                load: async function () {
+                    await this.getUser();
+                    await this.blueToothStatus();
+
+                }
+        }
+    };
 </script>

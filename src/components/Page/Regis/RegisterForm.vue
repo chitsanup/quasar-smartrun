@@ -1,6 +1,6 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pa-md" style="max-width: 400px">
+<div class="q-pa-md" >
 
     <form @submit.prevent="register()" class="q-gutter-md">
         <q-input outlined type="email" v-model="form.email" label="อีเมล" required />
@@ -8,15 +8,13 @@
         <q-input outlined type="password" v-model="form.password" label="รหัสผ่าน" required />
 
         <div>
-            <q-btn label="Submit" type="submit" color="primary" />
+            <q-btn label="สมัครสมาชิก" type="submit" color="red-12" />
         </div>
     </form>
     <div>
-            <q-btn @click="$router.push('/usersetting')" label="setting" type="submit" color="primary" />
-            <q-btn @click="$router.push('/userlogin')" label="Login" type="submit" color="primary" />
-            <q-btn @click="$router.push('/')" label="หน้าหลัก" type="submit" color="primary" />
-        </div>
-    <pre>{{listuser}}</pre>
+        <q-btn @click="$router.push('/login')" label="เข้าสู่ระบบ" color="primary" />
+
+    </div>
 </div>
 </template>
 
@@ -26,7 +24,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import axios from "../axios"
+import axios from "axios"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -40,8 +38,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            
-            
+
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -62,11 +59,11 @@ export default {
     methods: {
         ...call('authen/*'),
         async register() {
-            
-            let form = await this.UserRegister();
+
+            let form = await this.userRegister();
             if (form) {
-                
-                await this.$router.push('/');
+
+                await this.$router.push('/login');
                 await location.reload();
             }
         },
@@ -77,10 +74,10 @@ export default {
             .then((r) => {
             this.userList=r.data;
             }).catch((e) => { 
-            
+
              });*/
         },
-       
+
     },
 }
 </script>

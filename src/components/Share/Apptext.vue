@@ -1,8 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
-<div id="q-app">
-
-    <router-view />
+<div>
+    <p>{{label}}</p>
 </div>
 </template>
 
@@ -12,7 +11,6 @@ import {
     sync,
     call
 } from "vuex-pathify";
-
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -21,7 +19,10 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-
+        label:{
+            type : String,
+        default : "Text"
+        }
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
@@ -31,7 +32,6 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        //await this.checkToken();
         /**** Call loading methods*/
         this.load();
     },
@@ -45,17 +45,8 @@ export default {
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        async checkToken() {
-            let token = localStorage.getItem('api_token');
-            if (!token) {
-                await this.$router.replace('/login');
-            }
-        },
-
         /******* Methods default run ******/
-        load: async function () {
-
-        }
+        load: async function () {}
     },
 }
 </script>

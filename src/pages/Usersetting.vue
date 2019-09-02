@@ -1,14 +1,14 @@
 <template>
-  <dir><userdata/>
-  </dir>
+  <div><userprofile/>
+  </div>
   
 </template>
 
 <script>
-import userdata from "../components/Userdata"
+import userprofile from "../components/Page/Users/Userprofile"
 export default {
   components:{
-      userdata
+      userprofile
     }
 }
 </script>

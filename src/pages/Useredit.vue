@@ -1,12 +1,13 @@
 <template>
-  <dir><Edit/></dir>
+  <div>
+    <center><editprofile/></center></div>
 </template>
 
 <script>
-import Edit from "../components/Editdata"
+import editprofile from "../components/Page/Users/Editprofile"
 export default {
   components:{
-      Edit
+      editprofile
     }
 }
 </script>

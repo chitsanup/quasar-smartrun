@@ -6,28 +6,33 @@ const routes = [
    
   },
   {
-    path: '/userregister',
+    path: '/register',
     component: () => import('pages/Userregister.vue'),
    
   },
   {
-    path: '/userlogin',
+    path: '/login',
     component: () => import('pages/Userlogin.vue'),
    
   },
   {
-    path: '/usersetting',
+    path: '/userprofile',
     component: () => import('pages/Usersetting.vue'),
    
   },
   {
-    path: '/useredit',
+    path: '/editprofile',
     component: () => import('pages/Useredit.vue'),
    
   },
   {
     path: '/appsetting',
     component: () => import('pages/Appsetting.vue'),
+   
+  },
+  {
+    path: '/bluetoothsetting',
+    component: () => import('pages/Bluetooth.vue'),
    
   },
   {

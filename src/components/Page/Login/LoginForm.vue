@@ -1,20 +1,15 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pa-md" style="max-width: 400px">
+<div class="q-pa-md">
 
     <form @submit.prevent="login()" class="q-gutter-md">
         <q-input outlined type="email" v-model="user.email" label="อีเมล" required />
         <q-input outlined type="password" v-model="user.password" label="รหัสผ่าน" required />
    
         <div>
-            <q-btn label="เข้าสู่ระบบ" type="submit" color="primary" />
+            <q-btn label="ลงชื่อเข้าใช้" type="submit" color="red-12" />
         </div>
     </form>
-    <div>
-            <q-btn @click="$router.push('/userregister')" label="สมัครสมาชิก" type="submit" color="primary" />
-            <q-btn @click="$router.push('/')" label="หน้าหลัก" type="submit" color="primary" />
-        </div>
-    <pre>{{listuser}}</pre>
 </div>
 </template>
 
@@ -24,7 +19,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import axios from "../axios"
+import axios from "axios"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -60,7 +55,7 @@ export default {
     methods: {
         ...call('authen/*'),
         async login() {
-            let user = await this.UserLogin();
+            let user = await this.userLogin();
             if (user) {
                 
                 await location.reload();
@@ -75,7 +70,7 @@ export default {
             let checkUser = await this.checkToken();
             if(checkUser){
                 await this.getUser();
-                await this.$router.push('/usersetting');
+                await this.$router.push('/');
             }
             
             /*await axios.get('/api/users')
