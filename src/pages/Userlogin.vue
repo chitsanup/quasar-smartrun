@@ -16,6 +16,7 @@
         </div>
 
     </center>
+
 </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
         facebooklogin,
         applink,
         logo,
+
     }
 }
 </script>

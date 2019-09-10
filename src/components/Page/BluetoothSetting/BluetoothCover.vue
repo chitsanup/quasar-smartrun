@@ -1,12 +1,21 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="pa-0">
-    <div>
-        <q-btn flat icon="mdi-watch-variant" align="left" @click="$router.replace('/userprofile')" 
-        label="ตั้งค่าอุปกรณ์" style="width: 100%;font-size: 20px" type="submit" color="grey-9" />
+<div>
+    <div class="bg-red-12 text-white" style="height: 250px">
+        <q-toolbar>
+            <q-btn @click="$router.push('/appsetting')" flat round dense icon="mdi-chevron-left" />
+        </q-toolbar>
+        <center>
+            <q-toolbar>
+                <q-toolbar-title style="font-size: 20px">เชื่อมต่ออุปกรณ์ของคุณ
+                    <div class="q-pt-md">
+                        <img style="width:120px" src="../../Image/bluetoothconnect.png">
+                    </div>
 
+                </q-toolbar-title>
+            </q-toolbar>
+        </center>
     </div>
-    <hr>
 
 </div>
 </template>

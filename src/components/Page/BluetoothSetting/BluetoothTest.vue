@@ -3,16 +3,12 @@
 <div>
     <h2>Test Bluetooth</h2>
     <q-btn color="primary" @click="blueToothScan" label="สแกน" />
-
     <hr />
     <form @submit="blueToothConect">
-        
         <div class="row">{{devices}} </div>
         <q-btn color="primary" type="submit" label="เชื่อมต่อ" />
-
         <hr />
     </form>
-    <pre>{{listuser}}</pre>
 
 </div>
 </template>
@@ -101,19 +97,20 @@ export default {
             //ble.stopScan(this.success, this.failure);
         },
         async blueToothConect() {
-            ble.connect({}, function(){
-                        
-                        console.log("เชื่อมต่อสำเร็จ")
-                    }, function () {
-                        console.log("เชื่อมต่อไม่สำเร็จ")});
-                },
+            ble.connect({}, function () {
 
-                /******* Methods default run ******/
-                load: async function () {
-                    await this.getUser();
-                    await this.blueToothStatus();
+                console.log("เชื่อมต่อสำเร็จ")
+            }, function () {
+                console.log("เชื่อมต่อไม่สำเร็จ")
+            });
+        },
 
-                }
+        /******* Methods default run ******/
+        load: async function () {
+            await this.getUser();
+            await this.blueToothStatus();
+
         }
-    };
+    }
+};
 </script>

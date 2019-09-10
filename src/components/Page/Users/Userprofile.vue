@@ -1,6 +1,6 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="colunm pa-0" style="width: 100%;font-size: 15px">
+<div class="colunm pa-0" style="width: 100%;font-size: 18px">
 
      <div class="q-pl-md q-pt-md  row">
         อีเมล : {{listuser.email}}
@@ -11,11 +11,11 @@
     </div>
     <hr>
     <div class="q-pl-md row">
-        เพศ : {{listuser.gender}}
+        อายุ : {{listuser.age}} ปี
     </div>
     <hr>
     <div class="q-pl-md row">
-        อายุ : {{listuser.age}} ปี
+        เพศ : {{listuser.gender}} 
     </div>
     <hr>
     <center>

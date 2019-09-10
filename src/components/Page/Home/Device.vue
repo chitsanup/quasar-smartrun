@@ -1,10 +1,8 @@
 <!----------Make By YourName---------------->
  <template>
-<div>
-    <div style="font-size: 120%" ><q-icon name="mdi-watch-variant" />
+<div class="q-pl-sm q-pt-sm">
+    <div style="font-size: 12px" ><q-icon name="mdi-watch-variant" />
      Smartwatch</div>
-    
-    
     </div>
 </template>
 

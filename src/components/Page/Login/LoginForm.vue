@@ -71,6 +71,7 @@ export default {
             if(checkUser){
                 await this.getUser();
                 await this.$router.push('/');
+                
             }
             
             /*await axios.get('/api/users')

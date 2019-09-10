@@ -1,23 +1,20 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <div class="pa-2 bg-red-12 text-white" style="height: 150px">
-        <q-toolbar>
-            <q-btn @click="$router.push(goPage)" flat round dense icon="mdi-chevron-left" />
-        </q-toolbar>
-
+    <div class="pa-2 bg-grey-8 text-white" style="height: 150px">
         <center>
-            <div  class="q-gutter-sm">
-                <q-avatar size="80px">
-                    <img  :src="listuser.profilepic">
-                </q-avatar>
-            </div>
+            <q-knob readonly :max="60" show-value font-size="16px" class="text-white q-ma-md" v-model="value" size="100px" :thickness="0.05" color="white" track-color="black">
+                <div class="column">
+                <strong>{{ value }}</strong>     
+                <div class="q-pt-sm">BPM</div> 
+                </div>
+            </q-knob>
         </center>
     </div>
-
 </div>
 </template>
 
+    
 <script>
 import {
     get,
@@ -32,15 +29,12 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        goPage:{
-            default:('/')
-        }
 
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            value: 50,
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -54,15 +48,12 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        ...sync('authen/*'),
+
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        ...call('authen/*'),
         /******* Methods default run ******/
-        load: async function () {
-            await this.getUser()
-        }
+        load: async function () {}
     },
 }
 </script>

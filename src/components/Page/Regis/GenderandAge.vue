@@ -1,20 +1,21 @@
 <!----------Make By YourName---------------->
  <template>
-<div>
-    <div class="pa-2 bg-red-12 text-white" style="height: 150px">
-        <q-toolbar>
-            <q-btn @click="$router.push(goPage)" flat round dense icon="mdi-chevron-left" />
-        </q-toolbar>
+<div class="q-pa-md">
 
-        <center>
-            <div  class="q-gutter-sm">
-                <q-avatar size="80px">
-                    <img  :src="listuser.profilepic">
-                </q-avatar>
-            </div>
-        </center>
-    </div>
-
+    <form @submit.prevent="register()" class="q-gutter-md">
+        
+        <div>
+        เพศ :
+        <q-radio v-model="form.gender" val="หญิง" label="หญิง" color="red" />
+        <q-radio v-model="form.gender" val="ชาย" label="ชาย" color="indigo" />
+        <q-radio v-model="form.gender" val="อื่นๆ" label="อื่นๆ" color="purple" />
+        </div>
+        <q-input outlined type="number" v-model="form.age" label="อายุ" required />
+        <div>
+            <q-btn label="ตกลง" type="submit" color="red-12" />
+        </div>
+    </form>
+    
 </div>
 </template>
 
@@ -24,6 +25,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
+import axios from "axios"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -32,10 +34,7 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        goPage:{
-            default:('/')
-        }
-
+        
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
@@ -47,6 +46,7 @@ export default {
     async mounted() {
         /**** Call loading methods*/
         this.load();
+
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
     async beforeRouteEnter(to, from, next) {
@@ -54,15 +54,31 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        ...sync('authen/*'),
+        ...sync('authen/*')
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
-        /******* Methods default run ******/
-        load: async function () {
-            await this.getUser()
-        }
+        async register() {
+
+            let form = await this.userRegister();
+            if (form) {
+
+                await this.$router.push('/login');
+                await location.reload();
+            }
+        },
+
+        async load() {
+            await this.getUser();
+            /*await axios.get('/api/users')
+            .then((r) => {
+            this.userList=r.data;
+            }).catch((e) => { 
+
+             });*/
+        },
+
     },
 }
 </script>

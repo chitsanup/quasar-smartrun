@@ -1,21 +1,19 @@
 <template>
   <div>
     <cover/>
-    <settinguser/>
-    
-    <settingdevice/>
+    <menusetting class="q-pt-sm" goPage='/userprofile' text='ตั้งค่าบัญชีผู้ใช้' icon='mdi-account-circle-outline' />
+    <menusetting goPage='/bluetoothsetting' text='ตั้งค่าอุปกรณ์' icon='mdi-watch-variant' />
   </div>
 </template>
 
 <script>
 import cover from '../components/Page/Setting/SettingCover'
-import settinguser from '../components/Page/Setting/SettingUser'
-import settingdevice from '../components/Page/Setting/SettingDevice'
+import menusetting from '../components/Page/Setting/MenuSetting'
+
 export default {
 components:{
   cover,
-  settinguser,
-  settingdevice
+  menusetting
 }
 }
 </script>

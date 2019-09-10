@@ -2,8 +2,8 @@
  <template>
 <div class="pa-0">
     <div>
-        <q-btn flat icon="mdi-account-circle-outline" align="left" @click="$router.replace('/userprofile')" 
-        label="ตั้งค่าบัญชีผู้ใช้" style="width: 100%;font-size: 20px" type="submit" color="grey-9" />
+        <q-btn flat :icon="icon" align="left" @click="$router.replace(goPage)" :label="text" style="width: 100%;font-size: 18px" color="grey-9" />
+
     </div>
     <hr>
 
@@ -24,7 +24,16 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-
+        icon: {
+            default: 'file-image-outline'
+        },
+        goPage: {
+            default: '/'
+        },
+        text:{
+            type:String,
+            default:"'ชื่อเมนู'"
+        }
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {

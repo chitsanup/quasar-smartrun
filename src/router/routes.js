@@ -36,6 +36,11 @@ const routes = [
    
   },
   {
+    path: '/running',
+    component: () => import('pages/Running.vue'),
+   
+  },
+  {
     path: '/test',
     component: () => import('pages/Test.vue'),
    

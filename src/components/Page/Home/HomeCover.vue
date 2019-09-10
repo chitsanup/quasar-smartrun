@@ -1,28 +1,28 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="pa-0">
+<div>
     <div class="bg-red-12 text-white" style="height: 150px">
         <q-toolbar>
 
             <q-space />
 
-            <q-btn flat round dense icon="mdi-settings" @click="$router.push('/appsetting')" />
+            <q-btn flat round dense icon="mdi-settings-outline" @click="$router.push('/appsetting')" />
         </q-toolbar>
         
 
-        <div class="row">
+        <div class="row ">
             <div  class="q-pa-md q-gutter-sm">
                 <q-avatar size="60px">
-                    <img  src="https://cdn.quasar.dev/img/avatar.png">
+                    <img  :src="listuser.profilepic">
                 </q-avatar>
             </div>
-            <div class="column" style="font-size: 100%">
-                <div style="font-size: 150%">
+            <div class="column q-pt-md" style="font-size: 100%">
+                <div style="font-size: 20px">
                     <strong>{{listuser.name}}</strong>
                 </div>
                 <q-breadcrumbs active-color="white">
                     <q-breadcrumbs-el>อายุ {{listuser.age}} ปี</q-breadcrumbs-el>
-                    <q-breadcrumbs-el>0 การวิ่ง</q-breadcrumbs-el>
+                    <q-breadcrumbs-el>{{num}} การวิ่ง</q-breadcrumbs-el>
                 </q-breadcrumbs>
             </div>
         </div>
@@ -45,7 +45,9 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-
+        num:{
+            default:'-'
+        }
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {

@@ -31,7 +31,8 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        //await this.checkToken();
+         
+        await this.checkToken();
         /**** Call loading methods*/
         this.load();
     },
@@ -46,7 +47,7 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         async checkToken() {
-            let token = localStorage.getItem('api_token');
+            let token = await localStorage.getItem('api_token');
             if (!token) {
                 await this.$router.replace('/login');
             }

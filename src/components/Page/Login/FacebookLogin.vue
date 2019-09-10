@@ -2,13 +2,6 @@
  <template>
 <div>
     <q-btn @click="facebookLogin()" color="white" text-color="blue" icon="mdi-facebook-box" label="Login with Facebook" />  
-    <div v-if="form">
-        <img :src="form.profilepic" alt="">
-        <h3 style="font-size:18px;">{{form.email}}</h3>
-        <h3 style="font-size:18px;">{{form.name}}</h3>
-        <h3 style="font-size:18px;">{{form.password}}</h3>
-        <h3 style="font-size:18px;">{{form.profilepic}}</h3>
-    </div>
 </div>
 </template>
 
@@ -65,17 +58,19 @@ export default {
                                         profilepic: result.picture_large.data.url
                                     }  
                                      this.form = userFB 
-                                  let user = await this.CheckEmail({
+                                  let user = await this.checkEmail({
                                       email: userFB.email,
                                       password: userFB.password,
                                       remember_me:true
                                   });
+                                  
                                     if (user) {
                                         await this.$router.push('/');
                                         await location.reload();
 
                                     } else{
-                                        await this.UserRegister();
+                                        await this.userRegister();
+                                        
 
                                     }
                                 },
@@ -89,7 +84,9 @@ export default {
                 });
         },
         /******* Methods default run ******/
-        load: async function () {}
+        load: async function () {
+            
+        }
     },
 }
 </script>

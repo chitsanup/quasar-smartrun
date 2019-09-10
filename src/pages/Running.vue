@@ -1,19 +1,21 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-      <q-avatar round size="100px">
-        <img src="../Image/Applogo.png">
-      </q-avatar>
+    <cover/>
+    <runbody/>
     </div>
 </template>
 
     <script>
     import { get,sync,call } from "vuex-pathify"; 
+    import runbody from "../components/Page/Run/RunBody"
+    import cover from "../components/Page/Run/RunCover"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-
+        runbody,
+        cover
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{

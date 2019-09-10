@@ -2,10 +2,14 @@ import axios from '../axios'
 import _ from 'lodash'
 import { make } from 'vuex-pathify'
 
+
 const state = {
-    form: {},
+    form: {
+        profilepic:'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg',
+    },
     user: {},
-    listuser: [],
+    listuser: {
+    },
 
 }
 
@@ -29,17 +33,15 @@ const actions = {
      
 
     async userRegister(context, params) { 
-        alert(JSON.stringify(state.form));
         let result = await axios.post('/api/auth/signup', state.form)
             .then((r) => {
-                alert('Save Data Success');
+                alert('สมัครสมาชิกเสร็จสิ้น โปรดเข้าสู่ระบบอีกครั้ง');
                 state.form = {};
                 return true;
             }).catch((e) => {
                 alert('ไม่สำเร็จ');
                 return false;
             });
-
         return result;
     },
 
@@ -51,7 +53,7 @@ const actions = {
         let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
                 alert('เข้าสู่ระบบสำเร็จ');
-                state.form = {};
+                state.user = {};
                 localStorage.setItem('api_token', r.data.access_token);
                 return true;
             }).catch((e) => {
@@ -100,7 +102,7 @@ const actions = {
             });
     },
     async userLogout(context, params) { 
-        let load = axios.get('/api/auth/logout')
+        let load = await axios.get('/api/auth/logout')
         .then((r) => {
             alert('Logout Data Success');
         }).catch((e) => {
@@ -108,7 +110,6 @@ const actions = {
         });
         state.listuser = {};
         await localStorage.clear()  
-        alert('ออกจากระบบ');
 
     },
 

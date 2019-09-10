@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <pagecover goPage='/'/>
+    <pagecover goPage='/appsetting'/>
     <userprofile/>
     <br>
     <div>

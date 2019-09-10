@@ -1,9 +1,19 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-      <q-avatar round size="100px">
-        <img src="../Image/Applogo.png">
-      </q-avatar>
+    <q-knob
+      show-value
+      font-size="16px"
+      class="text-red q-ma-md"
+      v-model="value"
+      size="100px"
+      :thickness="0.05"
+      color="red"
+      track-color="grey-3"
+    >
+      <q-icon name="volume_up" class="q-mr-xs" />
+      {{ value }}
+    </q-knob>
     </div>
 </template>
 
@@ -22,7 +32,7 @@ props:{
     /*-------------------------DataVarible---------------------------------------*/
     data() {
     return {
-
+        value: 80,
         };
     }, 
     /*-------------------------Run Methods when Start this Page------------------------------------------*/

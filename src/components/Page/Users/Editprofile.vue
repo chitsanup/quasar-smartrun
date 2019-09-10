@@ -1,25 +1,24 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pa-md" >
+<div class="q-pa-md">
     <!----<pre>{{listuser}}</pre>---->
-        <center>
+    <center>
         <q-form @submit.prevent="update()" class="q-gutter-md">
             <q-input disable square outlined v-model="listuser.email" label="อีเมล" />
             <q-input square outlined v-model="listuser.name" label="ชื่อ" />
-            <q-input  type="number" square outlined v-model="listuser.age" label="อายุ" />
-            <q-input square outlined v-model="listuser.gender" label="เพศ" />
+            <q-input type="number" square outlined v-model="listuser.age" label="อายุ" />
+            <q-select outlined v-model="listuser.gender" :options="options" label="เพศ" />
             <div class="q-gutter-xl q-pa-md">
-                <q-btn label="ยกเลิก" style="width:30%" @click="$router.push('/userprofile')" color="deep-orange" />
-                
-                <q-btn label="บันทึกข้อมูล" style="width:30%" type="submit" color="green-6" />
+                <q-btn label="ยกเลิก" style="width:25%" @click="$router.push('/userprofile')" color="deep-orange" />
+
+                <q-btn label="บันทึก" style="width:25%" type="submit" color="green-6" />
             </div>
         </q-form>
-        </center>
+    </center>
 
 </div>
 </template>
 
-    
 <script>
 import {
     get,
@@ -41,7 +40,9 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            options: [
+                'หญิง', 'ชาย', 'ไม่ระบุ'
+            ]
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -71,7 +72,7 @@ export default {
 
         },
         async load() {
-            
+
             await this.getUser();
 
         },
