@@ -5,9 +5,11 @@
     <q-btn color="primary" @click="blueToothScan" label="สแกน" />
     <hr />
     <form @submit="blueToothConect">
-        <div class="row">{{devices}} </div>
+        <div v-for="i in listlength">
+        {{i.name}}
         <q-btn color="primary" type="submit" label="เชื่อมต่อ" />
         <hr />
+        </div>
     </form>
 
 </div>
@@ -32,7 +34,8 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            devices: []
+            listdevices: [],
+            listlength:[]
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -51,31 +54,21 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call("authen/*"),
-        async blueToothStatus() {
-            ble.isEnabled(
-                await
-                function () {
-                    alert("Bluetooth Open!");
-                },
-                await
-                function () {
-                    ble.showBluetoothSettings();
-                    //ble.readRSSI(device_id, success, failure);
-                    location.reload();
-                }
-            );
-        },
+        
 
         getDevice(device) {},
 
         async blueToothScan() {
-
+            let list = []
+            this.listlength=list
             ble.startScan(
                 [],
                 device => {
-                    this.devices = device;
-                    console.log(device);
-
+                    this.listdevices = device;
+                    //console.log(JSON.stringify(device));
+                    list.push(device);
+                   
+                    
                     //ble.connect();
                 },
                 function (err) {
@@ -87,9 +80,10 @@ export default {
                 7000,
                 function () {
                     ble.stopScan();
-                    console.log("Scan complete");
+                    console.log("Scan complete");  
+                    console.log(JSON.stringify(list));
+                    console.log(JSON.stringify(list.length));
                 },
-
                 function () {
                     console.log("stopScan failed");
                 }
@@ -98,7 +92,6 @@ export default {
         },
         async blueToothConect() {
             ble.connect({}, function () {
-
                 console.log("เชื่อมต่อสำเร็จ")
             }, function () {
                 console.log("เชื่อมต่อไม่สำเร็จ")
@@ -108,7 +101,6 @@ export default {
         /******* Methods default run ******/
         load: async function () {
             await this.getUser();
-            await this.blueToothStatus();
 
         }
     }

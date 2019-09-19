@@ -1,22 +1,28 @@
 <!----------Make By YourName---------------->
  <template>
-<div id="q-app">
-    <router-view/>
+<div>
+    <cover />
+
+    <genderage />
+
 </div>
 </template>
 
+    
 <script>
 import {
     get,
     sync,
     call
 } from "vuex-pathify";
-
+import genderage from "../components/Page/Regis/GenderandAge"
+import cover from "../components/Page/Regis/GenderAgeCover"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-
+        genderage,
+        cover
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -30,8 +36,6 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-         
-        await this.checkToken();
         /**** Call loading methods*/
         this.load();
     },
@@ -45,18 +49,8 @@ export default {
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        async checkToken() {
-            let token = await localStorage.getItem('api_token');
-            if (!token) {
-                await this.$router.replace('/login');
-            }
-        },
-        
-
         /******* Methods default run ******/
-        load: async function () {
-
-        }
+        load: async function () {}
     },
 }
 </script>

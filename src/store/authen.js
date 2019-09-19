@@ -1,6 +1,8 @@
 import axios from '../axios'
 import _ from 'lodash'
 import { make } from 'vuex-pathify'
+import { stringify } from 'querystring';
+
 
 
 const state = {
@@ -8,8 +10,7 @@ const state = {
         profilepic:'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg',
     },
     user: {},
-    listuser: {
-    },
+    listuser: {},
 
 }
 
@@ -24,10 +25,11 @@ const actions = {
         let data = await axios.get('/api/auth/user')
             .then((r) => {
                 state.listuser = r.data
+                
             }).catch((e) => {
-
+                
             });
-
+            return state.listuser;
     },
 
      
@@ -49,6 +51,7 @@ const actions = {
         let token = localStorage.getItem('api_token');
         return (token)?true:false;
     },
+    
     async userLogin(context, params) {
         let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
@@ -82,7 +85,7 @@ const actions = {
     async updateUser(context, params) {
         let load = await axios.put(`/api/edit/${state.listuser.id}`,state.listuser)
             .then((r) => {
-                alert('Update Data Success');
+                alert('อัพเดทข้อมูลสำเร็จ');
                 return true;
             }).catch((e) => {
                 alert('Error Update');

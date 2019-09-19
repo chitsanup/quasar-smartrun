@@ -11,6 +11,11 @@ const routes = [
    
   },
   {
+    path: '/genderage',
+    component: () => import('pages/UserGenderAge.vue'),
+   
+  },
+  {
     path: '/login',
     component: () => import('pages/Userlogin.vue'),
    

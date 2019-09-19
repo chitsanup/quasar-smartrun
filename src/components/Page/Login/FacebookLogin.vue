@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <q-btn @click="facebookLogin()" color="white" text-color="blue" icon="mdi-facebook-box" label="Login with Facebook" />  
+    <q-btn   @click="facebookLogin()" color="blue" text-color="white" icon="mdi-facebook-box" label="Login with Facebook" />
 </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            
+
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -50,27 +50,33 @@ export default {
                     if (response.status == "connected") {
                         facebookConnectPlugin.api(response.authResponse.userID + "/?fields=id,email,first_name,picture.width(360).height(360).as(picture_large)", ["public_profile"],
                             async (result) => {
-                                    
-                                     let userFB = {
+
+                                    let userFB = {
                                         password: result.id,
                                         name: result.first_name,
                                         email: result.email,
                                         profilepic: result.picture_large.data.url
-                                    }  
-                                     this.form = userFB 
-                                  let user = await this.checkEmail({
-                                      email: userFB.email,
-                                      password: userFB.password,
-                                      remember_me:true
-                                  });
-                                  
+                                    }
+                                    this.form = userFB
+                                    let user = await this.checkEmail({
+                                        email: userFB.email,
+                                        password: userFB.password,
+                                        remember_me: true
+                                    });
+
                                     if (user) {
-                                        await this.$router.push('/');
+                                        await this.getUser();
+                                        let user = await this.getUser();
+                                        if (user.gender == null && user.age == null) {
+                                            await this.$router.replace('/genderage');
+
+                                        } else {
+                                            await this.$router.replace('/');
+                                        }
                                         await location.reload();
 
-                                    } else{
+                                    } else {
                                         await this.userRegister();
-                                        
 
                                     }
                                 },
@@ -85,7 +91,7 @@ export default {
         },
         /******* Methods default run ******/
         load: async function () {
-            
+
         }
     },
 }

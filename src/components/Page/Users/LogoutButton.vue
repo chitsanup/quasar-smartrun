@@ -3,7 +3,7 @@
 <div>
     <center>
         <div>
-            <q-btn @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
+            <q-btn class="full-width q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
         </div>
     </center>
 </div>

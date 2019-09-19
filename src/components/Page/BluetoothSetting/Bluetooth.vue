@@ -9,6 +9,7 @@
     </q-toolbar> 
 
     <q-card-section>
+        
        <div class="text-subtitle2">Status : {{status}}</div>
         <div>Name : <span>{{device? device.name : 'N/A'}}</span></div>
         <div>Mac Address : <span>{{device ? device.id : 'N/A'}}</span></div>
@@ -53,6 +54,7 @@ export default {
     mounted() {
         this.ble = ble
     },
+   
 
     methods: {
         ...call('heart/*'),

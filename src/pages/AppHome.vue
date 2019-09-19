@@ -9,9 +9,9 @@
     </div>
     <hr/>
     <center>
-        <mode goPage='/' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
+        <mode goPage='/'  img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
         <hr>
-        <mode goPage='/' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
+        <mode goPage='/'  img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
     </center>
     <h2>Upload file</h2>
       <vue-base64-file-upload 
@@ -35,6 +35,7 @@ import history from '../components/Page/Home/HistoryButton'
 import mode from '../components/Page/Home/Mode'
 import { get,sync,call } from "vuex-pathify"; 
 import VueBase64FileUpload from 'vue-base64-file-upload';
+import { isNull } from 'util'
 
 export default {
     components: {
@@ -57,7 +58,7 @@ props:{
     }, 
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
      async mounted() {
-         
+          //this.checKGenderage();
     /**** Call loading methods*/
             this.load(); 
     },
@@ -84,10 +85,17 @@ methods:{
     onSizeExceeded(size) {
       alert(`Image ${size}Mb size exceeds limits of ${this.customImageMaxSize}Mb!`);
     },
+    /*async checKGenderage(){
+            let user = await this.getUser();
+            if (user.gender == null && user.age == null) {
+                await this.$router.replace('/genderage');
+                
+            }
+        },*/
  
     /******* Methods default run ******/
     load:async function(){
-        await this.getUser(),
+        await this.getUser()
         await ble.isEnabled(
         () => {
           console.log('bluetooth is already enabled.')

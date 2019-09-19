@@ -1,27 +1,31 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="colunm pa-0" style="width: 100%;font-size: 18px">
+<div class="q-pa-md" style="width: 100%;font-size: 18px">
+     
+<div  class="q-gutter-md">
+    <q-input disable square outlined v-model="listuser.email" label="อีเมล">
+        <template v-slot:prepend>
+            <q-icon name="mdi-email" />
+        </template>
+    </q-input>
+    <q-input disable square outlined v-model="listuser.name" label="ชื่อ">
+        <template v-slot:prepend>
+            <q-icon name="mdi-account-circle" />
+        </template>
+    </q-input>
+    <q-input disable type="number" square outlined v-model="listuser.age" label="อายุ">
 
-     <div class="q-pl-md q-pt-md  row">
-        อีเมล : {{listuser.email}}
-    </div>
-    <hr>
+    </q-input>
+    
     <div class="q-pl-md row">
-        ชื่อ : {{listuser.name}}
+        เพศ : {{listuser.gender}}
     </div>
     <hr>
-    <div class="q-pl-md row">
-        อายุ : {{listuser.age}} ปี
     </div>
-    <hr>
-    <div class="q-pl-md row">
-        เพศ : {{listuser.gender}} 
-    </div>
-    <hr>
     <center>
-    <div>
-        <q-btn @click="$router.push('/editprofile')" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
-    </div>
+        <div>
+            <q-btn class="full-width q-mt-md" @click="$router.push('/editprofile')" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
+        </div>
     </center>
 
 </div>

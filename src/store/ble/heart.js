@@ -39,7 +39,7 @@ const actions = {
       (error) => {
         console.log(error)
       })
-
+     
     setTimeout(state.ble.stopScan,
       5000,
       () => {
@@ -56,7 +56,7 @@ const actions = {
         console.log('stopScan failed')
       }
     )
-
+    
   },
   connectingDevices: function ({ state, dispatch }, devices) {
     console.log(devices)

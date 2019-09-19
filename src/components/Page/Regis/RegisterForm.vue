@@ -3,16 +3,36 @@
 <div class="q-pa-md">
 
     <form @submit.prevent="register()" class="q-gutter-md">
-        <q-input  outlined type="email" v-model="form.email" label="อีเมล" required />
-        <q-input  outlined type="name" v-model="form.name" label="ชื่อผู้ใช้" required />
-        <q-input  outlined type="password" v-model="form.password" label="รหัสผ่าน" required />
-        
+
+        <q-input outlined type="email" v-model="form.email" label="อีเมล" required>
+            <template v-slot:prepend>
+                <q-icon name="mdi-email" />
+            </template>
+        </q-input>
+        <q-input outlined type="name" v-model="form.name" label="ชื่อผู้ใช้" required>
+            <template v-slot:prepend>
+                <q-icon name="mdi-account-circle" />
+            </template>
+        </q-input>
+        <q-input outlined v-model="form.password"  label="รหัสผ่าน"  :type="isPwd ? 'password' : 'text'">
+            <template v-slot:prepend>
+                <q-icon name="mdi-lock-question" />
+            </template>
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
+       
         <div>
-            <q-btn label="สมัครสมาชิก" type="submit" color="red-12" />
+            <q-btn class="full-width q-mt-md" label="สมัครสมาชิก" type="submit" color="red-12" />
         </div>
     </form>
     <div>
-        <q-btn @click="$router.push('/login')" label="เข้าสู่ระบบ" color="primary" />
+        <q-btn flat class="full-width q-mt-md" @click="$router.push('/login')" label="เข้าสู่ระบบ" color="white" text-color="blue" />
 
     </div>
 </div>
@@ -38,12 +58,12 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            isPwd: true,
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        
+
         /**** Call loading methods*/
         this.load();
 
