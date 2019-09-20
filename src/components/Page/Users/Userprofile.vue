@@ -1,26 +1,28 @@
 <!----------Make By YourName---------------->
  <template>
 <div class="q-pa-md" style="width: 100%;font-size: 18px">
-     
-<div  class="q-gutter-md">
-    <q-input disable square outlined v-model="listuser.email" label="อีเมล">
-        <template v-slot:prepend>
-            <q-icon name="mdi-email" />
-        </template>
-    </q-input>
-    <q-input disable square outlined v-model="listuser.name" label="ชื่อ">
-        <template v-slot:prepend>
-            <q-icon name="mdi-account-circle" />
-        </template>
-    </q-input>
-    <q-input disable type="number" square outlined v-model="listuser.age" label="อายุ">
 
-    </q-input>
-    
-    <div class="q-pl-md row">
-        เพศ : {{listuser.gender}}
-    </div>
-    <hr>
+    <div class="q-gutter-md">
+        <q-input disable outlined v-model="listuser.email" label="อีเมล">
+            <template v-slot:prepend>
+                <q-icon name="mdi-email" />
+            </template>
+        </q-input>
+        <q-input disable outlined v-model="listuser.name" label="ชื่อ">
+            <template v-slot:prepend>
+                <q-icon name="mdi-account-circle" />
+            </template>
+        </q-input>
+        <q-input disable type="number" outlined v-model="listuser.age" label="อายุ">
+            <template v-slot:prepend>
+                <q-icon name="mdi-calendar" />
+            </template>
+        </q-input>
+        <q-input disable outlined v-model="listuser.gender" label="เพศ">
+            <template v-slot:prepend>
+                <q-icon name="mdi-gender-transgender" />
+            </template>
+        </q-input>
     </div>
     <center>
         <div>

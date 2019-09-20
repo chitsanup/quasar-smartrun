@@ -11,6 +11,10 @@ const state = {
     },
     user: {},
     listuser: {},
+    isPwd: true,
+    options: [
+        'หญิง', 'ชาย', 'อื่นๆ'
+    ]
 
 }
 

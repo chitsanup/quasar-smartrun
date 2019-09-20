@@ -1,17 +1,12 @@
 <template>
-  <div>
-    
-    <pagecover goPage='/appsetting'/>
-    <userprofile/>
+<div>
+
+    <pagecover goPage='/appsetting' />
+    <userprofile />
     <br>
-    <div>
-       <logout/>
-    </div>
-     
-    
-  </div>
-  
-  
+    <logout />
+
+</div>
 </template>
 
 <script>
@@ -19,10 +14,10 @@ import userprofile from "../components/Page/Users/UserProfile"
 import pagecover from "../components/Page/Users/PageCover"
 import logout from "../components/Page/Users/LogoutButton"
 export default {
-  components:{
-      userprofile,
-      pagecover,
-      logout
+    components: {
+        userprofile,
+        pagecover,
+        logout
     }
 }
 </script>

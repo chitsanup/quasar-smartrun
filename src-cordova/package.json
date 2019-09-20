@@ -16,7 +16,8 @@
     "cordova-android": "^8.0.0",
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-facebook4": "6.0.0"
+    "cordova-plugin-facebook4": "6.0.0",
+    "cordova-plugin-gadgetbridge": "git+https://github.com/mmig/cordova-plugin-gadgetbridge.git"
   },
   "devDependencies": {
     "cordova-plugin-whitelist": "^1.3.4"
@@ -30,7 +31,8 @@
         "APP_NAME": "smartrun",
         "FACEBOOK_HYBRID_APP_EVENTS": "false",
         "FACEBOOK_ANDROID_SDK_VERSION": "5.2.0"
-      }
+      },
+      "cordova-plugin-gadgetbridge": {}
     },
     "platforms": [
       "android"
