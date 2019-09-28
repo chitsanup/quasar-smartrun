@@ -32,7 +32,7 @@ export default {
             default: 'ชื่อโหมด'
         },
         goPage: {
-            default: '/'
+            default: 'home/'
         },
         text: {
             type: String,

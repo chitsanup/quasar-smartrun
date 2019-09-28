@@ -35,7 +35,7 @@
         </div>
     </form>
     <div>
-        <q-btn flat class="full-width q-mt-md" @click="$router.push('/login')" label="เข้าสู่ระบบ" color="white" text-color="blue" />
+        <q-btn flat class="full-width q-mt-md" @click="$router.replace('/')" label="เข้าสู่ระบบ" color="white" text-color="blue" />
 
     </div>
 </div>
@@ -87,7 +87,7 @@ export default {
             let form = await this.userRegister();
             if (form) {
 
-                await this.$router.push('/login');
+                await this.$router.push('/');
                 await location.reload();
             }
         },

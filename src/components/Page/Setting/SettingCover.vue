@@ -3,7 +3,7 @@
 <div>
     <div class="pa-2 bg-red-12 text-white" style="height: 150px">
         <q-toolbar>
-            <q-btn @click="$router.push('/')" flat round dense icon="mdi-chevron-left" />
+            <q-btn @click="$router.replace('/home')" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
 
         <center>

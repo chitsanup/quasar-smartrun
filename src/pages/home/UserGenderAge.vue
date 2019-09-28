@@ -1,50 +1,56 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <cover/>
-    <runbody/>
-    </div>
+    <cover />
+
+    <genderage />
+
+</div>
 </template>
 
-    <script>
-    import { get,sync,call } from "vuex-pathify"; 
-    import runbody from "../components/Page/Run/RunBody"
-    import cover from "../components/Page/Run/RunCover"
+    
+<script>
+import {
+    get,
+    sync,
+    call
+} from "vuex-pathify";
+import genderage from "../../components/Page/Regis/GenderandAge"
+import cover from "../../components/Page/Regis/GenderAgeCover"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        runbody,
+        genderage,
         cover
     },
-  /*-------------------------Set Component---------------------------------------*/
-props:{
+    /*-------------------------Set Component---------------------------------------*/
+    props: {
 
-},
+    },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
-    return {
+        return {
 
         };
-    }, 
+    },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
-     async mounted() {
-    /**** Call loading methods*/
-            this.load(); 
+    async mounted() {
+        /**** Call loading methods*/
+        this.load();
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
-     async beforeRouteEnter(to, from, next) { 
+    async beforeRouteEnter(to, from, next) {
         next()
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
-    computed:{
+    computed: {
 
-},
+    },
     /*-------------------------Methods------------------------------------------*/
-methods:{
-    /******* Methods default run ******/
-    load:async function(){
+    methods: {
+        /******* Methods default run ******/
+        load: async function () {}
+    },
 }
-},
-    }
 </script>

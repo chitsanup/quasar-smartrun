@@ -1,17 +1,21 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pr-sm">
-    <q-btn  style="font-size:12px" class="btn-fixed-width" icon="mdi-history" label="ประวัติการวิ่ง" color="teal-4" @click="$router.push('/home/appsetting')"/>
+<div>
+    <cover/>
+    <runbody/>
     </div>
 </template>
 
     <script>
     import { get,sync,call } from "vuex-pathify"; 
+    import runbody from "../../components/Page/Run/RunBody"
+    import cover from "../../components/Page/Run/RunCover"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-
+        runbody,
+        cover
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{

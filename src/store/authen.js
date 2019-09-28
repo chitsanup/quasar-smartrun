@@ -116,6 +116,7 @@ const actions = {
             alert('Error Logout');
         });
         state.listuser = {};
+        await localStorage.removeItem('api_token')
         await localStorage.clear()  
 
     },

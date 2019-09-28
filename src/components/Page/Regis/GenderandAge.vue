@@ -65,18 +65,19 @@ export default {
     methods: {
         ...call('authen/*'),
         async update() {
-            let form = await this.updateUser();
-            if (form) {
-                
+            
+                let form = await this.updateUser();
+                if (form) {
                 await location.reload();
-            }
+            
+                }
         },
 
         async load() {
             await this.getUser();
             let user = await this.getUser();
-                if (user.gender !== null && user.age !== null) {
-                    await this.$router.replace('/');
+                if (user.gender !== null || user.age !== null) {
+                    await this.$router.replace('/home');
 
                 }
 

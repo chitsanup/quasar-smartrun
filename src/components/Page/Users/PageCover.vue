@@ -3,13 +3,23 @@
 <div>
     <div class="pa-2 bg-red-12 text-white" style="height: 150px">
         <q-toolbar>
-            <q-btn @click="$router.push(goPage)" flat round dense icon="mdi-chevron-left" />
+            <q-btn @click="$router.replace(goPage)" flat round dense icon="mdi-chevron-left" />
+            
+            <q-toolbar-title>
+            <div style="font-size: 15px">
+                <strong>{{label}}</strong>
+            </div>
+            </q-toolbar-title>
+            
+           
+            
+            
         </q-toolbar>
 
         <center>
-            <div  class="q-gutter-sm">
+            <div class="q-gutter-sm">
                 <q-avatar size="80px">
-                    <img  :src="listuser.profilepic">
+                    <img :src="listuser.profilepic">
                 </q-avatar>
             </div>
         </center>
@@ -32,8 +42,12 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        goPage:{
-            default:('/')
+        goPage: {
+            default: ('/home')
+        },
+        label:{
+            typte : String,
+            default : 'label'
         }
 
     },

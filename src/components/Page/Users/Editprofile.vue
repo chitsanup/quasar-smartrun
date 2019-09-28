@@ -27,7 +27,7 @@
             </q-select>
 
             <div class="q-gutter-xl q-pa-md">
-                <q-btn label="ยกเลิก" style="width:25%" @click="$router.push('/userprofile')" color="deep-orange" />
+                <q-btn label="ยกเลิก" style="width:25%" @click="$router.replace('/home/appsetting/userprofile')" color="deep-orange" />
                 <q-btn label="บันทึก" style="width:25%" type="submit" color="green-6" />
             </div>
         </q-form>
@@ -81,7 +81,7 @@ export default {
         async update() {
             let user = await this.updateUser();
             if (user) {
-                await this.$router.push('/userprofile')
+                await this.$router.replace('/home/userprofile')
                 await location.reload();
             }
 

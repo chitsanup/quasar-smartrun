@@ -27,6 +27,12 @@ module.exports = function (ctx) {
     ],
 
     framework: {
+      config: {
+        cordova: {
+          backButtonExit: true/false
+        }
+      },
+      
       // iconSet: 'ionicons-v4',
       // lang: 'de', // Quasar language
 
