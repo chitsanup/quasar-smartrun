@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import editprofile from "../../components/Page/Users/Editprofile"
-import pagecover from "../../components/Page/Users/PageCover"
+import editprofile from "../../../../components/Page/Users/Editprofile"
+import pagecover from "../../../../components/Page/Users/PageCover"
 export default {
   components:{
       editprofile,

@@ -9,9 +9,9 @@
     </div>
     <hr />
     <center>
-        <mode goPage='/home' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
+        <mode goPage='/' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
         <hr>
-        <mode goPage='/home' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
+        <mode goPage='/' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
     </center>
     <!------ <h2>Upload file</h2>
       <vue-base64-file-upload 

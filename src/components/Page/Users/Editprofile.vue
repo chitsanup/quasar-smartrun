@@ -27,7 +27,7 @@
             </q-select>
 
             <div class="q-gutter-xl q-pa-md">
-                <q-btn label="ยกเลิก" style="width:25%" @click="$router.replace('/home/appsetting/userprofile')" color="deep-orange" />
+                <q-btn label="ยกเลิก" style="width:25%" @click="$router.replace('/appsetting/userprofile')" color="deep-orange" />
                 <q-btn label="บันทึก" style="width:25%" type="submit" color="green-6" />
             </div>
         </q-form>

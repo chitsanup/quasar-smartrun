@@ -47,8 +47,8 @@ export default {
     methods: {
         async checkToken() {
             let token = await localStorage.getItem('api_token');
-            if (token) {
-                await this.$router.replace('/home');
+            if (!token) {
+                await this.$router.replace('/login');
             }
         },
         
@@ -58,7 +58,7 @@ export default {
             await this.getUser();
             let user = await this.getUser();
                 if (user.gender !== null || user.age !== null) {
-                    await this.$router.replace('/home');
+                    await this.$router.replace('/');
 
                 }
         }
