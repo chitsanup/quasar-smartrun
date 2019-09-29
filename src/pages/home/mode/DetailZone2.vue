@@ -1,57 +1,43 @@
 <!----------Make By YourName---------------->
 <template>
-    <div class="pa-0 column">
-        <div class="row">
-            
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">เหมาะสำหรับ : </Strong> </p>
-                
-                <p style="font-size:24px;filter: brightness(100%)">{{detailPeople}}</p>
+    <div>
+        <center>
+        <Cover img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' />
+        </center>
 
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">อัตรการเต้นของหัวใจ : </Strong> </p>
+        <detailBody detailPeople='- ผู้ที่มีน้ำหนักตัวมาก ยังไม่สามารถออกกำลังกายหนักๆได้นานๆ 
+                            - ต้องการลดน้ำหนักมากๆ
+                            - มีเวลาออกกำลังกายนานๆ (40-80 นาที)'
+                    detailHr ='60% - 70% ของอัตราการเต้นของหัวใจสูงสุด'
+                    detailRun ='วิ่งแบบจ็อกกิ้ง' />
 
-                <p style="font-size:24px;filter: brightness(100%)">{{detailHr}}</p>
+         <q-btn goPage='/' label="ตกลง" type="submit" color="red-12" />
+        
 
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">ลักษณะการวิ่ง : </Strong> </p>
-
-                
-        </div>
+        
+        
     </div>
 </template>
 
 <script>
-
 import { get,sync,call } from "vuex-pathify"; 
+import Cover from '../../../components/Page/Detailmode/DetailCover'
+import detailBody from '../../../components/Page/Detailmode/DetailBody'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-    
+        Cover,
+        detailBody,
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{
-    detailPeople: {
-        type: String,
-        default: 'คำแนะนำ'
-    },
-    detailHr: {
-        type: String,
-        default: 'อัตราการเต้นของหัวใจ'
-    },
-    detailRun: {
-        type: String,
-        default: 'ลักษณะการวิ่ง'
-    },
-    goPage: {
-        default: '/'
-    },
-    
-
 
 },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
     return {
-        
+
         };
     }, 
     /*-------------------------Run Methods when Start this Page------------------------------------------*/

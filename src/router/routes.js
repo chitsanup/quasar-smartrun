@@ -32,6 +32,21 @@ const routes = [
              
             },
             {
+              path: 'listRunHistory',
+              component: () => import('pages/home/history/RunHistory.vue'),
+             
+            },
+            {
+              path: 'detailZone2',
+              component: () => import('pages/home/mode/DetailZone2'),
+             
+            },
+            {
+              path: 'detailZone3',
+              component: () => import('pages/home/mode/DetailZone3'),
+             
+            },
+            {
               path: 'appsetting',
               component: () => import('pages/home/setting/Template.vue'),
               children:[
@@ -74,6 +89,7 @@ const routes = [
               component: () => import('pages/home/Running.vue'),
              
             },
+            
           ]
         },
     
