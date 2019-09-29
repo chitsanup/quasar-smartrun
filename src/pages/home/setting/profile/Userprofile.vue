@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import userprofile from "../../../../components/Page/Users/Userprofile"
+import userprofile from "../../../../components/Page/Users/UserProfile"
 import pagecover from "../../../../components/Page/Users/PageCover"
 import logout from "../../../../components/Page/Users/LogoutButton"
 export default {
