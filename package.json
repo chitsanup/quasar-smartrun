@@ -19,6 +19,7 @@
     "sweetalert2": "^8.16.3",
     "vue-base64-file-upload": "^1.0.4",
     "vue-select-image": "^1.7.0",
+    "vue-toasted": "^1.1.27",
     "vuetify": "^2.0.10",
     "vuex-pathify": "^1.2.4"
   },

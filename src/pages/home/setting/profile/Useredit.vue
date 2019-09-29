@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pagecover label='แก้ไขบัญชีผู้ใช้'  goPage='/home/userprofile'/>
+    <pagecover label='แก้ไขบัญชีผู้ใช้'  goPage='/appsetting/userprofile'/>
     <editprofile/>
     
     </div>

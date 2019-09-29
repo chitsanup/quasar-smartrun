@@ -41,6 +41,9 @@ import VueBase64FileUpload from 'vue-base64-file-upload';
 import {
     isNull
 } from 'util'
+import {
+    async
+} from 'q'
 
 export default {
     components: {
@@ -64,7 +67,7 @@ export default {
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
         await this.checkToken();
-        
+        //document.addEventListener("deviceready", this.onDeviceReady, false);
         //this.checKGenderage();
         /**** Call loading methods*/
         this.load();
@@ -79,10 +82,33 @@ export default {
     methods: {
         ...call('authen/*'),
         
+        
+
         async checkToken() {
             let token = await localStorage.getItem('api_token');
             if (!token) {
+                await this.$router.replace('/login');
+            }else{
+                let user = await this.getUser();
+            if (user.gender == null || user.age == null) {
+                await this.$router.replace('/genderage');
+
+            } else {
                 await this.$router.replace('/');
+            }
+            
+            await ble.isEnabled(
+                () => {
+                    console.log('bluetooth is already enabled.')
+                },
+                () => {
+                    ble.enable(() => {
+                        console.log('bluetooth is enabled successfully.')
+                    }, () => {
+
+                    })
+                },
+            )
             }
         },
 
@@ -107,26 +133,8 @@ export default {
 
         /******* Methods default run ******/
         load: async function () {
-            /*let user = await this.getUser();
-                    if (user.gender == null || user.age == null) {
-                        await this.$router.replace('/home/genderage');
-
-                    } else {
-                        await this.$router.replace('/home');
-                    }*/
-            await this.getUser();
-            await ble.isEnabled(
-                () => {
-                    console.log('bluetooth is already enabled.')
-                },
-                () => {
-                    ble.enable(() => {
-                        console.log('bluetooth is enabled successfully.')
-                    }, () => {
-
-                    })
-                },
-            )
+            //await this.getUser();
+            
         }
     },
 }

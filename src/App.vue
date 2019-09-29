@@ -30,8 +30,8 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-         
-        await this.checkToken();
+          await this.checkToken();
+        
         /**** Call loading methods*/
         this.load();
     },
@@ -52,15 +52,13 @@ export default {
             }
         },
         
+        
 
         /******* Methods default run ******/
         load: async function () {
-            await this.getUser();
-            let user = await this.getUser();
-                if (user.gender !== null || user.age !== null) {
-                    await this.$router.replace('/');
-
-                }
+            
+          
+            
         }
     },
 }

@@ -87,7 +87,7 @@ export default {
             let form = await this.userRegister();
             if (form) {
 
-                await this.$router.push('/');
+                await this.$router.replace('/login');
                 await location.reload();
             }
         },

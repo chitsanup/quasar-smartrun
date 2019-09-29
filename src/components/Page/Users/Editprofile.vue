@@ -81,7 +81,7 @@ export default {
         async update() {
             let user = await this.updateUser();
             if (user) {
-                await this.$router.replace('/home/userprofile')
+                await this.$router.replace('/appsetting/userprofile')
                 await location.reload();
             }
 

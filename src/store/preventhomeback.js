@@ -1,9 +1,23 @@
-document.addEventListener("backbutton", onBackKeyDown, false);
+import axios from 'axios'
+import _ from 'lodash'
+import { make } from 'vuex-pathify'
+const state = {
 
-function onBackKeyDown() {
-    // Handle the back button
-    if($.mobile.activePage[0].id == "homeid") //insert your home id
-    {
-      navigator.app.exitApp();
-    }
 }
+const getters = {
+
+}
+
+const mutations = make.mutations(state)
+
+const actions = {
+
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
+  }

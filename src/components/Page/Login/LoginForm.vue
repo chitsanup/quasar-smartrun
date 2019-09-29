@@ -79,7 +79,7 @@ export default {
         },
 
         async load() {
-            let checkUser = await this.checkToken();
+             let checkUser = await this.checkToken();
             if (checkUser) {
                 let user = await this.getUser();
                 if (user.gender == null || user.age == null) {

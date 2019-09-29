@@ -16,7 +16,14 @@ export default {
       leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
+  async mounted() {
+         
+        
+        /**** Call loading methods*/
+        this.load();
+    },
   methods: {
+    
     openURL
   }
 }

@@ -15,8 +15,8 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import genderage from "../../components/Page/Regis/GenderandAge"
-import cover from "../../components/Page/Regis/GenderAgeCover"
+import genderage from "../../../../components/Page/Regis/GenderandAge"
+import cover from "../../../../components/Page/Regis/GenderAgeCover"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
