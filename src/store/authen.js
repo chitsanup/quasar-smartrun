@@ -118,7 +118,6 @@ const actions = {
         state.listuser = {};
         await localStorage.removeItem('api_token')
         await localStorage.clear()  
-        
 
     },
     

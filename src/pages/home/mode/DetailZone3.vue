@@ -14,7 +14,7 @@
                     detailHr ='70% - 80% ของอัตราการเต้นของหัวใจสูงสุด'
                     detailRun ='วิ่งเร็ว' />
 
-         <q-btn goPage='/' label="ตกลง" type="submit" color="red-12" />
+         <q-btn @click="$router.replace({name:'recommend'})" label="ตกลง" type="submit" color="red-12" />
         
     </div>
 </template>

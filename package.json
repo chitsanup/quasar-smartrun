@@ -11,6 +11,7 @@
     "all": "quasar build -m cordova -T android && cd src-cordova && cordova run android --release -- --keystore=keystore.jks --storePassword=password --alias=user --password=password && cd ../    "
   },
   "dependencies": {
+    "@dmaksimovic/vue-countdown": "^1.0.0",
     "@mdi/font": "^4.2.95",
     "@mdi/js": "^4.2.95",
     "@quasar/extras": "^1.0.0",

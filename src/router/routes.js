@@ -9,7 +9,7 @@ const routes = [
       },
       {
         path: '/genderage',
-        name: 'home-genderage',
+        name: 'genderage',
         component: () => import('pages/home/setting/profile/UserGenderAge.vue'),
        
       },   
@@ -27,23 +27,44 @@ const routes = [
         children:[
             {
               path: '',
-              name: 'home-index',
+              name: 'home',
               component: () => import('pages/home/AppHome.vue'),
              
             },
             {
-              path: 'listRunHistory',
+              path: 'running',
+              name: 'running',
+              component: () => import('pages/home/Running.vue'),
+             
+            },
+            {
+              path: 'history',
+              name: 'history',
               component: () => import('pages/home/history/RunHistory.vue'),
              
             },
             {
               path: 'detailZone2',
+              name: 'detailZone2',
               component: () => import('pages/home/mode/DetailZone2'),
              
             },
             {
               path: 'detailZone3',
+              name: 'detailZone3',
               component: () => import('pages/home/mode/DetailZone3'),
+             
+            },
+            {
+              path: 'recommend',
+              name: 'recommend',
+              component: () => import('pages/home/mode/Recommend'),
+             
+            },
+            {
+              path: 'measureHR',
+              name: 'measureHR',
+              component: () => import('pages/home/mode/MeasureHR'),
              
             },
             {
@@ -52,7 +73,7 @@ const routes = [
               children:[
                 {
                   path: '',
-                  name: 'home-setting-appsetting',
+                  name: 'appsetting',
                   component: () => import('pages/home/setting/Appsetting.vue'),
                  
                 },
@@ -63,13 +84,13 @@ const routes = [
                   
                   {
                     path: '',
-                    name: 'home-setting-userprofile',
+                    name: 'userprofile',
                     component: () => import('pages/home/setting/profile/Userprofile.vue'),
                    
                   },
                   {
                     path: 'editprofile',
-                    name: 'home-setting-editprofile',
+                    name: 'editprofile',
                     component: () => import('pages/home/setting/profile/Useredit.vue'),
                    
                   },
@@ -77,17 +98,12 @@ const routes = [
               },
               {
                 path: 'bluetoothsetting',
-                name: 'home-bluetoothsetting',
+                name: 'bluetoothsetting',
                 component: () => import('pages/home/setting/Bluetooth.vue'),
                
               },
       
               ]
-            },
-            {
-              path: 'running',
-              component: () => import('pages/home/Running.vue'),
-             
             },
             
           ]
@@ -95,15 +111,11 @@ const routes = [
     
     
   {
-    path: 'test',
+    path: '/test',
     component: () => import('pages/Test.vue'),
    
   },
-  {
-    path: 'test2',
-    component: () => import('pages/Test2.vue'),
-   
-  },
+  
   
 ]
 

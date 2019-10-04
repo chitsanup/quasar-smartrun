@@ -11,7 +11,7 @@
                     detailHr ='60% - 70% ของอัตราการเต้นของหัวใจสูงสุด'
                     detailRun ='วิ่งแบบจ็อกกิ้ง' />
 
-         <q-btn goPage='/' label="ตกลง" type="submit" color="red-12" />
+         <q-btn @click="$router.push({name:'running'})" label="ตกลง" type="submit" color="red-12" />
         
 
         

@@ -44,6 +44,7 @@ props:{
 methods:{
     /******* Methods default run ******/
     load:async function(){
+        
 }
 },
     }

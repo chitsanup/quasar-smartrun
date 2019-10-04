@@ -26,7 +26,7 @@
     </div>
     <center>
         <div>
-            <q-btn class="full-width q-mt-md" @click="$router.push('/appsetting/userprofile/editprofile')" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
+            <q-btn class="full-width q-mt-md" @click="$router.replace({name:'editprofile'})" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
         </div>
     </center>
 

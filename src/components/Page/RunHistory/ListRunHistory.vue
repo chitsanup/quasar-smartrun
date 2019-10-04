@@ -2,11 +2,10 @@
 <template>
     <div class="pa-0 column">
 
-        <q-item clickable v-ripple :active="active">
-            <q-separator spaced />
-            <q-item-label header > 3 มีนาคม </q-item-label>
-        </q-item>
-
+        <div class="bg-grey-4 text-black q-pa-sm" style="font-size:16px" >
+            วันที่
+        </div>
+    
         <center>
              <q-item clickable v-ripple :active="active">
                 <q-item-section avatar>
@@ -18,7 +17,7 @@
                 </q-item-section>
             </q-item>
         </center>
-        <q-separator spaced inset />
+        
 
     </div>
 </template>

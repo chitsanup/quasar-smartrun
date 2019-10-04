@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <q-btn flat @click="$router.replace(goPage)" color="primary" >{{text}}</q-btn>
+    <q-btn flat @click="$router.replace({name:goPage})" color="primary" >{{text}}</q-btn>
 </div>
 </template>
 

@@ -5,7 +5,7 @@
             <center>
                 <q-img class="text-white" style="height: 150px" :src="img">
                     <q-toolbar inset>
-                        <q-btn @click="$router.push('/')" flat round dense icon="mdi-chevron-left" />
+                        <q-btn @click="$router.push({name: 'home'})" flat round dense icon="mdi-chevron-left" />
                     </q-toolbar>
                     <p class="absolute-full text-subtitle2 flex flex-center q-pt-md column"><Strong style="font-size:30px;filter: brightness(100%)">{{detail}}</Strong></p>
                 </q-img>

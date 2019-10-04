@@ -3,13 +3,13 @@
 <div>
     <div class="bg-red-12 text-white" style="height: 250px">
         <q-toolbar>
-            <q-btn @click="$router.push('/appsetting')" flat round dense icon="mdi-chevron-left" />
+            <q-btn @click="$router.replace({name: 'appsetting'})" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
         <center>
             <q-toolbar>
                 <q-toolbar-title style="font-size: 20px">เชื่อมต่ออุปกรณ์ของคุณ
                     <div class="q-pt-md">
-                        <img style="width:120px" src="../../Image/bluetoothconnect.png">
+                        <img style="width:120px" src="../../Image/bluetooth-signal-indicator.png">
                     </div>
 
                 </q-toolbar-title>
@@ -61,6 +61,7 @@ export default {
         /******* Methods default run ******/
         load: async function () {
             await this.getUser()
+            
         }
     },
 }

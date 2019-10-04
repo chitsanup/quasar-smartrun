@@ -2,7 +2,7 @@
  <template>
 <div class="q-pl-sm q-pt-sm">
     <div style="font-size: 12px" ><q-icon name="mdi-watch-variant" />
-     Smartwatch</div>
+     <strong>{{device? device.name : 'ไม่ได้เชื่อมต่อ'}}</strong></div>
     </div>
 </template>
 
@@ -35,10 +35,11 @@ props:{
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed:{
-
+         device: sync('heart/device'),
 },
     /*-------------------------Methods------------------------------------------*/
 methods:{
+    ...call('heart/*'),
     /******* Methods default run ******/
     load:async function(){
 }

@@ -3,17 +3,7 @@
 <div>
     <div class="pa-2 bg-red-12 text-white" style="height: 150px">
         <q-toolbar>
-            <q-btn @click="$router.push(goPage)" flat round dense icon="mdi-chevron-left" />
-            
-            <q-toolbar-title>
-            <div style="font-size: 15px">
-                <strong>{{label}}</strong>
-            </div>
-            </q-toolbar-title>
-            
-           
-            
-            
+            <q-btn @click="$router.replace({name:goPage})" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
 
         <center>

@@ -10,9 +10,9 @@
         <p>หรือ</p>
         <facebooklogin />
         <div class="row">
-            <applink goPage='/login' text="ลืมรหัสผ่าน" />
+            <applink goPage='login' text="ลืมรหัสผ่าน" />
             <q-space />
-            <applink goPage='/register' text="สมัครสมาชิก" />
+            <applink goPage='register' text="สมัครสมาชิก" />
         </div>
 
     </center>
@@ -54,16 +54,17 @@ export default {
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
         //document.addEventListener("backbutton", this.onBackKeyDown, false);
-        await document.addEventListener("deviceready", this.onDeviceReady, false);
+        //await document.addEventListener("deviceready", this.onDeviceReady, false);
         //await this.checkToken();
         //document.addEventListener("backbutton", this.onBackKeyDown, false);
 
         /**** Call loading methods*/
-        this.load();
+        await this.load();
     },
     async created() {
 
     },
+    
     /*async destroyed(){
         document.removeEventListener('backbutton',this.onBackKeyDown);
     },
@@ -76,6 +77,7 @@ export default {
 
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
+    
     computed: {
         ...sync('authen/*')
     },
@@ -83,7 +85,7 @@ export default {
     methods: {
         ...call('authen/*'),
 
-        async onDeviceReady() {
+        /*async onDeviceReady() {
             await document.addEventListener("backbutton", this.onBackKeyDown, false);
         },
         async onBackKeyDown() {
@@ -103,8 +105,9 @@ export default {
         },
 
         /******* Methods default run ******/
-        load: async function () {
-            
+        load: async function () { 
+                        window.history.forward();
+
         }
     },
 }

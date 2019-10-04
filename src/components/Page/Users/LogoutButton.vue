@@ -51,7 +51,8 @@ export default {
 
         async logout() {
             await this.userLogout();
-            await this.$router.push('/');
+            await this.$router.replace({name:'login'});
+            
         },
 
         async load() {

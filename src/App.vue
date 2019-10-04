@@ -48,7 +48,7 @@ export default {
         async checkToken() {
             let token = await localStorage.getItem('api_token');
             if (!token) {
-                await this.$router.replace('/login');
+                await this.$router.push({name: 'login'});
             }
         },
         

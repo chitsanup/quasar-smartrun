@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div class="q-pa-md">
-    <q-btn unelevated rounded style="width: 100%;" @click="$router.push(goPage)" text-color="white">
+    <q-btn unelevated rounded style="width: 100%;" @click="$router.push({name:goPage})" text-color="white">
         <q-img :src="img">
             <p class="absolute-full text-subtitle2 flex flex-center q-pt-md column"><Strong style="font-size:30px;filter: brightness(100%)">{{detail}}</Strong>{{text}}
             </p>

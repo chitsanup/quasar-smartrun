@@ -1,16 +1,26 @@
 <!----------Make By YourName---------------->
  <template>
-<div> 
-    <h2>Test 2</h2>
-    <h3>{{x}}</h3>
-    <input type="text" v-model="x" />
-    <button @click="test(
-        {
-            name:'ภัทรสุดา',
-            surname:'ช่วยนุกิจ'
-        }
-    )">test1</button>
-</div>
+ <q-layout view="hHr LpR lFf" >
+<q-page-container>
+    <q-page class=" flex-center bg-red-12 text-white">
+        <q-toolbar>
+            <q-btn @click="$router.replace({name:'home'})" flat round dense icon="mdi-chevron-left" />
+        </q-toolbar>
+        <center>
+        <div class="text-center" style="font-size:20px">
+            
+        โปรดยืนค้างไว้
+        <br>
+        เพื่อวัดอัตราการเต้นของหัวใจ
+      </div>
+      <div >
+            <q-btn class=" q-mt-md" @click="$router.replace({name:'measureHR'})" style="width: 50%" label="รับทราบ" color="white" text-color="black" />
+        </div>
+        </center>
+    </q-page>
+    
+</q-page-container>
+</q-layout>
 </template>
 
 <script>
@@ -53,8 +63,11 @@ export default {
         ...call('test/*'),
         /******* Methods default run ******/
         load: async function () {
-             
+
         }
     },
 }
 </script>
+
+
+

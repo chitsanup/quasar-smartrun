@@ -2,7 +2,7 @@
  <template>
 <div class="pa-0">
     <div>
-        <q-btn flat :icon="icon" align="left" @click="$router.push(goPage)" :label="text" style="width: 100%;font-size: 18px" color="grey-9" />
+        <q-btn flat :icon="icon" align="left" @click="$router.replace({name:goPage})" :label="text" style="width: 100%;font-size: 18px" color="grey-9" />
 
     </div>
     <hr>

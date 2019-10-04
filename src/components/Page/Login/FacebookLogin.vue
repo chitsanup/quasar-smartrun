@@ -68,10 +68,10 @@ export default {
                                         await this.getUser();
                                         let user = await this.getUser();
                                         if (user.gender == null || user.age == null) {
-                                            await this.$router.replace('/genderage');
+                                            await this.$router.replace({name:'genderage'});
 
                                         } else {
-                                            await this.$router.replace('/');
+                                            await this.$router.replace({name:'home'});
                                         }
                                         await location.reload();
 

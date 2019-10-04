@@ -1,8 +1,18 @@
 <!----------Make By YourName---------------->
  <template>
-<div>
-    <div class="q-pa-sm bg-grey-8 text-white" >
+ <q-layout view="hHr LpR lFf" >
+<q-page-container>
+    <q-page class=" flex-center bg-red-12 text-white">
+        <q-toolbar>
+            <q-btn @click="$router.replace({name:'recommend'})" flat round dense icon="mdi-chevron-left" />
+        </q-toolbar>
         <center>
+        <div class="text-center" style="font-size:20px">
+            
+        อัตราการเต้นของหัวใจของคุณ
+        
+      </div>
+      
             <div >
             <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" 
              size="150px" :thickness="0.05" color="white" track-color="black">
@@ -13,23 +23,25 @@
                 </div>
             </q-knob>
             </div>
+        
         </center>
-    </div>
-</div>
+    </q-page>
+    
+</q-page-container>
+</q-layout>
 </template>
 
-    
 <script>
 import {
     get,
     sync,
     call
 } from "vuex-pathify";
+import { timeout } from 'q';
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-         
 
     },
     /*-------------------------Set Component---------------------------------------*/
@@ -39,16 +51,11 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            value: 50,
-            default:220,
-            
 
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        
-        
         /**** Call loading methods*/
         this.load();
     },
@@ -58,7 +65,7 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        states: sync('heart/states'),
+         states: sync('heart/states'),
         state: sync('heart/state'),
         device: sync('heart/device'),
         ble: sync('heart/ble'),
@@ -70,17 +77,19 @@ export default {
     methods: {
         ...call('heart/*'),
         ...call('authen/*'),
-        
+        async timeout(){
+            setTimeout(() => {
+                this.$router.replace({name:'running'})
+            }, 10000);
+        },
         
         /******* Methods default run ******/
         load: async function () {
             await this.getUser()
-            
-            await this.startZone2()
-            
-            
-            
+            await this.startNotify()
+            await this.timeout()
         }
     },
 }
 </script>
+

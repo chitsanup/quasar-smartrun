@@ -3,10 +3,10 @@
     <div class="pa-0 column">
         <div class="bg-red-12 text-white" style="height: 150px">
             <q-toolbar>
-                <q-btn @click="$router.push('/')" flat round dense icon="mdi-chevron-left" />
+                <q-btn @click="$router.push({name:'home'})" flat round dense icon="mdi-chevron-left" />
             </q-toolbar>
             <center>
-                <q-toolbar inset>
+                <q-toolbar>
                     <q-toolbar-title style="font-size: 30px">ประวัติการวิ่ง
                        <q-icon name="mdi-clipboard-text"></q-icon>
                     </q-toolbar-title>

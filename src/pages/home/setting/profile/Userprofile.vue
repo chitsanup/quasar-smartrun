@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <pagecover label='บัญชีผู้ใช้' goPage='/appsetting' />
+    <pagecover label='บัญชีผู้ใช้' goPage='appsetting' />
     <userprofile />
     <br>
     <logout />

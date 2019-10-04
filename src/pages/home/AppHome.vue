@@ -9,20 +9,10 @@
     </div>
     <hr />
     <center>
-        <mode goPage='/' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
+        <mode goPage='detailZone2' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ' />
         <hr>
-        <mode goPage='/' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
+        <mode goPage='detailZone3' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
     </center>
-    <!------ <h2>Upload file</h2>
-      <vue-base64-file-upload 
-        class="v1"
-        accept="image/png,image/jpeg"
-        image-class="v1-image"
-        input-class="v1-image"
-        :max-size="customImageMaxSize"
-        @size-exceeded="onSizeExceeded"
-        @file="onFile"
-        @load="onLoad" />------->
 
 </div>
 </template>
@@ -37,7 +27,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import VueBase64FileUpload from 'vue-base64-file-upload';
+
 import {
     isNull
 } from 'util'
@@ -51,7 +41,7 @@ export default {
         device,
         history,
         mode,
-        VueBase64FileUpload
+        
     },
 
     /*-------------------------Set Component---------------------------------------*/
@@ -61,7 +51,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            customImageMaxSize: 3
+            
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -73,7 +63,7 @@ export default {
         this.load();
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
-
+   
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
         ...sync('authen/*')
@@ -81,48 +71,35 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
-        
-        
 
         async checkToken() {
             let token = await localStorage.getItem('api_token');
             if (!token) {
                 await this.$router.replace('/login');
-            }else{
-                let user = await this.getUser();
-            if (user.gender == null || user.age == null) {
-                await this.$router.replace('/genderage');
-
             } else {
-                await this.$router.replace('/');
+                let user = await this.getUser();
+                if (user.gender == null || user.age == null) {
+                    await this.$router.replace('/genderage');
+
+                } else {
+                    await this.$router.replace('/');
+                }
+
+                await ble.isEnabled(
+                    () => {
+                        console.log('bluetooth is already enabled.')
+                    },
+                    () => {
+                        ble.enable(() => {
+                            console.log('bluetooth is enabled successfully.')
+                        }, () => {
+
+                        })
+                    },
+                )
             }
-            
-            await ble.isEnabled(
-                () => {
-                    console.log('bluetooth is already enabled.')
-                },
-                () => {
-                    ble.enable(() => {
-                        console.log('bluetooth is enabled successfully.')
-                    }, () => {
-
-                    })
-                },
-            )
-            }
         },
 
-        onFile(file) {
-            console.log(file); // file object
-        },
-
-        onLoad(dataUri) {
-            console.log(dataUri); // data-uri string
-        },
-
-        onSizeExceeded(size) {
-            alert(`Image ${size}Mb size exceeds limits of ${this.customImageMaxSize}Mb!`);
-        },
         /*async checKGenderage(){
                 let user = await this.getUser();
                 if (user.gender == null && user.age == null) {
@@ -134,7 +111,7 @@ export default {
         /******* Methods default run ******/
         load: async function () {
             //await this.getUser();
-            
+
         }
     },
 }
