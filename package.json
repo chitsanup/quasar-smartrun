@@ -6,7 +6,8 @@
   "author": "",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "android": "quasar dev -m cordova -T android",
+    "android": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
+    "xx":"quasar build -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
     "serve": "npx quasar dev",
     "all": "quasar build -m cordova -T android && cd src-cordova && cordova run android --release -- --keystore=keystore.jks --storePassword=password --alias=user --password=password && cd ../    "
   },

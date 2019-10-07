@@ -20,9 +20,12 @@ const state = {
   ble: null,
   data: 0,
   listuser: {},
-  hr1:0,
-  hr2:0,
-  total:''
+  hrmin:0,
+  hrmax:0,
+  hrlimit: 0,
+  total:'',
+  hrbegin: 0,
+  
 }
 
 const mutations = make.mutations(state)
@@ -105,11 +108,43 @@ const actions = {
 
   },
   
+  async prepareRunZone2(){
+    setTimeout( ()=> {
+      axios.get('/api/auth/user')
+      .then((r) =>{
+        state.listuser = r.data
+        state.hrbegin = state.data
+        state.hrlimit = (220-state.listuser.age-state.hrbegin)*(1)+state.hrbegin
+        state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
+        state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+      }).catch((e) => {
+               
+      });  
+  }, 10000)
+  
+  },
+  async prepareRunZone3(){
+    setTimeout( ()=> {
+      axios.get('/api/auth/user')
+      .then((r) =>{
+        state.listuser = r.data
+        state.hrbegin = state.data
+        state.hrlimit = (220-state.listuser.age-state.hrbegin)*(1)+state.hrbegin
+        state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+        state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
+        
+      }).catch((e) => {
+               
+      });  
+  }, 10000)
+  
+  },
 
-  startZone2: function ({ state }) {
+  async startZone2({ state }) {
      axios.get('/api/auth/user')
             .then((r) => {
               state.listuser = r.data
+              state.hrbegin = state.data
               if (state.device) {
                 console.log('start read data')
                 state.state = 3
@@ -119,18 +154,27 @@ const actions = {
                     console.dir(result)
                     var data = new Uint8Array(result)
                     state.data = data[1]
-                    state.hr1 = (220-state.listuser.age-71)*(0.6)+71
-              state.hr2 = (220-state.listuser.age-71)*(0.7)+71
+                    state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
+                    state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
          
-              if(state.data <= state.hr2  && state.data >= state.hr1){
+              if(state.data <= hrmax  && state.data >= hrmin){
               state.total = 'อยู่ในช่วง'
-          
+              setTimeout(() => {
+                dispatch('sound/initPlay','normal.wav')
+              }, 5000);
+              
+             /* setTimeout( () => {
+               
+            }, 10000) */
               }
-              else if(state.data > state.hr2){
+              else if(state.data > hrmax){
               state.total = 'zone 3'
-          
-              }else if(state.data < state.hr1){
+              dispatch('sound/initPlay','fast.wav')
+              }else if(state.data < hrmin){
+                
               state.total = 'zone 1'
+              dispatch('sound/initPlay','slow.wav')
+            
               }    
               return state.total        
                   }, () => {})     
@@ -141,10 +185,11 @@ const actions = {
                 
             });
   },
-  startZone3: function ({ state }) {
+  async startZone3({ state }) {
     axios.get('/api/auth/user')
            .then((r) => {
              state.listuser = r.data
+             state.hrbegin = state.data
              if (state.device) {
                console.log('start read data')
                state.state = 3
@@ -154,18 +199,18 @@ const actions = {
                    console.dir(result)
                    var data = new Uint8Array(result)
                    state.data = data[1]
-                  state.hr1 = (220-state.listuser.age-71)*(0.7)+71
-                  state.hr2 = (220-state.listuser.age-71)*(0.8)+71
+                  state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+                  state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
         
-             if(state.data <= state.hr2  && state.data >= state.hr1){
+             if(state.data <= state.hrmax  && state.data >= state.hrmin){
              state.total = 'อยู่ในช่วง'
          
              }
-             else if(state.data > state.hr2){
-             state.total = 'zone 3'
+             else if(state.data > state.hrmax){
+             state.total = 'zone 4'
          
-             }else if(state.data < state.hr1){
-             state.total = 'zone 1'
+             }else if(state.data < state.hrmin){
+             state.total = 'zone 2'
              }    
              return state.total        
                  }, () => {})     
@@ -191,7 +236,7 @@ const actions = {
 
   }
 },
-  stopNotify: function ({ state }) {
+async  stopNotify({ state }) {
     let ble = state.ble
     if (state.device) {
       ble.stopNotification(

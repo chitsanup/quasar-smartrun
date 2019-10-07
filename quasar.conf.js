@@ -101,7 +101,7 @@ module.exports = function (ctx) {
     },
 
     devServer: {
-      // https: true,
+      //https: true,
       // port: 8080,
       open: true // opens browser window automatically
     },
@@ -155,7 +155,7 @@ module.exports = function (ctx) {
     },
 
     cordova: {
-      // id: 'org.Smart.Run',
+       id: 'org.smart.run',
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
     },
 

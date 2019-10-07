@@ -32,9 +32,15 @@ const routes = [
              
             },
             {
-              path: 'running',
-              name: 'running',
-              component: () => import('pages/home/Running.vue'),
+              path: 'runningzone2',
+              name: 'runningzone2',
+              component: () => import('pages/home/mode/zone2/RunningZone2.vue'),
+             
+            },
+            {
+              path: 'runningzone3',
+              name: 'runningzone3',
+              component: () => import('pages/home/mode/zone3/RunningZone3.vue'),
              
             },
             {
@@ -46,25 +52,49 @@ const routes = [
             {
               path: 'detailZone2',
               name: 'detailZone2',
-              component: () => import('pages/home/mode/DetailZone2'),
+              component: () => import('pages/home/mode/zone2/DetailZone2'),
              
             },
             {
               path: 'detailZone3',
               name: 'detailZone3',
-              component: () => import('pages/home/mode/DetailZone3'),
+              component: () => import('pages/home/mode/zone3/DetailZone3'),
              
             },
             {
-              path: 'recommend',
-              name: 'recommend',
-              component: () => import('pages/home/mode/Recommend'),
+              path: 'recommendzone2',
+              name: 'recommendzone2',
+              component: () => import('pages/home/mode/zone2/RecommendZone2'),
              
             },
             {
-              path: 'measureHR',
-              name: 'measureHR',
-              component: () => import('pages/home/mode/MeasureHR'),
+              path: 'recommendzone3',
+              name: 'recommendzone3',
+              component: () => import('pages/home/mode/zone3/RecommendZone3'),
+             
+            },
+            {
+              path: 'measureZone2',
+              name: 'measureZone2',
+              component: () => import('pages/home/mode/zone2/MeasureZone2'),
+             
+            },
+            {
+              path: 'measureZone3',
+              name: 'measureZone3',
+              component: () => import('pages/home/mode/zone3/MeasureZone3'),
+             
+            },
+            {
+              path: 'detailbeforerunzone2',
+              name: 'detailbeforerunzone2',
+              component: () => import('pages/home/mode/zone2/DetailBeforeRun'),
+             
+            },
+            {
+              path: 'detailbeforerunzone3',
+              name: 'detailbeforerunzone3',
+              component: () => import('pages/home/mode/zone3/DetailBeforeRun'),
              
             },
             {

@@ -13,7 +13,9 @@
         <hr>
         <mode goPage='detailZone3' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย' />
     </center>
+            <audio id="blueJay" src="../../statics/sound/test2.mp3" type="audio/mpeg"></audio>
 
+ 
 </div>
 </template>
 
@@ -51,7 +53,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            
+            media : null
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -71,7 +73,7 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
-
+        ...call('sound/*'),
         async checkToken() {
             let token = await localStorage.getItem('api_token');
             if (!token) {
@@ -111,7 +113,7 @@ export default {
         /******* Methods default run ******/
         load: async function () {
             //await this.getUser();
-
+          //  await this.play('normal.wav')
         }
     },
 }

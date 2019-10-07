@@ -74,7 +74,7 @@ export default {
         
         /******* Methods default run ******/
         load: async function () {
-            await this.getUser()
+            
             
             await this.startZone2()
             
