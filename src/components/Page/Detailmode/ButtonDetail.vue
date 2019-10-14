@@ -1,33 +1,25 @@
 <!----------Make By YourName---------------->
-<template>
+ <template>
     <div>
-        <Cover detail = 'ZONE 2'/>
-            <detailBody detailPeople='ผู้ที่มีน้ำหนักตัวมาก ยังไม่สามารถออกกำลังกายหนักๆได้นานๆ 
-                                ต้องการลดน้ำหนักมากๆ
-                                มีเวลาออกกำลังกายนานๆ (40-80 นาที)'
-                        detailHr ='60% - 70% ของอัตราการเต้นของหัวใจสูงสุด'
-                        detailRun ='วิ่งแบบจ็อกกิ้ง' />
-            
-            <buttonDetail goPage='recommendzone2'/>
-        
+        <center>
+            <q-btn class=" q-mt-md" @click="$router.push({name:goPage})" style="width: 50%" label="ตกลง" type="submit" color="red-12" />
+        </center>
     </div>
 </template>
 
-<script>
-import { get,sync,call } from "vuex-pathify"; 
-import Cover from '../../../../components/Page/Detailmode/DetailCover'
-import detailBody from '../../../../components/Page/Detailmode/DetailBody'
-import buttonDetail from '../../../../components/Page/Detailmode/ButtonDetail'
+    <script>
+    import { get,sync,call } from "vuex-pathify"; 
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        Cover,
-        detailBody,
-        buttonDetail,
+
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{
+    goPage: {
+        default: '/'
+    },
 
 },
     /*-------------------------DataVarible---------------------------------------*/

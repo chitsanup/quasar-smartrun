@@ -3,14 +3,16 @@
  <q-layout view="hHr LpR lFf" >
 <q-page-container>
     <q-page class=" flex-center bg-red-12 text-white">
-        
         <center>
+        <div  style="padding-top: 80px">
         <div class="text-center" style="font-size:20px">
         อัตราการเต้นของหัวใจของคุณ
+        </div>
       </div>
       
       
-            <div >
+      
+            <div style="padding-top: 100px">
             <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" 
              size="150px" :thickness="0.05" color="white" track-color="black">
                 <div class="column">
@@ -19,8 +21,11 @@
                 </div>
             </q-knob>
             </div>
+
+            <div style="padding-top: 150px">
             <div class="text-center" >
         โปรดรอสักครู่...
+        </div>
       </div>
         
         </center>

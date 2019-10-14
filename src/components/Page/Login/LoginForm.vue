@@ -1,31 +1,37 @@
 <!----------Make By YourName---------------->
- <template>
-<div class="q-pa-md">
+<template>
 
+<div class="q-pa-md" >
     <form @submit.prevent="login()" class="q-gutter-md">
-        <q-input outlined type="email" v-model="user.email" label="อีเมล" required>
-            <template v-slot:prepend>
-                <q-icon name="mdi-email" />
-            </template>
-            <template v-slot:append>
-                <q-icon name="close" @click="user.email = ''" class="cursor-pointer" />
-            </template>
-        </q-input>
-        <q-input outlined v-model="user.password" label="รหัสผ่าน" :type="isPwd ? 'password' : 'text'"  required>
+            
+            <q-input dark outlined type="email" v-model="user.email" label="อีเมล" required>
+                <template v-slot:prepend>
+                    <q-icon name="mdi-email" />
+                </template>
+                <template v-slot:append>
+                    <q-icon name="close" @click="user.email = ''" class="cursor-pointer" />
+                </template>
+            </q-input>
+            
+            
+
+        <q-input dark outlined v-model="user.password" label="รหัสผ่าน" :type="isPwd ? 'password' : 'text'"  required>
             <template v-slot:prepend>
                 <q-icon name="mdi-lock-question" />
             </template>
             <template v-slot:append>
                 <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
             </template>
-
         </q-input>
 
+
         <div>
-            <q-btn class="full-width q-mt-md" label="ลงชื่อเข้าใช้" type="submit" color="red-12" />
+            <q-btn class="q-mt-md" style="width: 80%" label="ลงชื่อเข้าใช้" type="submit" color="red-12" />
         </div>
     </form>
+
 </div>
+
 </template>
 
 <script>

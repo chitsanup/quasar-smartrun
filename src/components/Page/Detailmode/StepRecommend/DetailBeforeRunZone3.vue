@@ -14,25 +14,40 @@
             </div>
         </center>
     </div>
-    <div class="q-pa-sm q-mt-sm">
-        <center>
+    <div class="q-pa-md q-mt-sm">
+        
             <div class="column">
-                <div>
-                    <h5>โหมดการวิ่ง : {{name}}</h5>
-                    <h5>Max HR : {{detail.hrlimit}} Bpm</h5>
-                    <h5>ช่วง HR ที่เหมาะสม : {{hr70.toFixed(0)}} - {{hr80.toFixed(0)}} Bpm</h5>
-                    <h5>เวลา : {{time}}</h5>
+                
+                <div style="padding-top: 20px">
+                    <q-icon  style="font-size:30px" name="mdi-run-fast"/> 
+                    <label style="font-size:20px;filter: brightness(100%) "> โหมดการวิ่ง : {{name}}</label><hr>
                 </div>
-                <div>
-                     <q-btn @click="$router.replace('runningzone3')" color="white" text-color="black" label="เริ่มวิ่ง" />
+
+                <div style="padding-top: 20px">
+                    <q-icon  style="font-size:30px" name="mdi-heart-pulse" />
+                    <label style="font-size:20px;filter: brightness(100%)"> Max HR : {{hrlimit}} Bpm</label><hr>
                 </div>
+                <div style="padding-top: 20px">
+                    <q-icon  style="font-size:30px" name="mdi-heart-pulse" />
+                    <label style="font-size:20px;filter: brightness(100%)"> ช่วง HR ที่เหมาะสม : {{hr70.toFixed(1)}} - {{hr80.toFixed(1)}} Bpm</label><hr>
+                </div>
+                <div style="padding-top: 20px">
+                    <q-icon  style="font-size:30px" name="mdi-timer" />
+                    <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}}</label><hr>
+                </div>
+
+                <center>
+                <div style="padding-top: 50px">
+                     <q-btn class="q-mt-md" style="width: 70%" @click="addDetail()" color="red-12" text-color="white" label="เริ่มวิ่ง"  />
+                </div>
+                </center>
+
             </div>
-        </center>
+        
     </div>
 </div>
 </template>
 
-    
 <script>
 import {
     get,
@@ -47,8 +62,8 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        name: {
-            default: 'namezone'
+        name:{
+            default:'namezone'
         },
         time: {
             default: 0
@@ -57,7 +72,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            details: {},
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -75,8 +90,26 @@ export default {
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
+        ...call('heart/*'),
+        ...call('authen/*'),
+        ...call('datarun/*'),
+        async addDetail() {
+            this.details.runmode = this.name
+            this.details.hrbegin = this.hrbegin
+            console.log(this.details.runmode)
+            console.log(this.details.hrbegin)
+            let run = await this.addData(this.details)
+            if (run) {
+                await this.$router.replace({
+                    name: 'runningzone2'
+                })
+            }
+
+        },
         /******* Methods default run ******/
-        load: async function () {}
+        load: async function () {
+            
+        }
     },
 }
 </script>

@@ -31,7 +31,7 @@
         </q-input>
 
         <div>
-            <q-btn class="full-width q-mt-md" label="สมัครสมาชิก" type="submit" color="red-12" />
+            <q-btn class="q-mt-md" label="สมัครสมาชิก" style="width: 70%"  type="submit" color="red-12" />
         </div>
     </form>
     <div>

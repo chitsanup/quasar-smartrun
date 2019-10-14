@@ -13,7 +13,12 @@
         <br>
         เพื่อวัดอัตราการเต้นของหัวใจ
       </div>
-      <div >
+
+        <div style="padding-top: 70px">
+            <q-icon style="font-size: 200px;"  class="mdi mdi-heart-pulse"></q-icon>
+        </div>
+
+      <div style="padding-top: 100px">
             <q-btn class=" q-mt-md" @click="$router.replace({name:'measureZone3'})" style="width: 50%" label="รับทราบ" color="white" text-color="black" />
         </div>
         </center>

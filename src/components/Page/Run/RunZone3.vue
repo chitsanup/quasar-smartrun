@@ -46,7 +46,12 @@
             </div>
         </div>
         
-        <div>
+        <div style="padding-top: 50px">
+            <q-img 
+            src="http://jewel925.com/wp-content/uploads/runner.png" />
+        </div>
+
+        <div style="padding-top: 30px">
             <q-btn @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
             <q-btn @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
             <q-btn @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />

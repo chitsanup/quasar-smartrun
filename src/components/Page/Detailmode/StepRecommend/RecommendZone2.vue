@@ -1,19 +1,26 @@
 <!----------Make By YourName---------------->
  <template>
- <q-layout view="hHr LpR lFf" >
+ <q-layout view="hHr LpR lFf"  >
 <q-page-container>
     <q-page class=" flex-center bg-red-12 text-white">
         <q-toolbar>
             <q-btn @click="$router.replace({name:'home'})" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
+
+        
         <center>
-        <div class="text-center" style="font-size:20px">
+        <div class="text-center" style="font-size:20px ">
             
         โปรดยืนค้างไว้
         <br>
         เพื่อวัดอัตราการเต้นของหัวใจ
       </div>
-      <div >
+
+        <div style="padding-top: 70px">
+            <q-icon style="font-size: 200px;"  class="mdi mdi-heart-pulse"></q-icon>
+        </div>
+
+      <div style="padding-top: 100px">
             <q-btn class=" q-mt-md" @click="$router.replace({name:'measureZone2'})" style="width: 50%" label="รับทราบ" color="white" text-color="black" />
         </div>
         </center>

@@ -1,12 +1,14 @@
 <!----------Make By YourName---------------->
  <template>
-<div>
+<div class="q-pa-md">
+<q-layout style="padding-top: 85px" >
     <center>
         <div>
             <logo />
         </div>
         <register />
     </center>
+</q-layout>
 </div>
 </template>
 

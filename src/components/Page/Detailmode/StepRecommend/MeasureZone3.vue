@@ -1,30 +1,37 @@
 <!----------Make By YourName---------------->
  <template>
-<q-layout view="hHr LpR lFf">
-    <q-page-container>
-        <q-page class=" flex-center bg-red-12 text-white">
-
-            <center>
-                <div class="text-center" style="font-size:20px">
-                    อัตราการเต้นของหัวใจของคุณ
+ <q-layout view="hHr LpR lFf" >
+<q-page-container>
+    <q-page class=" flex-center bg-red-12 text-white">
+        <center>
+        <div  style="padding-top: 80px">
+        <div class="text-center" style="font-size:20px">
+        อัตราการเต้นของหัวใจของคุณ
+        </div>
+      </div>
+      
+      
+      
+            <div style="padding-top: 100px">
+            <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" 
+             size="150px" :thickness="0.05" color="white" track-color="black">
+                <div class="column">
+                <strong>{{data}}</strong>     
+                <div class="q-pt-sm">BPM</div>
                 </div>
+            </q-knob>
+            </div>
 
-                <div>
-                    <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" size="150px" :thickness="0.05" color="white" track-color="black">
-                        <div class="column">
-                            <strong>{{data}}</strong>
-                            <div class="q-pt-sm">BPM</div>
-                        </div>
-                    </q-knob>
-                </div>
-                <div class="text-center">
-                    โปรดรอสักครู่...
-                </div>
-
-            </center>
-        </q-page>
-
-    </q-page-container>
+            <div style="padding-top: 150px">
+            <div class="text-center" >
+        โปรดรอสักครู่...
+        </div>
+      </div>
+        
+        </center>
+    </q-page>
+    
+</q-page-container>
 </q-layout>
 </template>
 
@@ -34,9 +41,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import {
-    timeout
-} from 'q';
+import { timeout } from 'q';
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -64,7 +69,7 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        states: sync('heart/states'),
+         states: sync('heart/states'),
         state: sync('heart/state'),
         device: sync('heart/device'),
         ble: sync('heart/ble'),
@@ -76,23 +81,20 @@ export default {
     methods: {
         ...call('heart/*'),
         ...call('authen/*'),
-
+       
         /******* Methods default run ******/
         load: async function () {
-
+            
             await this.getUser()
             await this.startNotify()
-            await this.prepareRunZone()
+           await this.prepareRunZone()
             setTimeout(async () => {
                 await this.$router.replace({
                     name: 'detailbeforerunzone3'
                 })
             }, 10000)
-
-            //await this.timeout() 
-
-        },
-
+        }
     },
 }
 </script>
+

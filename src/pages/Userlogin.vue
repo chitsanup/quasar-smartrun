@@ -1,22 +1,32 @@
 <template>
-<div>
-    <center>
-        <div>
-            <logo />
-        </div>
-        <div>
-            <login />
-        </div>
-        <p>หรือ</p>
-        <facebooklogin />
-        <div class="row">
-            <applink goPage='login' text="ลืมรหัสผ่าน" />
-            <q-space />
-            <applink goPage='register' text="สมัครสมาชิก" />
-        </div>
+<div class="q-pa-md">
+<q-layout style="padding-top: 85px" >
+       <q-parallax  >
+           <template v-slot:media>
+            <img src="assets/runLogin.jpg">
+            
+        </template>
+        
+                <center>
+                    
+                    <div>
+                        <logo />
+                    </div>
+                    <div>
+                        <login />
+                    </div>
+                    <p>หรือ</p>
+                    <facebooklogin />
 
-    </center>
-
+                    <div class="row" style="padding-top: 40px" >
+                        <applink  goPage='login' text="ลืมรหัสผ่าน" />
+                        <q-space />
+                        <applink goPage='register' text="สมัครสมาชิก" />
+                    </div>
+                </center>
+        
+        </q-parallax>
+</q-layout>
 </div>
 </template>
 
@@ -31,6 +41,7 @@ import facebooklogin from "../components/Page/Login/FacebookLogin"
 import logo from "../components/Share/Logo"
 import applink from "../components/Share/Applink"
 
+
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -39,6 +50,7 @@ export default {
         facebooklogin,
         applink,
         logo,
+
 
     },
     /*-------------------------Set Component---------------------------------------*/
