@@ -19,8 +19,8 @@
             <div class="column">
                 <div>
                     <h5>โหมดการวิ่ง : {{name}}</h5>
-                    <h5>Max HR : {{hrlimit}} Bpm</h5>
-                    <h5>ช่วง HR ที่เหมาะสม : {{hrmin.toFixed(0)}} - {{hrmax.toFixed(0)}} Bpm</h5>
+                    <h5>Max HR : {{detail.hrlimit}} Bpm</h5>
+                    <h5>ช่วง HR ที่เหมาะสม : {{hr70.toFixed(0)}} - {{hr80.toFixed(0)}} Bpm</h5>
                     <h5>เวลา : {{time}}</h5>
                 </div>
                 <div>

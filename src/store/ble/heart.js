@@ -20,8 +20,11 @@ const state = {
   ble: null,
   data: 0,
   listuser: {},
-  hrmin:0,
-  hrmax:0,
+  hr50:0,
+  hr60:0,
+  hr70:0,
+  hr80:0,
+  hr90:0,
   hrlimit: 0,
   total:'',
   hrbegin: 0,
@@ -107,39 +110,69 @@ const actions = {
     }
 
   },
-  
-  async prepareRunZone2(){
+  async prepareRunZone(){
     setTimeout( ()=> {
       axios.get('/api/auth/user')
       .then((r) =>{
         state.listuser = r.data
         state.hrbegin = state.data
         state.hrlimit = (220-state.listuser.age-state.hrbegin)*(1)+state.hrbegin
-        state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
-        state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+        state.hr50 = (220-state.listuser.age-state.hrbegin)*(0.5)+state.hrbegin
+        state.hr60 = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
+        state.hr70 = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+        state.hr80 = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
+        state.hr90 = (220-state.listuser.age-state.hrbegin)*(0.9)+state.hrbegin
       }).catch((e) => {
                
       });  
   }, 10000)
-  
-  },
-  async prepareRunZone3(){
-    setTimeout( ()=> {
+    
+    },
+    async startZone1({ state }) {
       axios.get('/api/auth/user')
-      .then((r) =>{
-        state.listuser = r.data
-        state.hrbegin = state.data
-        state.hrlimit = (220-state.listuser.age-state.hrbegin)*(1)+state.hrbegin
-        state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
-        state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
-        
-      }).catch((e) => {
+             .then((r) => {
+               state.listuser = r.data
+               state.hrbegin = state.data
+               if (state.device) {
+                 console.log('start read data')
+                 state.state = 3
+                 let ble = state.ble
+                 ble.startNotification(state.device.id, serviceUUID, characteristicUUID,
+                   (result) => {
+                     console.dir(result)
+                     var data = new Uint8Array(result)
+                     state.data = data[1]
+                     state.hr50 = (220-state.listuser.age-state.hrbegin)*(0.5)+state.hrbegin
+                    state.hr60 = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
+          
+               if(state.data < state.hr60   && state.data >= state.hr50){
+               state.total = 'อยู่ในช่วง'
                
-      });  
-  }, 10000)
-  
-  },
-
+                 dispatch('sound/initPlay','normal.wav')
+               
+               
+              /* setTimeout( () => {
+                
+             }, 10000) */
+               }
+               else if(state.data > state.hr60){
+               state.total = 'zone 2'
+               dispatch('sound/initPlay','fast.wav')
+               }else if(state.data < state.hr50){
+                 
+               state.total = 'hr ต่ำ'
+               dispatch('sound/initPlay','slow.wav')
+             
+               }    
+               return state.total        
+                   }, () => {})     
+               } 
+               
+                
+             }).catch((e) => {
+                 
+             });
+   },
   async startZone2({ state }) {
      axios.get('/api/auth/user')
             .then((r) => {
@@ -154,23 +187,23 @@ const actions = {
                     console.dir(result)
                     var data = new Uint8Array(result)
                     state.data = data[1]
-                    state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
-                    state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+                    state.hr60 = (220-state.listuser.age-state.hrbegin)*(0.6)+state.hrbegin
+                    state.hr70 = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
          
-              if(state.data <= hrmax  && state.data >= hrmin){
+              if(state.data < state.hr70  && state.data >= state.hr60){
               state.total = 'อยู่ในช่วง'
-              setTimeout(() => {
+              
                 dispatch('sound/initPlay','normal.wav')
-              }, 5000);
+              
               
              /* setTimeout( () => {
                
             }, 10000) */
               }
-              else if(state.data > hrmax){
+              else if(state.data > state.hr70){
               state.total = 'zone 3'
               dispatch('sound/initPlay','fast.wav')
-              }else if(state.data < hrmin){
+              }else if(state.data < state.hr60){
                 
               state.total = 'zone 1'
               dispatch('sound/initPlay','slow.wav')
@@ -199,17 +232,17 @@ const actions = {
                    console.dir(result)
                    var data = new Uint8Array(result)
                    state.data = data[1]
-                  state.hrmin = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
-                  state.hrmax = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
+                  state.hr70 = (220-state.listuser.age-state.hrbegin)*(0.7)+state.hrbegin
+                  state.hr80 = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
         
-             if(state.data <= state.hrmax  && state.data >= state.hrmin){
+             if(state.data < state.hr80  && state.data >= state.hr70){
              state.total = 'อยู่ในช่วง'
          
              }
-             else if(state.data > state.hrmax){
+             else if(state.data > state.hr80){
              state.total = 'zone 4'
          
-             }else if(state.data < state.hrmin){
+             }else if(state.data < state.hr70){
              state.total = 'zone 2'
              }    
              return state.total        
@@ -221,6 +254,78 @@ const actions = {
                
            });
  },
+ async startZone4({ state }) {
+  axios.get('/api/auth/user')
+         .then((r) => {
+           state.listuser = r.data
+           state.hrbegin = state.data
+           if (state.device) {
+             console.log('start read data')
+             state.state = 3
+             let ble = state.ble
+             ble.startNotification(state.device.id, serviceUUID, characteristicUUID,
+               (result) => {
+                 console.dir(result)
+                 var data = new Uint8Array(result)
+                 state.data = data[1]
+                state.hr80 = (220-state.listuser.age-state.hrbegin)*(0.8)+state.hrbegin
+                state.hr90 = (220-state.listuser.age-state.hrbegin)*(0.9)+state.hrbegin
+      
+           if(state.data < state.hr90  && state.data >= state.hr80){
+           state.total = 'อยู่ในช่วง'
+       
+           }
+           else if(state.data > state.hr90){
+           state.total = 'zone 5'
+       
+           }else if(state.data < state.hr80){
+           state.total = 'zone 3'
+           }    
+           return state.total        
+               }, () => {})     
+           } 
+           
+            
+         }).catch((e) => {
+             
+         });
+},
+async startZone5({ state }) {
+  axios.get('/api/auth/user')
+         .then((r) => {
+           state.listuser = r.data
+           state.hrbegin = state.data
+           if (state.device) {
+             console.log('start read data')
+             state.state = 3
+             let ble = state.ble
+             ble.startNotification(state.device.id, serviceUUID, characteristicUUID,
+               (result) => {
+                 console.dir(result)
+                 var data = new Uint8Array(result)
+                 state.data = data[1]
+                state.hr90 = (220-state.listuser.age-state.hrbegin)*(0.9)+state.hrbegin
+                state.hrlimit = (220-state.listuser.age-state.hrbegin)*(1)+state.hrbegin
+      
+           if(state.data < state.hr80  && state.data >= state.hr70){
+           state.total = 'อยู่ในช่วง'
+       
+           }
+           else if(state.data > state.hr80){
+           state.total = 'zone 4'
+       
+           }else if(state.data < state.hr70){
+           state.total = 'zone 2'
+           }    
+           return state.total        
+               }, () => {})     
+           } 
+           
+            
+         }).catch((e) => {
+             
+         });
+},
  startNotify: function ({ state }) {
   if (state.device) {
     console.log('start read data')

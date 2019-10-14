@@ -1,11 +1,15 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
+    
     <center>
+        
         <div>
-            <q-btn class="full-width q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
+            <q-btn  class="full-width q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
         </div>
+        
     </center>
+    
 </div>
 </template>
 

@@ -93,7 +93,7 @@ export default {
         },
 
         async load() {
-            await this.getUser();
+            
             /*await axios.get('/api/users')
             .then((r) => {
             this.userList=r.data;

@@ -1,36 +1,20 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <div class="bg-red-12 text-white" style="height: 150px">
-        <q-toolbar>
-
-            <q-space />
-
-            <q-btn flat round dense icon="mdi-settings-outline" @click="$router.replace({name:'appsetting'})" />
-        </q-toolbar>
-        
-
-        <div class="row ">
-            <div  class="q-pa-md q-gutter-sm">
-                <q-avatar size="60px">
-                    <img  :src="listuser.profilepic">
-                </q-avatar>
-            </div>
-            <div class="column q-pt-md" style="font-size: 100%">
-                <div style="font-size: 20px">
-                    <strong>{{listuser.name}}</strong>
-                </div>
-                <q-breadcrumbs active-color="white">
-                    <q-breadcrumbs-el>อายุ {{listuser.age}} ปี</q-breadcrumbs-el>
-                    <q-breadcrumbs-el>{{rundatas.length}} การวิ่ง</q-breadcrumbs-el>    
-                </q-breadcrumbs>
-            </div>
+    <h1>{{run.runmode}}</h1>
+    <q-input square outlined v-model="run.runtime" label="Square outlined" />
+    <q-input square outlined v-model="run.rundistance" label="Square outlined" />
+    <q-input square outlined v-model="run.runcal" label="Square outlined" />
+    
+     <div>
+            <q-btn @click="update()" class="full-width q-mt-md" label="อัพเดท" type="submit" color="red-12" />
         </div>
-    </div>
-
+       <q-btn color="red" @click="askDeleteUser(run)">Delete</q-btn>
+      
 </div>
 </template>
 
+    
 <script>
 import {
     get,
@@ -45,9 +29,7 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        num:{
-            default:'0'
-        }
+
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
@@ -67,14 +49,32 @@ export default {
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
         ...sync('authen/*'),
+        ...sync('datarun/*'),
+        ...sync('heart/*'),
+
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
+        ...sync('heart/*'),
         ...call('authen/*'),
+        ...call('datarun/*'),
+        askDeleteUser: async function (run) {
+                if (confirm(`คุณต้องการลบข้อมูลหรือไม่`)) {
+                    await this.deleteUser(run);
+                    await this.$router.replace({name : 'history'})
+                    await await location.reload();
+                }
+            },
+            async update(){
+              let aa =  await this.updateData(this.run)
+              if(aa){
+                  alert('สำเร็จ')
+              }
+            },
         /******* Methods default run ******/
         load: async function () {
-            await this.getUser()
-            await this.getData();
+            await this.getUser();
+        await this.getDataById(this.$route.params.id);
         }
     },
 }

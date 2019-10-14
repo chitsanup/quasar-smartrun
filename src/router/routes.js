@@ -44,10 +44,19 @@ const routes = [
              
             },
             {
-              path: 'history',
-              name: 'history',
-              component: () => import('pages/home/history/RunHistory.vue'),
-             
+              path: '/history',
+              component: () => import('pages/home/history/Template.vue'),
+              children:[{
+                          path: '',
+                          name: 'history',
+                          component: () => import('pages/home/history/RunHistory.vue'),
+                        },
+                        {
+                          path: 'rundata/:id',
+                          name: 'rundata',
+                          component: () => import('pages/Test2.vue'),
+                        },
+              ]
             },
             {
               path: 'detailZone2',
@@ -145,6 +154,7 @@ const routes = [
     component: () => import('pages/Test.vue'),
    
   },
+  
   
   
 ]

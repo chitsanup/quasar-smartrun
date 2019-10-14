@@ -2,7 +2,7 @@ import Axios from '../axios'
 import _ from 'lodash'
 import { make } from 'vuex-pathify'
 import store from '.'
-const API = 'http://192.168.1.13:8000';
+const API = 'http://10.94.9.59:8000';
 const state = {
     sound:9,
 }

@@ -14,7 +14,10 @@ const state = {
     isPwd: true,
     options: [
         'หญิง', 'ชาย', 'อื่นๆ'
-    ]
+    ],
+    rundatas:{},
+    run:{}
+
 
 }
 
@@ -35,6 +38,29 @@ const actions = {
             });
             return state.listuser;
     },
+    async getData() {
+        let load = await axios.get(`/api/rundata?id=${state.listuser.id}`)
+            .then((r) => {
+                state.rundatas = r.data
+            }).catch((e) => {
+        
+        });
+        return state.rundatas
+            },
+            
+            
+    async getDataById({state}, id) {
+        let result = await axios.get(`/api/rundata/${id}`)
+        .then((r) => {
+            return r.data
+        }).catch((error) => {
+            return error;
+        });
+
+        state.run = result;
+
+        return state.run;
+                    },
 
      
 
@@ -100,13 +126,14 @@ const actions = {
        
     },
 
-    async destroyUser(context, params) {
-        let load = axios.delete('' + params.id)
-            .then((r) => {
-                alert('Delete Data Success');
-            }).catch((e) => {
-                alert('Error Delete');
-            });
+    deleteUser: async ({state, dispatch}, run) => {
+        let result = await axios.delete(`/api/rundata/${run.id}`).then((r) => {
+            return r.data
+        }).catch((error) => {
+            return error;
+        });
+
+        return result;
     },
     async userLogout(context, params) { 
         let load = await axios.get('/api/auth/logout')

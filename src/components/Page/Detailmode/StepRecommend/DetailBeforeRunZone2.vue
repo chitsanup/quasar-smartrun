@@ -20,11 +20,11 @@
                 <div>
                     <h5>โหมดการวิ่ง : {{name}}</h5>
                     <h5>Max HR : {{hrlimit}} Bpm</h5>
-                    <h5>ช่วง HR ที่เหมาะสม : {{hrmin.toFixed(1)}} - {{hrmax.toFixed(1)}} Bpm</h5>
+                    <h5>ช่วง HR ที่เหมาะสม : {{hr60.toFixed(1)}} - {{hr70.toFixed(1)}} Bpm</h5>
                     <h5>เวลา : {{time}}</h5>
                 </div>
                 <div>
-                     <q-btn @click="$router.replace('runningzone2')" color="white" text-color="black" label="เริ่มวิ่ง" />
+                    <q-btn @click="addDetail()" color="white" text-color="black" label="เริ่มวิ่ง" />
                 </div>
             </div>
         </center>
@@ -32,7 +32,6 @@
 </div>
 </template>
 
-    
 <script>
 import {
     get,
@@ -47,8 +46,8 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        name: {
-            default: 'namezone'
+        name:{
+            default:'namezone'
         },
         time: {
             default: 0
@@ -57,7 +56,7 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            details: {},
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -75,8 +74,26 @@ export default {
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
+        ...call('heart/*'),
+        ...call('authen/*'),
+        ...call('datarun/*'),
+        async addDetail() {
+            this.details.runmode = this.name
+            this.details.hrbegin = this.hrbegin
+            console.log(this.details.runmode)
+            console.log(this.details.hrbegin)
+            let run = await this.addData(this.details)
+            if (run) {
+                await this.$router.replace({
+                    name: 'runningzone2'
+                })
+            }
+
+        },
         /******* Methods default run ******/
-        load: async function () {}
+        load: async function () {
+            
+        }
     },
 }
 </script>

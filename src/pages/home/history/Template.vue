@@ -1,19 +1,10 @@
 <!----------Make By YourName---------------->
-<template>
-    <div class="pa-0 column">
-        <div class="bg-red-12 text-white" style="height: 150px">
-            <q-toolbar>
-                <q-btn @click="$router.replace({name:'home'})" flat round dense icon="mdi-chevron-left" />
-            </q-toolbar>
-            <center>
-                <q-toolbar>
-                    <q-toolbar-title style="font-size: 30px">ประวัติการวิ่ง
-                       <q-icon name="mdi-clipboard-text"></q-icon>
-                    </q-toolbar-title>
-                </q-toolbar>
-            </center>
-        </div>
-    </div>
+ <template>
+ <q-layout>
+   <q-page-container>
+        <router-view />
+    </q-page-container></q-layout>
+
 </template>
 
     <script>

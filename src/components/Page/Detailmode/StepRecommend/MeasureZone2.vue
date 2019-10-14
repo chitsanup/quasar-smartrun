@@ -82,7 +82,7 @@ export default {
             
             await this.getUser()
             await this.startNotify()
-           await this.prepareRunZone2()
+           await this.prepareRunZone()
             setTimeout(async () => {
                 await this.$router.replace({
                     name: 'detailbeforerunzone2'

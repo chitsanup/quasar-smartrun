@@ -2,21 +2,24 @@
 <template>
     <div class="pa-0 column">
 
-        <div class="bg-grey-4 text-black q-pa-sm" style="font-size:16px" >
+        <div class="bg-grey-4 text-black q-pa-sm" style="font-size:18px" >
             วันที่
         </div>
-    
+        <hr>
+        <div v-for="rundata in rundatas" :key="rundata.id">
         <center>
-             <q-item clickable v-ripple :active="active">
+             <q-btn :to="{name : 'rundata',params: { id: rundata.id }}" flat style="width: 100%;font-size: 18px">
                 <q-item-section avatar>
                     <q-icon name="mdi-run-fast" />
                 </q-item-section>
-                    <q-item-section>โหมด Zone 2 </q-item-section>
+                    <q-item-section>โหมด {{rundata.runmode}}</q-item-section>
                 <q-item-section side>
-                    <q-item-label caption>เวลา 17.30 pm</q-item-label>
+                    <q-item-label caption>{{rundata.created_at}}</q-item-label>
                 </q-item-section>
-            </q-item>
+            </q-btn>
         </center>
+        <hr>
+      </div>
         
 
     </div>
@@ -51,12 +54,19 @@ props:{
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed:{
-
+        
+        ...sync('authen/*'),
+        ...sync('datarun/*'),
 },
     /*-------------------------Methods------------------------------------------*/
 methods:{
+    
+        ...call('authen/*'),
+        ...call('datarun/*'),
     /******* Methods default run ******/
     load:async function(){
+        await this.getUser();
+        await this.getData();
 }
 },
     }
