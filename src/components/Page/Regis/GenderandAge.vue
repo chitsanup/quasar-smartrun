@@ -3,19 +3,25 @@
 <div class="q-pa-md">
     <center>
         <form @submit.prevent="update()" class="q-gutter-md">
-
+            
+            <div style="padding-top: 50px">
             <q-select outlined v-model="listuser.gender" :options="options" label="เพศ" required>
                 <template v-slot:prepend>
                     <q-icon name="mdi-gender-transgender" />
                 </template>
             </q-select>
+            </div>
+
+            <div style="padding-top: 30px">
             <q-input type="number" outlined v-model="listuser.age" label="อายุ" required>
                 <template v-slot:prepend>
                     <q-icon name="mdi-calendar" />
                 </template>
             </q-input>
-            <div>
-                <q-btn class="full-width q-mt-md" label="ตกลง" type="submit" color="red-12" />
+            </div>
+
+            <div style="padding-top: 50px">
+                <q-btn class="q-mt-md" style="width: 70%"  label="ตกลง" type="submit" color="red-12" />
             </div>
         </form>
 

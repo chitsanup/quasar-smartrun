@@ -1,20 +1,39 @@
 <!----------Make By YourName---------------->
 <template>
-    <div class="pa-0 column">
-        <div class="row">
-            
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">เหมาะสำหรับ : </Strong> </p>
+    <div class="q-pa-md">
+
+                <div class="row justify-center">
+                    <div class="col-5  ">
+                        <p ><Strong style="font-size:23px;filter: brightness(100%)">เหมาะสำหรับ  </Strong> </p>
+                    </div>
+                    <div class="col-11 ">
+                        <p style="font-size:20px;filter: brightness(100%)">{{detailPeople}}</p>
+                    </div>
+                </div>
+
+                <div class="row justify-center">
+                    <center>
+                    <p ><Strong style="font-size:23px;filter: brightness(100%)">อัตรการเต้นของหัวใจ  </Strong> </p>
+                    </center>
+                    <div class="col-11 ">
+                    <p style="font-size:20px;filter: brightness(100%)">{{detailHr}}</p>
+                    </div>
+                </div>
+
+                <div class="row justify-center">
+                    <center>
+                    <p ><Strong style="font-size:23px;filter: brightness(100%)">ลักษณะการวิ่ง  </Strong> </p>
+                    </center>
+                    <div class="col-11 ">
+                    <p style="font-size:20px;filter: brightness(100%)">{{detailRun}}
+                        <q-icon name="mdi-run"/>
+                    </p>
+                    
+                    </div>
+                </div>
                 
-                <p style="font-size:24px;filter: brightness(100%)">{{detailPeople}}</p>
+  
 
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">อัตรการเต้นของหัวใจ : </Strong> </p>
-
-                <p style="font-size:24px;filter: brightness(100%)">{{detailHr}}</p>
-
-                <p ><Strong style="font-size:27px;filter: brightness(100%)">ลักษณะการวิ่ง : </Strong> </p>
-
-                
-        </div>
     </div>
 </template>
 
@@ -41,9 +60,7 @@ props:{
         type: String,
         default: 'ลักษณะการวิ่ง'
     },
-    goPage: {
-        default: '/'
-    },
+    
     
 
 

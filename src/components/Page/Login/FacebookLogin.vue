@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
- <template>
-<div>
-    <q-btn   @click="facebookLogin()" color="blue" text-color="white" icon="mdi-facebook-box" label="Login with Facebook" />
+<template>
+<div  >
+    <q-btn  @click="facebookLogin()" color="blue" text-color="white" icon="mdi-facebook-box" label="Login with Facebook" />
 </div>
 </template>
 
