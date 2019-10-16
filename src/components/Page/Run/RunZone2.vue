@@ -55,17 +55,13 @@
 
             <q-knob show-value class="q-ma-md" 
              size="70px" :thickness="0.02" track-color="black">
-            <q-btn @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
+            <q-btn v-if="start == 'start'" @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
+            <q-btn v-else @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
             </q-knob>
 
             <q-knob show-value class="q-ma-md" 
              size="70px" :thickness="0.02" track-color="black">
-            <q-btn @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
-            </q-knob>
-
-            <q-knob show-value class="q-ma-md" 
-             size="70px" :thickness="0.02" track-color="black">
-            <q-btn @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
+            <q-btn  @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
             </q-knob>
             
             
@@ -135,9 +131,11 @@ export default {
         },
         startTimer() {
             this.start = 'start'
+            console.log(this.start)
         },
         pauseTimer(){
             this.start = 'pause'
+            console.log(this.start)
         },
         stopTimer() {
             this.start = 'stop'
@@ -148,6 +146,7 @@ export default {
         load: async function () {
             await this.startZone2()
             await this.startTimer();
+            
         }
     },
 }
