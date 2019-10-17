@@ -1,13 +1,19 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pa-md">
-<q-layout style="padding-top: 85px" >
+<div >
+<q-layout  >
+    <q-parallax :height="880" >
+           <template v-slot:media>
+                <img src="assets/runLogin.jpg">
+            
+            </template>
     <center>
         <div>
             <logo />
         </div>
         <register />
     </center>
+    </q-parallax>
 </q-layout>
 </div>
 </template>

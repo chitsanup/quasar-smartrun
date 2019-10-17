@@ -9,15 +9,15 @@
     </div>
     <hr />
     <center>
-        <mode goPage='detailZone1' img='' detail='Zone 1' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย'/>
+        <mode goPage='detailZone1' img='http://www.ladyissue.com/wp-content/uploads/2017/08/WLW1.jpg' detail='Zone 1' text='ผู้เริ่มออกกำลังกาย '/>
         <hr>
         <mode goPage='detailZone2' img='http://www.wingnaidee.com/wp-content/uploads/2016/12/fat-boy-run.jpg' detail='Zone 2' text='ผู้ที่ต้องการลดน้ำหนักมากๆ'/>
         <hr>
         <mode goPage='detailZone3' img='http://static1.squarespace.com/static/5965d9769de4bb43ba09112a/5a136fcaec212d3112be186b/5b20a8578a922d6f5db92ab7/1538011456529/25610218-FEB_2964.jpg?format=1500w' detail='Zone 3' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย'/>
         <hr>
-        <mode goPage='detailZone4' img='' detail='Zone 4' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย'/>
+        <mode goPage='detailZone4' img='https://www.ookpaiwing.com/wp-content/uploads/2019/01/ODUD520.jpg' detail='Zone 4' text='นักกีฬาที่ต้องการเพิ่มประสิทธิภาพให้กับร่างกาย'/>
         <hr>
-        <mode goPage='detailZone5' img='' detail='Zone 5' text='ผู้ที่ต้องการควบคุมน้ำหนักหรือลดลงเล็กน้อย'/>
+        <mode goPage='detailZone5' img='https://i1.wp.com/www.vrunvride.com/wp-content/uploads/2019/05/bigstock-Race-Men-Sprinters-Runners-In-244079656.jpg?fit=800%2C533&ssl=1' detail='Zone 5' text='นักกีฬามืออาชีพที่ต้องการเพิ่มประสิทธิภาพร่างกายในเวลาสั้นๆ '/>
     </center>
             <audio id="blueJay" src="../../statics/sound/test2.mp3" type="audio/mpeg"></audio>
 
