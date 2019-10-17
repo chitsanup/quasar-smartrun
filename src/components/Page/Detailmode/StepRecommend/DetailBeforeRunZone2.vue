@@ -38,7 +38,7 @@
 
                 <center>
                 <div style="padding-top: 50px">
-                     <q-btn class="q-mt-md" style="width: 70%" @click="addDetail()" color="red-12" text-color="white" label="เริ่มวิ่ง"  />
+                     <q-btn class="q-mt-md" style="width: 70%" @click="addDetail()"  color="red-12" text-color="white" label="เริ่มวิ่ง"  />
                 </div>
                 </center>
 
@@ -108,7 +108,7 @@ export default {
         },
         /******* Methods default run ******/
         load: async function () {
-            
+            await this.getData();
         }
     },
 }

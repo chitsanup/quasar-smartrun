@@ -119,12 +119,19 @@ export default {
         ble: sync('heart/ble'),
         data: sync('heart/data'),
         ...sync('authen/*'),
-        ...sync('heart/*')
+        ...sync('heart/*'),
+        ...sync('datarun/*'),
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
          ...call('heart/*'),
         ...call('authen/*'),
+        ...call('datarun/*'),
+        async updateDetail() {
+            this.details.runtime = this.time
+            await this.updateData(this.details)
+
+        },
 
         handleTimeExpire() {
             console.log('Find Cortana!')
@@ -141,12 +148,12 @@ export default {
             this.start = 'stop'
             this.stopNotify()
              this.$router.replace({name:'home'})
+             
         },
         /******* Methods default run ******/
         load: async function () {
             await this.startZone2()
             await this.startTimer();
-            
         }
     },
 }

@@ -19,6 +19,7 @@ const state = {
   device: null,
   ble: null,
   data: 0,
+  dataTest:[],
   listuser: {},
   hr50:0,
   hr60:0,
@@ -182,6 +183,10 @@ const actions = {
                 console.log('start read data')
                 state.state = 3
                 let ble = state.ble
+                let tt = {
+                  hr:state.data
+                }
+                state.dataTest.push(tt)
                 ble.startNotification(state.device.id, serviceUUID, characteristicUUID,
                   (result) => {
                     console.dir(result)

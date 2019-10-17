@@ -76,6 +76,8 @@
 
             this.timer.addEventListener('secondsUpdated', this.onTimeChange.bind(this));
             this.timer.addEventListener('targetAchieved', this.onTimeExpire.bind(this));
+
+            
         },
 
         methods: {

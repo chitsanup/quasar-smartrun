@@ -1,18 +1,13 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <div id="clock">
-
-        <span class="time">{{ time }}</span>
-        <q-btn  @click="stop" flat big round size="30px" color="black" text-color="black" icon="pause" />
-        <q-btn  @click="start" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
-          <q-btn  @click="reset" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
-        <div class="btn-container">
-            <a id="start">Start</a>
-            <a id="stop">Stop</a>
-            <a id="reset">Reset</a>
-        </div>
-    </div>
+    <span class="time">{{ time }}</span>
+  
+  <div class="btn-container">
+    <a id="start">Start</a>
+    <a id="stop">Stop</a>
+    <a id="reset">Reset</a>
+  </div>
     <h3>{{x}}</h3>
     <div v-for="rundata in rundatas" :key="rundata.id">
         <center>
@@ -57,6 +52,7 @@ import {
 import {
     async
 } from 'q';
+
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -80,12 +76,7 @@ export default {
                 runmode: "zone3",
                 runtime: "30"
             },
-            time: '00:00:00',
-            timeBegan : null
-, timeStopped : null
-, stoppedDuration : 0
-, started : null
-, running : false
+            
 
            
         };
@@ -93,10 +84,7 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        document.getElementById("start").addEventListener("click", start);
-document.getElementById("stop").addEventListener("click", stop);
-document.getElementById("reset").addEventListener("click", reset);
-
+        
         /**** Call loading methods*/
         await this.load();
     },

@@ -2,7 +2,7 @@ import axios from '../axios'
 import _ from 'lodash'
 import { make } from 'vuex-pathify'
 const state = {
-    
+    test:{}
     
 }
 const getters = {
@@ -16,15 +16,16 @@ const actions = {
 
 async addData(context, params) {
     console.log(params);
-    let data = await axios.post('/api/rundata', params)
+    let result = await axios.post('/api/rundata', params)
     .then((r) => {
+        
         //alert('Save Data Success');
         return true
     }).catch((e) => {
         //alert('Error Save');
         return false
     });
-    return data
+    return result
 },
 
 async updateData({state}, params){
