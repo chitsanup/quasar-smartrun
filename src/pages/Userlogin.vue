@@ -1,11 +1,11 @@
 <template>
-<div class="q-pa-md">
-<q-layout style="padding-top: 85px" >
-       <q-parallax  >
+<div >
+<q-layout  >
+       <q-parallax :height="880" >
            <template v-slot:media>
-            <img src="assets/runLogin.jpg">
+                <img src="assets/runLogin.jpg">
             
-        </template>
+            </template>
         
                 <center>
                     

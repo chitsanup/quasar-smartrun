@@ -59,6 +59,12 @@ const routes = [
               ]
             },
             {
+              path: 'detailZone1',
+              name: 'detailZone1',
+              component: () => import('pages/home/mode/zone1/DetailZone1'),
+             
+            },
+            {
               path: 'detailZone2',
               name: 'detailZone2',
               component: () => import('pages/home/mode/zone2/DetailZone2'),
@@ -68,6 +74,18 @@ const routes = [
               path: 'detailZone3',
               name: 'detailZone3',
               component: () => import('pages/home/mode/zone3/DetailZone3'),
+             
+            },
+            {
+              path: 'detailZone4',
+              name: 'detailZone4',
+              component: () => import('pages/home/mode/zone4/DetailZone4'),
+             
+            },
+            {
+              path: 'detailZone5',
+              name: 'detailZone5',
+              component: () => import('pages/home/mode/zone5/DetailZone5'),
              
             },
             {
