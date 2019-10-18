@@ -32,6 +32,12 @@ const routes = [
              
             },
             {
+              path: 'runningzone1',
+              name: 'runningzone1',
+              component: () => import('pages/home/mode/zone1/RunningZone1.vue'),
+             
+            },
+            {
               path: 'runningzone2',
               name: 'runningzone2',
               component: () => import('pages/home/mode/zone2/RunningZone2.vue'),
@@ -41,6 +47,18 @@ const routes = [
               path: 'runningzone3',
               name: 'runningzone3',
               component: () => import('pages/home/mode/zone3/RunningZone3.vue'),
+             
+            },
+            {
+              path: 'runningzone4',
+              name: 'runningzone4',
+              component: () => import('pages/home/mode/zone4/RunningZone4.vue'),
+             
+            },
+            {
+              path: 'runningzone5',
+              name: 'runningzone5',
+              component: () => import('pages/home/mode/zone5/RunningZone5.vue'),
              
             },
             {
@@ -89,6 +107,12 @@ const routes = [
              
             },
             {
+              path: 'recommendzone1',
+              name: 'recommendzone1',
+              component: () => import('pages/home/mode/zone1/RecommendZone1'),
+             
+            },
+            {
               path: 'recommendzone2',
               name: 'recommendzone2',
               component: () => import('pages/home/mode/zone2/RecommendZone2'),
@@ -98,6 +122,24 @@ const routes = [
               path: 'recommendzone3',
               name: 'recommendzone3',
               component: () => import('pages/home/mode/zone3/RecommendZone3'),
+             
+            },
+            {
+              path: 'recommendzone4',
+              name: 'recommendzone4',
+              component: () => import('pages/home/mode/zone4/RecommendZone4'),
+             
+            },
+            {
+              path: 'recommendzone5',
+              name: 'recommendzone5',
+              component: () => import('pages/home/mode/zone5/RecommendZone5'),
+             
+            },
+            {
+              path: 'measureZone1',
+              name: 'measureZone1',
+              component: () => import('pages/home/mode/zone1/MeasureZone1'),
              
             },
             {
@@ -113,6 +155,24 @@ const routes = [
              
             },
             {
+              path: 'measureZone4',
+              name: 'measureZone4',
+              component: () => import('pages/home/mode/zone4/MeasureZone4'),
+             
+            },
+            {
+              path: 'measureZone5',
+              name: 'measureZone5',
+              component: () => import('pages/home/mode/zone5/MeasureZone5'),
+             
+            },
+            {
+              path: 'detailbeforerunzone1',
+              name: 'detailbeforerunzone1',
+              component: () => import('pages/home/mode/zone1/DetailBeforeRun'),
+             
+            },
+            {
               path: 'detailbeforerunzone2',
               name: 'detailbeforerunzone2',
               component: () => import('pages/home/mode/zone2/DetailBeforeRun'),
@@ -122,6 +182,18 @@ const routes = [
               path: 'detailbeforerunzone3',
               name: 'detailbeforerunzone3',
               component: () => import('pages/home/mode/zone3/DetailBeforeRun'),
+             
+            },
+            {
+              path: 'detailbeforerunzone4',
+              name: 'detailbeforerunzone4',
+              component: () => import('pages/home/mode/zone4/DetailBeforeRun'),
+             
+            },
+            {
+              path: 'detailbeforerunzone5',
+              name: 'detailbeforerunzone5',
+              component: () => import('pages/home/mode/zone5/DetailBeforeRun'),
              
             },
             {

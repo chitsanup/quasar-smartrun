@@ -1,24 +1,23 @@
 <!----------Make By YourName---------------->
  <template>
- <q-layout view="hHr LpR lFf" >
-<q-page-container>
-    <recommend/>
-</q-page-container>
-</q-layout>
+<div>
+    <cover name='Zone4' time='10'/>
+</div>
 </template>
 
+    
 <script>
 import {
     get,
     sync,
     call
 } from "vuex-pathify";
-import recommend from '../../../../components/Page/Detailmode/StepRecommend/Recommend/RecommendZone2'
+import cover from '../../../../components/Page/Detailmode/StepRecommend/DetailBeforeRun/DetailBeforeRunZone4'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        recommend
+        cover
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -41,17 +40,12 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        
+        ...sync('heart/*')
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        
         /******* Methods default run ******/
-        load: async function () {
-
-        }
+        load: async function () {}
     },
 }
 </script>
-
-

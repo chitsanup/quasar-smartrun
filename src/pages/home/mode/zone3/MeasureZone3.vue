@@ -13,7 +13,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import measure from '../../../../components/Page/Detailmode/StepRecommend/MeasureZone3'
+import measure from '../../../../components/Page/Detailmode/StepRecommend/Measure/MeasureZone3'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/

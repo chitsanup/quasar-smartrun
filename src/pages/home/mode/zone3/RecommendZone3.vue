@@ -13,7 +13,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import recommend from '../../../../components/Page/Detailmode/StepRecommend/RecommendZone3'
+import recommend from '../../../../components/Page/Detailmode/StepRecommend/Recommend/RecommendZone3'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
