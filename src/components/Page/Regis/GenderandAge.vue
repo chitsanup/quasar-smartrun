@@ -20,6 +20,22 @@
             </q-input>
             </div>
 
+            <div style="padding-top: 30px">
+            <q-input type="number" outlined v-model="listuser.weight" label="น้ำหนัก" required>
+                <template v-slot:prepend>
+                    <q-icon name="mdi-calendar" />
+                </template>
+            </q-input>
+            </div>
+
+            <div style="padding-top: 30px">
+            <q-input type="number" outlined v-model="listuser.height" label="ส่วนสูง" required>
+                <template v-slot:prepend>
+                    <q-icon name="mdi-calendar" />
+                </template>
+            </q-input>
+            </div>
+
             <div style="padding-top: 50px">
                 <q-btn class="q-mt-md" style="width: 70%"  label="ตกลง" type="submit" color="red-12" />
             </div>
@@ -80,9 +96,9 @@ export default {
         },
 
         async load() {
-            await this.getUser();
+            
             let user = await this.getUser();
-                if (user.gender !== null || user.age !== null) {
+                if (user.gender !== null || user.age !== null || user.weight !== null || user.height !== null) {
                     await this.$router.replace({name:'home'});
 
                 }

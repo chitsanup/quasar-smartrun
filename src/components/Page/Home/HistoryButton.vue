@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div class="q-pr-sm">
-    <q-btn  style="font-size:12px" class="btn-fixed-width" icon="mdi-history" label="ประวัติการวิ่ง" color="teal-4" @click="$router.push({name:'history'})"/>
+    <q-btn  style="font-size:12px" class="btn-fixed-width" icon="mdi-history" label="ประวัติการวิ่ง" color="teal-4" @click="$router.replace({name:'history'})"/>
     </div>
 </template>
 

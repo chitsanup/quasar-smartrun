@@ -8,7 +8,7 @@
         <hr>
         <div v-for="rundata in rundatas" :key="rundata.id">
         <center>
-             <q-btn :to="{name : 'rundata',params: { id: rundata.id }}" flat style="width: 100%;font-size: 18px">
+             <q-btn @click="$router.replace({name : 'rundata',params: { id: rundata.id }})" flat style="width: 100%;font-size: 18px">
                 <q-item-section avatar>
                     <q-icon name="mdi-run-fast" />
                 </q-item-section>

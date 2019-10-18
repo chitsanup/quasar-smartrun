@@ -8,13 +8,12 @@
     <script>
     import { get,sync,call } from "vuex-pathify"; 
     import runbody from "../../../../components/Page/Run/RunZone3"
-    import cover from "../../../../components/Page/Run/RunCover"
+    
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
         runbody,
-        cover
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{

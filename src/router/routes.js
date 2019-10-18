@@ -44,6 +44,12 @@ const routes = [
              
             },
             {
+              path: 'runfinish',
+              name: 'runfinish',
+              component: () => import('pages/home/mode/RunFinish.vue'),
+             
+            },
+            {
               path: '/history',
               component: () => import('pages/home/history/Template.vue'),
               children:[{

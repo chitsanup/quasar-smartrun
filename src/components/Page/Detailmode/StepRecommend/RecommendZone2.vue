@@ -4,7 +4,7 @@
 <q-page-container>
     <q-page class=" flex-center bg-red-12 text-white">
         <q-toolbar>
-            <q-btn @click="$router.replace({name:'home'})" flat round dense icon="mdi-chevron-left" />
+            <q-btn @click="$router.replace({name:'detailZone2'})" flat round dense icon="mdi-chevron-left" />
         </q-toolbar>
 
         

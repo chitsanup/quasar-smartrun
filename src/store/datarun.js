@@ -38,14 +38,7 @@ async updateData({state}, params){
     return result;
 },
 
-async destroyData(context, params) {
-    let load = axios.delete('' + params.id)
-        .then((r) => {
-        alert('Delete Data Success');
-    }).catch((e) => {
-        alert('Error Delete');
-    });
-    },
+
 
 }
 

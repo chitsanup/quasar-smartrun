@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col">
                 <div class="column" style="font-size:20px">
-                    <strong>Zone 2</strong>
+                    <strong>{{namezone}}</strong>
                 </div>
                 <div>
                     โหมด
@@ -53,17 +53,23 @@
 
         <div style="padding-top: 30px">
 
-            <q-knob show-value class="q-ma-md" 
+            <q-knob v-if="start == 'start'" show-value class="q-ma-md" 
              size="70px" :thickness="0.02" track-color="black">
-            <q-btn v-if="start == 'start'" @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
-            <q-btn v-else @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
+            <q-btn  @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
+            
             </q-knob>
 
-            <q-knob show-value class="q-ma-md" 
+            <div v-else>
+            <q-knob  show-value class="q-ma-md" 
+             size="70px" :thickness="0.02" track-color="black">
+            <q-btn @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
+            </q-knob>
+
+            <q-knob  show-value class="q-ma-md" 
              size="70px" :thickness="0.02" track-color="black">
             <q-btn  @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
             </q-knob>
-            
+            </div>
             
 
         </div>
@@ -94,12 +100,18 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            value: 80,
+            
             start: 'start',
             // date: 'Sep 28, 2017', // if you set the date option it will take place over the seconds option
             message: 'สิ้นสุดแล้ว',
-            time: 3600,
+            time: '',
         };
+    },
+    watch: {
+         timeVuex(val){
+                console.log(val);
+                
+            },
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
@@ -147,13 +159,14 @@ export default {
         stopTimer() {
             this.start = 'stop'
             this.stopNotify()
-             this.$router.replace({name:'home'})
+            this.$router.replace({name:'runfinish'})
              
         },
         /******* Methods default run ******/
         load: async function () {
             await this.startZone2()
             await this.startTimer();
+            
         }
     },
 }

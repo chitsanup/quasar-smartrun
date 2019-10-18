@@ -15,35 +15,41 @@
         </center>
     </div>
     <div class="q-pa-md q-mt-sm">
-        
-            <div class="column">
-                
-                <div style="padding-top: 20px">
-                    <q-icon  style="font-size:30px" name="mdi-run-fast"/> 
-                    <label style="font-size:20px;filter: brightness(100%) "> โหมดการวิ่ง : {{name}}</label><hr>
-                </div>
 
-                <div style="padding-top: 20px">
-                    <q-icon  style="font-size:30px" name="mdi-heart-pulse" />
-                    <label style="font-size:20px;filter: brightness(100%)"> Max HR : {{hrlimit}} Bpm</label><hr>
-                </div>
-                <div style="padding-top: 20px">
-                    <q-icon  style="font-size:30px" name="mdi-heart-pulse" />
-                    <label style="font-size:20px;filter: brightness(100%)"> ช่วง HR ที่เหมาะสม : {{hr60.toFixed(1)}} - {{hr70.toFixed(1)}} Bpm</label><hr>
-                </div>
-                <div style="padding-top: 20px">
-                    <q-icon  style="font-size:30px" name="mdi-timer" />
-                    <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}}</label><hr>
-                </div>
+        <div class="column">
 
-                <center>
-                <div style="padding-top: 50px">
-                     <q-btn class="q-mt-md" style="width: 70%" @click="addDetail()"  color="red-12" text-color="white" label="เริ่มวิ่ง"  />
-                </div>
-                </center>
-
+            <div style="padding-top: 20px">
+                <q-icon style="font-size:30px" name="mdi-run-fast" />
+                <label style="font-size:20px;filter: brightness(100%) "> โหมดการวิ่ง : {{name}}</label>
+                <hr>
             </div>
-        
+
+            <div style="padding-top: 20px">
+                <q-icon style="font-size:30px" name="mdi-heart-pulse" />
+                <label style="font-size:20px;filter: brightness(100%)"> Max HR : {{hrlimit}} Bpm</label>
+                <hr>
+            </div>
+            <div style="padding-top: 20px">
+                <q-icon style="font-size:30px" name="mdi-heart-pulse" />
+                <label style="font-size:20px;filter: brightness(100%)"> ช่วง HR ที่เหมาะสม : {{hr60.toFixed(1)}} - {{hr70.toFixed(1)}} Bpm</label>
+                <hr>
+            </div>
+            <div style="padding-top: 20px">
+                <q-icon style="font-size:30px" name="mdi-timer" />
+                <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}}</label>
+                <hr>
+            </div>
+
+            <center>
+                <div style="padding-top: 50px">
+                    <q-btn class="q-mt-md" style="width: 70%" @click="$router.replace({
+                    name: 'runningzone2'
+                })" color="red-12" text-color="white" label="เริ่มวิ่ง" />
+                </div>
+            </center>
+
+        </div>
+
     </div>
 </div>
 </template>
@@ -62,8 +68,8 @@ export default {
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-        name:{
-            default:'namezone'
+        name: {
+            default: 'namezone'
         },
         time: {
             default: 0
@@ -93,7 +99,7 @@ export default {
         ...call('heart/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
-        async addDetail() {
+        /*async addDetail() {
             this.details.runmode = this.name
             this.details.hrbegin = this.hrbegin
             console.log(this.details.runmode)

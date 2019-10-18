@@ -86,7 +86,7 @@ export default {
                 await this.$router.replace('/login');
             } else {
                 let user = await this.getUser();
-                if (user.gender == null || user.age == null) {
+                if (user.gender == null || user.age == null || user.weight == null || user.height == null) {
                     await this.$router.replace('/genderage');
 
                 } else {

@@ -8,10 +8,14 @@
 
 <script>
     import EasyTimer from 'easytimer';
-
+import {
+    get,
+    sync,
+    call
+} from "vuex-pathify";
     export default {
         props: {
-            seconds: Number,
+            seconds: '',
             countdown: Boolean,
             message: String,
             date: String,
@@ -27,7 +31,7 @@
         data () {
             return {
                 timer: null,
-                time: '',
+                
                 label: this.message ? this.message : 'Time\'s up!',
                 timerUnits: this.units ? this.units : ['hours', 'minutes', 'seconds'],
                 timerOptions: {},
@@ -36,6 +40,7 @@
         },
 
         computed: {
+            time:sync('heart/timeVuex'),
             parsedDate () {
                 if (!this.date) {
                     return false;
@@ -53,7 +58,7 @@
 
             let seconds = this.seconds;
             this.timerOptions = {
-                countdown: true
+                countdown: false
             };
 
             if (! parsedDate && this.date) {
@@ -93,6 +98,7 @@
         },
 
         watch: {
+           
             start (newValue) {
                 
                 if(newValue == 'start'){
@@ -103,20 +109,8 @@
                     this.timer.stop();
                 }else{
                     this.timer.stop();
-                }
-
-               /* if (newValue) {
-                    this.timer.start(this.timerOptions);
-                } else {
-                    if(this.pause){
-                        this.timer.pause();
-                    }else{
-                        this.timer.stop();
-                    }
-                    
-                }
-                */
-            } 
+                }  
+            }  
         }
     };
 </script>

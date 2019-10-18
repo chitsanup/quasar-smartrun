@@ -1,17 +1,10 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <span class="time">{{ time }}</span>
-  
-  <div class="btn-container">
-    <a id="start">Start</a>
-    <a id="stop">Stop</a>
-    <a id="reset">Reset</a>
-  </div>
     <h3>{{x}}</h3>
     <div v-for="rundata in rundatas" :key="rundata.id">
         <center>
-            <q-item clickable v-ripple >
+            <q-item clickable v-ripple>
                 <q-item-section avatar>
                     <q-icon name="mdi-run-fast" />
                 </q-item-section>
@@ -52,7 +45,7 @@ import {
 import {
     async
 } from 'q';
-
+import EasyTimer from 'easytimer';
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -76,20 +69,19 @@ export default {
                 runmode: "zone3",
                 runtime: "30"
             },
-            
+            time: "00:00:00"
 
-           
         };
 
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        
+
         /**** Call loading methods*/
         await this.load();
     },
-    async created(){
-        
+    async created() {
+    
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
     async beforeRouteEnter(to, from, next) {
@@ -105,7 +97,6 @@ export default {
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        
         ...call('test/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
@@ -121,7 +112,7 @@ export default {
             let run = await this.addData(this.data); //เรียกข้อมูลใน method ใน axios  //สร้างตัวแปรมารับ
             //console.log(this.form); ดูที่ออกมา
             if (run) { //ถ้าข้อมูลเป็นจริง
-                this.form = {} //หลังจากกรอกข้อมูลสำเร็จให้ set form ให้ว่าง
+                this.data = {} //หลังจากกรอกข้อมูลสำเร็จให้ set form ให้ว่าง
                 await location.reload();
 
             } else {
@@ -155,5 +146,6 @@ export default {
             location.reload();
         }
     },
+    
 }
 </script>

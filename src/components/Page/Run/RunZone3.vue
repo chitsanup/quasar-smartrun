@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col">
                 <div class="column" style="font-size:20px">
-                    <strong>Zone 3</strong>
+                    <strong>{{namezone}}</strong>
                 </div>
                 <div>
                     โหมด
@@ -46,15 +46,31 @@
             </div>
         </div>
         
-        <div style="padding-top: 50px">
+        <div style="padding-top: 30px">
             <q-img 
             src="http://jewel925.com/wp-content/uploads/runner.png" />
         </div>
 
         <div style="padding-top: 30px">
+
+            <q-knob v-if="start == 'start'" show-value class="q-ma-md" 
+             size="70px" :thickness="0.02" track-color="black">
+            <q-btn  @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
+            
+            </q-knob>
+
+            <div v-else>
+            <q-knob  show-value class="q-ma-md" 
+             size="70px" :thickness="0.02" track-color="black">
             <q-btn @click="startTimer" flat big round size="30px" color="green-12" text-color="green-6" icon="play_arrow" />
-            <q-btn @click="pauseTimer" flat big round size="30px" color="black" text-color="black" icon="pause" />
-            <q-btn @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
+            </q-knob>
+
+            <q-knob  show-value class="q-ma-md" 
+             size="70px" :thickness="0.02" track-color="black">
+            <q-btn  @click="stopTimer" flat big round size="30px" color="red-12" text-color="red-12" icon="stop" />
+            </q-knob>
+            </div>
+            
 
         </div>
     </center>
@@ -84,12 +100,18 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            value: 80,
+            
             start: 'start',
             // date: 'Sep 28, 2017', // if you set the date option it will take place over the seconds option
             message: 'สิ้นสุดแล้ว',
-            time: 1800,
+            time: '',
         };
+    },
+    watch: {
+         timeVuex(val){
+                console.log(val);
+                
+            },
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
@@ -109,30 +131,42 @@ export default {
         ble: sync('heart/ble'),
         data: sync('heart/data'),
         ...sync('authen/*'),
-        ...sync('heart/*')
+        ...sync('heart/*'),
+        ...sync('datarun/*'),
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
          ...call('heart/*'),
         ...call('authen/*'),
+        ...call('datarun/*'),
+        async updateDetail() {
+            this.details.runtime = this.time
+            await this.updateData(this.details)
+
+        },
 
         handleTimeExpire() {
             console.log('Find Cortana!')
         },
         startTimer() {
             this.start = 'start'
+            console.log(this.start)
         },
         pauseTimer(){
             this.start = 'pause'
+            console.log(this.start)
         },
         stopTimer() {
             this.start = 'stop'
-            this.$router.replace({name:'home'})
+            this.stopNotify()
+            this.$router.replace({name:'runfinish'})
+             
         },
         /******* Methods default run ******/
         load: async function () {
             await this.startZone3()
             await this.startTimer();
+            
         }
     },
 }

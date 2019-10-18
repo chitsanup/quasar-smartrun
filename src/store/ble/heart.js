@@ -19,7 +19,7 @@ const state = {
   device: null,
   ble: null,
   data: 0,
-  dataTest:[],
+  namezone:'',
   listuser: {},
   hr50:0,
   hr60:0,
@@ -29,6 +29,7 @@ const state = {
   hrlimit: 0,
   total:'',
   hrbegin: 0,
+  timeVuex:''
   
 }
 
@@ -134,6 +135,7 @@ const actions = {
              .then((r) => {
                state.listuser = r.data
                state.hrbegin = state.data
+               state.namezone = 'Zone 1'
                if (state.device) {
                  console.log('start read data')
                  state.state = 3
@@ -179,6 +181,7 @@ const actions = {
             .then((r) => {
               state.listuser = r.data
               state.hrbegin = state.data
+              state.namezone = 'Zone 2'
               if (state.device) {
                 console.log('start read data')
                 state.state = 3
@@ -228,6 +231,7 @@ const actions = {
            .then((r) => {
              state.listuser = r.data
              state.hrbegin = state.data
+             state.namezone = 'Zone 3'
              if (state.device) {
                console.log('start read data')
                state.state = 3
@@ -264,6 +268,7 @@ const actions = {
          .then((r) => {
            state.listuser = r.data
            state.hrbegin = state.data
+           state.namezone = 'Zone 4'
            if (state.device) {
              console.log('start read data')
              state.state = 3
@@ -300,6 +305,7 @@ async startZone5({ state }) {
          .then((r) => {
            state.listuser = r.data
            state.hrbegin = state.data
+           state.namezone = 'Zone 5'
            if (state.device) {
              console.log('start read data')
              state.state = 3
