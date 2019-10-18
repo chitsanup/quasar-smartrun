@@ -1,57 +1,50 @@
 <!----------Make By YourName---------------->
  <template>
- <q-layout view="hHr LpR lFf" >
-<q-page-container>
-    <recommend/>
-</q-page-container>
-</q-layout>
+<div>
+    <runbody/>
+    </div>
 </template>
 
-<script>
-import {
-    get,
-    sync,
-    call
-} from "vuex-pathify";
-import recommend from '../../../../components/Page/Detailmode/StepRecommend/Recommend/RecommendZone2'
+    <script>
+    import { get,sync,call } from "vuex-pathify"; 
+    import runbody from "../../../../components/Page/Run/RunZone1"
+    
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        recommend
+        runbody,
+        
     },
-    /*-------------------------Set Component---------------------------------------*/
-    props: {
+  /*-------------------------Set Component---------------------------------------*/
+props:{
 
-    },
+},
     /*-------------------------DataVarible---------------------------------------*/
     data() {
-        return {
+    return {
 
         };
-    },
+    }, 
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
-    async mounted() {
-        /**** Call loading methods*/
-        this.load();
+     async mounted() {
+    /**** Call loading methods*/
+            this.load(); 
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
-    async beforeRouteEnter(to, from, next) {
+     async beforeRouteEnter(to, from, next) { 
         next()
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
-    computed: {
-        
-    },
+    computed:{
+
+},
     /*-------------------------Methods------------------------------------------*/
-    methods: {
+methods:{
+    /******* Methods default run ******/
+    load:async function(){
         
-        /******* Methods default run ******/
-        load: async function () {
-
-        }
-    },
 }
+},
+    }
 </script>
-
-

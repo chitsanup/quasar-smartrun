@@ -2,7 +2,7 @@
  <template>
  <q-layout view="hHr LpR lFf" >
 <q-page-container>
-    <recommend/>
+    <measure/>
 </q-page-container>
 </q-layout>
 </template>
@@ -13,12 +13,12 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import recommend from '../../../../components/Page/Detailmode/StepRecommend/Recommend/RecommendZone2'
+import measure from '../../../../components/Page/Detailmode/StepRecommend/Measure/MeasureZone1'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        recommend
+        measure
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -46,12 +46,11 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         
+        
         /******* Methods default run ******/
         load: async function () {
-
+           
         }
     },
 }
 </script>
-
-

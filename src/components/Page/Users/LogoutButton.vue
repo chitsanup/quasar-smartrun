@@ -5,7 +5,7 @@
     <center>
         
         <div>
-            <q-btn  class="full-width q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
+            <q-btn  class="q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
         </div>
         
     </center>

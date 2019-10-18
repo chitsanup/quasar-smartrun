@@ -3,33 +3,43 @@
 <div class="q-pa-md" style="width: 100%;font-size: 18px">
 
     <div class="q-gutter-md">
+        <div style="padding-top: 20px">
         <q-input disable outlined v-model="listuser.email" label="อีเมล">
             <template v-slot:prepend>
                 <q-icon name="mdi-email" />
             </template>
         </q-input>
+        </div>
+        
+        <div style="padding-top: 20px">
         <q-input disable outlined v-model="listuser.name" label="ชื่อ">
             <template v-slot:prepend>
                 <q-icon name="mdi-account-circle" />
             </template>
         </q-input>
+        </div>
+        <div style="padding-top: 20px">
         <q-input disable type="number" outlined v-model="listuser.age" label="อายุ">
             <template v-slot:prepend>
                 <q-icon name="mdi-calendar" />
             </template>
         </q-input>
+        </div>
+
+        <div style="padding-top: 20px">
         <q-input disable outlined v-model="listuser.gender" label="เพศ">
             <template v-slot:prepend>
                 <q-icon name="mdi-gender-transgender" />
             </template>
         </q-input>
+        </div>
     </div>
     <center>
-        <div>
-            <q-btn class="full-width q-mt-md" @click="$router.replace({name:'editprofile'})" style="width: 50%" label="แก้ไขข้อมูล" color="red-12" />
+        <div style="padding-top: 10px">
+            <q-btn class="q-mt-md" @click="$router.replace({name:'editprofile'})" style="width: 60%" label="แก้ไขข้อมูล" color="red-12" />
         </div>
     </center>
-
+ 
 </div>
 </template>
 

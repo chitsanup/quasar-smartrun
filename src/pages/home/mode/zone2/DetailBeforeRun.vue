@@ -12,7 +12,7 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import cover from '../../../../components/Page/Detailmode/StepRecommend/DetailBeforeRunZone2'
+import cover from '../../../../components/Page/Detailmode/StepRecommend/DetailBeforeRun/DetailBeforeRunZone2'
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/

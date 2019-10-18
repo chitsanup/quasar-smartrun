@@ -31,7 +31,7 @@
             </div>
             <div style="padding-top: 20px">
                 <q-icon style="font-size:30px" name="mdi-heart-pulse" />
-                <label style="font-size:20px;filter: brightness(100%)"> ช่วง HR ที่เหมาะสม : {{hr60.toFixed(1)}} - {{hr70.toFixed(1)}} Bpm</label>
+                <label style="font-size:20px;filter: brightness(100%)"> ช่วง HR ที่เหมาะสม : {{hr50.toFixed(1)}} - {{hr60.toFixed(1)}} Bpm</label>
                 <hr>
             </div>
             <div style="padding-top: 20px">
@@ -43,7 +43,7 @@
             <center>
                 <div style="padding-top: 50px">
                     <q-btn class="q-mt-md" style="width: 70%" @click="$router.replace({
-                    name: 'runningzone2'
+                    name: 'runningzone1'
                 })" color="red-12" text-color="white" label="เริ่มวิ่ง" />
                 </div>
             </center>
