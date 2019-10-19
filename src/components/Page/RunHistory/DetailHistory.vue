@@ -1,20 +1,89 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <h1>{{run.runmode}}</h1>
-    <q-input square outlined v-model="run.runtime" label="Square outlined" />
-    <q-input square outlined v-model="run.rundistance" label="Square outlined" />
-    <q-input square outlined v-model="run.runcal" label="Square outlined" />
-    
-     <div>
-            <q-btn @click="update()" class="full-width q-mt-md" label="อัพเดท" type="submit" color="red-12" />
+    <div class="bg-red-12 text-white" style="height: 200px">
+    </div>
+    <div class="row q-mt-sm">
+        <div class="q-pl-md q-pr-md q-gutter-sm">
+            <q-avatar size="60px">
+                <img :src="listuser.profilepic">
+            </q-avatar>
         </div>
-       <q-btn color="red" @click="askDeleteUser(run)">Delete</q-btn>
-      
+        <div class="col">
+            <div style="font-size: 20px">
+                <strong>{{listuser.name}}</strong>
+            </div>
+            <q-breadcrumbs>
+                <q-breadcrumbs-el>วันเวลาที่วิ่ง</q-breadcrumbs-el>
+            </q-breadcrumbs>
+        </div>
+        <center>
+            <div class="column q-pl-xl">
+                <div class="col">
+                    <div class="column" style="font-size:20px">
+                        <strong>{{run.hraverage}}</strong>
+                    </div>
+                    <div>
+                        อัตราการเต้น <br> หัวใจเฉลี่ย
+                    </div>
+                </div>
+            </div>
+        </center>
+        <center>
+            <div class="column q-ml-sm q-pl-md q-pr-md">
+                <div class="col">
+                    <div class="column" style="font-size:20px">
+                        <strong>{{run.runcal}}</strong>
+                    </div>
+                    <div>
+                        CAL
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+    <hr>
+    <center>
+        <div class="row q-ma-md">
+            <div class="col">
+                <div class="column" style="font-size:20px">
+                    <strong>{{run.runmode}}</strong>
+                </div>
+                <div>
+                    โหมด
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="column" style="font-size:20px">
+                    <strong>
+                        {{run.runtime}}
+                    </strong>
+                </div>
+                <div>
+                    เวลา
+                </div>
+            </div>
+            <div class="col">
+                <div class="column" style="font-size:20px">
+                    <strong>{{run.rundistance}}</strong>
+                </div>
+                <div>
+                    กิโลเมตร
+                </div>
+            </div>
+        </div>
+    </center>
+    <hr>
+    <div>
+        <q-btn @click="$router.replace({name:'history'})" class="full-width q-mt-md" label="เสร็จสิ้น" type="submit" color="red-12" />
+    </div>
+    <div>
+        <q-btn color="red" @click="askDeleteUser(run)">ลบ</q-btn>
+    </div>
+
 </div>
 </template>
 
-    
 <script>
 import {
     get,
@@ -49,32 +118,34 @@ export default {
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
         ...sync('authen/*'),
-        ...sync('datarun/*'),
-        ...sync('heart/*'),
+        
+        
 
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        ...sync('heart/*'),
+        
         ...call('authen/*'),
-        ...call('datarun/*'),
+        
         askDeleteUser: async function (run) {
-                if (confirm(`คุณต้องการลบข้อมูลหรือไม่`)) {
-                    await this.deleteUser(run);
-                    await this.$router.replace({name : 'history'})
-                    await await location.reload();
-                }
-            },
-            async update(){
-              let aa =  await this.updateData(this.run)
-              if(aa){
-                  alert('สำเร็จ')
-              }
-            },
+            if (confirm(`คุณต้องการลบข้อมูลหรือไม่`)) {
+                await this.deleteUser(run);
+                await this.$router.replace({
+                    name: 'history'
+                })
+                await await location.reload();
+            }
+        },
+        async update() {
+            let aa = await this.updateData(this.run)
+            if (aa) {
+                alert('สำเร็จ')
+            }
+        },
         /******* Methods default run ******/
         load: async function () {
             await this.getUser();
-        await this.getDataById(this.$route.params.id);
+            await this.getDataById(this.$route.params.id);
         }
     },
 }

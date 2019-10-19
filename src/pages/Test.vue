@@ -1,20 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <h3>{{x}}</h3>
-    <div v-for="rundata in rundatas" :key="rundata.id">
-        <center>
-            <q-item clickable v-ripple>
-                <q-item-section avatar>
-                    <q-icon name="mdi-run-fast" />
-                </q-item-section>
-                <q-item-section>โหมด {{ rundata.runmode }}</q-item-section>
-                <q-item-section side>
-                    <q-item-label caption>{{rundata.created_at}}</q-item-label>
-                </q-item-section>
-            </q-item>
-        </center>
-    </div>
+    
     <!---- <input type="text" v-model="x" />
     <button @click="saveData()">Save</button>
     <button @click="Logout()">Logout</button> --->
@@ -30,9 +17,6 @@
             <q-btn class="full-width q-mt-md" label="บันทึก" type="submit" color="red-12" />
         </div>
     </form>
-
-    {{listuser}}
-    {{rundatas}}
 </div>
 </template>
 
@@ -45,12 +29,13 @@ import {
 import {
     async
 } from 'q';
-import EasyTimer from 'easytimer';
+
+
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-
+        
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -69,7 +54,8 @@ export default {
                 runmode: "zone3",
                 runtime: "30"
             },
-            time: "00:00:00"
+            time: "00:00:00",
+            
 
         };
 
@@ -81,7 +67,7 @@ export default {
         await this.load();
     },
     async created() {
-    
+
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
     async beforeRouteEnter(to, from, next) {
@@ -146,6 +132,6 @@ export default {
             location.reload();
         }
     },
-    
+
 }
 </script>

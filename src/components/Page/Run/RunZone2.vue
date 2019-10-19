@@ -166,6 +166,10 @@ export default {
         load: async function () {
             await this.startZone2()
             await this.startTimer();
+            await setTimeout( ()=> {
+                this.stopTimer()
+                this.$router.replace({name:'runfinish'})  
+            }, 60000)
             
         }
     },
