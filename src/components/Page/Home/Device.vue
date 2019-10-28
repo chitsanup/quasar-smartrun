@@ -1,6 +1,6 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="q-pl-sm q-pt-sm">
+<div class="q-pl-md q-pt-sm">
     <div style="font-size: 12px" ><q-icon name="mdi-watch-variant" />
      <strong>{{device? device.name : 'ไม่ได้เชื่อมต่อ'}}</strong></div>
     </div>

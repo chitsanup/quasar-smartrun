@@ -2,8 +2,8 @@
  <template>
 <div>
     <div>
-        <div>
-            <maps />
+        <div >
+            <img width="100%" src="../components/Image/gpsfake.jpg">
         </div>
         <div class="row q-mt-md">
             <div class="q-pl-md q-pr-md q-gutter-sm">
@@ -58,7 +58,7 @@
                 <div class="col-6">
                     <div class="column" style="font-size:20px">
                         <strong>
-                            {{timeVuex}}
+                            01:00:00
                         </strong>
                     </div>
                     <div>
@@ -76,17 +76,11 @@
             </div>
         </center>
         <hr>
-        <center>
-        <div class="q-ma-md">
-            <graph-line :width="400" :height="300" :shape="'normal'" :axis-min="0" :axis-max="200" :axis-full-mode="true" :labels="bel" :values="values">
-                <note :text="'อัตราการเต้นหัวใจ'"></note>
-                
-                
-            </graph-line>
+        <div class="q-pa-md">
+            <apexchart width="100%" type="line" class="bg-grey-5" :options="graph" :series="series"></apexchart>
         </div>
-        </center>
         <div>
-            <q-btn @click="addForm()" class="full-width " label="เสร็จสิ้น" type="submit" color="red-12" />
+            <q-btn @click="addForm()" class="full-width q-mt-md" label="เสร็จสิ้น" type="submit" color="red-12" />
         </div>
     </div>
 
@@ -99,14 +93,12 @@ import {
     sync,
     call
 } from "vuex-pathify";
-
-import maps from '../../history/Detail/Map'
+import VueApexCharts from 'vue-apexcharts';
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        
-        maps
+        'apexchart': VueApexCharts
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -118,10 +110,18 @@ export default {
     data() {
         return {
             details: {},
-            
-            
-            
-
+            graph: {
+                chart: {
+                    id: 'vuechart-example'
+                },
+                xaxis: {
+                    categories: [,'00:05:40', , , '00:15:20', , , '00:28:00', , , '00:38:40', , ,'01:00:00']
+                }
+            },
+            series: [{
+                name: 'series-1',
+                data: [95, 90, 89, 93, 97, 100, 102, 105, 100, 94, 110, 112, 120,130]
+            }]
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -162,13 +162,9 @@ export default {
             }
 
         },
-
         /******* Methods default run ******/
         load: async function () {
             await this.getUser()
-
-            console.log(this.runtimeHr)
-
             console.log(this.timeVuex)
             console.log(this.namezone)
 

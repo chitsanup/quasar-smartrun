@@ -3,7 +3,7 @@
 <q-layout  >
        <q-parallax :height="880" >
            <template v-slot:media>
-                <img src="assets/runLogin.jpg">
+                <img src="../components/Image/runLogin.jpg">
             
             </template>
         
@@ -15,7 +15,7 @@
                     <div>
                         <login />
                     </div>
-                    <p>หรือ</p>
+                    <p class="text-white">หรือ</p>
                     <facebooklogin />
 
                     <div class="row" style="padding-top: 40px" >

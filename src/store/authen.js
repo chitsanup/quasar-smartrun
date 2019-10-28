@@ -85,7 +85,7 @@ const actions = {
     async userLogin(context, params) {
         let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
-                alert('เข้าสู่ระบบสำเร็จ');
+                //alert('เข้าสู่ระบบสำเร็จ');
                 state.user = {};
                 localStorage.setItem('api_token', r.data.access_token);
                 return true;
@@ -99,7 +99,7 @@ const actions = {
     async checkEmail(context, params) { 
         let result = await axios.post('/api/auth/login',params)
             .then((r) => {
-                alert('เข้าสู่ระบบสำเร็จ');
+                //alert('เข้าสู่ระบบสำเร็จ');
                 state.form = {};
                 localStorage.setItem('api_token', r.data.access_token);
                 return true;
@@ -138,9 +138,9 @@ const actions = {
     async userLogout(context, params) { 
         let load = await axios.get('/api/auth/logout')
         .then((r) => {
-            alert('Logout Data Success');
+            //alert('Logout Data Success');
         }).catch((e) => {
-            alert('Error Logout');
+            //alert('Error Logout');
         });
         state.listuser = {};
         await localStorage.removeItem('api_token')

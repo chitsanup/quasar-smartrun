@@ -38,7 +38,7 @@
 
                 <center>
                 <div style="padding-top: 50px">
-                     <q-btn class="q-mt-md" style="width: 70%" @click="$router.replace({name:'runningzone4'})" text-color="white" label="เริ่มวิ่ง"  />
+                     <q-btn class="q-mt-md" style="width: 70%" @click="startRun()" text-color="white" label="เริ่มวิ่ง"  />
                 </div>
                 </center>
 
@@ -86,24 +86,22 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        ...sync('heart/*')
+        ...sync('heart/*'),
+        ...sync('sound/*'),
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('heart/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
-        /*async addDetail() {
-            this.details.runmode = this.name
-            this.details.hrbegin = this.hrbegin
-            console.log(this.details.runmode)
-            console.log(this.details.hrbegin)
-            let run = await this.addData(this.details)
-            if (run) {
-                await this.$router.replace({
-                    name: 'runningzone2'
-                })
-            }
+        ...call('sound/*'),
+        async startRun() {
+            this.initPlay('start.wav')
+            await setTimeout(() => {
+                this.$router.replace({
+                    name: 'runningzone4'
+                });
+            }, 3000)
 
         },
         /******* Methods default run ******/

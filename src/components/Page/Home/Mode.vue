@@ -3,14 +3,13 @@
 <div class="q-pa-md">
     
     <q-btn unelevated rounded style="width: 100%;" @click="$router.replace({name:goPage})" text-color="white">
-        
-        <q-img :src="img" :ratio="1.6" >
+        <q-img style="border-radius: 10px;" class="shadow-up-8" :src="img" :ratio="1.6"  >
           <div class="absolute-full text-subtitle2 flex flex-center q-pt-md column">
             <Strong style="font-size:30px;filter: brightness(100%)">{{detail}}</Strong>{{text}}
           </div>
-        </q-img>
-      
+        </q-img>   
     </q-btn>
+    
 </div>
 </template>
 

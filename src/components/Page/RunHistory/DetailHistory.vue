@@ -74,13 +74,12 @@
         </div>
     </center>
     <hr>
-    <div>
-        <q-btn @click="$router.replace({name:'history'})" class="full-width q-mt-md" label="เสร็จสิ้น" type="submit" color="red-12" />
+    <center>
+    <div class="q-gutter-xl q-pa-md" >
+        <q-btn label="ลบ" style="width:25%" @click="askDeleteUser(run)" color="deep-orange" />
+        <q-btn label="ตกลง" style="width:25%" @click="$router.replace({name:'history'})" color="green-6" />
     </div>
-    <div>
-        <q-btn color="red" @click="askDeleteUser(run)">ลบ</q-btn>
-    </div>
-
+    </center>
 </div>
 </template>
 
@@ -118,22 +117,20 @@ export default {
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
         ...sync('authen/*'),
-        
-        
 
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        
+
         ...call('authen/*'),
-        
+
         askDeleteUser: async function (run) {
             if (confirm(`คุณต้องการลบข้อมูลหรือไม่`)) {
                 await this.deleteUser(run);
                 await this.$router.replace({
                     name: 'history'
                 })
-                await await location.reload();
+                await location.reload();
             }
         },
         async update() {

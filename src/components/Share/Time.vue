@@ -103,7 +103,7 @@ import {
                 
                 if(newValue == 'start'){
                     this.timer.start(this.timerOptions);
-                }else if(newValue == 'pause'){
+                }else if(newValue == 'pausing'){
                     this.timer.pause();
                 }else if(newValue == 'stop'){
                     this.timer.stop();

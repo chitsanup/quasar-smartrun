@@ -1,20 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
-<div >
-<q-layout  >
-    <q-parallax :height="880" >
-           <template v-slot:media>
-                <img src="../components/Image/runLogin.jpg">
-            
-            </template>
-    <center>
-        <div>
-            <logo />
-        </div>
-        <register />
-    </center>
-    </q-parallax>
-</q-layout>
+<div>
+    <detail/>
 </div>
 </template>
 
@@ -25,14 +12,12 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import register from "../components/Page/Regis/RegisterForm"
-import logo from "../components/Share/Logo"
+import detail from "../../../components/Page/RunHistory/DetailHistory";
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        register,
-        logo
+        detail
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -46,7 +31,6 @@ export default {
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        
         /**** Call loading methods*/
         this.load();
     },
@@ -56,14 +40,14 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-
+        
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         
         /******* Methods default run ******/
         load: async function () {
-            
+           
         }
     },
 }

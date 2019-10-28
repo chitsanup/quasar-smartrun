@@ -9,7 +9,7 @@
         <center>
         <div class="text-center" style="font-size:20px">
             
-        โปรดยืนค้างไว้
+        โปรดสวมใส่อุปกรณ์และยืนค้างไว้
         <br>
         เพื่อวัดอัตราการเต้นของหัวใจ
       </div>
@@ -19,7 +19,7 @@
         </div>
 
       <div style="padding-top: 100px">
-            <q-btn class=" q-mt-md" @click="$router.replace({name:'measureZone3'})" style="width: 50%" label="รับทราบ" color="white" text-color="black" />
+            <q-btn class=" q-mt-md" @click="$router.replace({name:'measureZone5'})" style="width: 70%" label="รับทราบ" color="white" text-color="black" />
         </div>
         </center>
     </q-page>

@@ -19,7 +19,7 @@
         <hr>
         <mode goPage='detailZone5' img='https://i1.wp.com/www.vrunvride.com/wp-content/uploads/2019/05/bigstock-Race-Men-Sprinters-Runners-In-244079656.jpg?fit=800%2C533&ssl=1' detail='Zone 5' text='นักกีฬามืออาชีพที่ต้องการเพิ่มประสิทธิภาพร่างกายในเวลาสั้นๆ '/>
     </center>
-            <audio id="blueJay" src="../../statics/sound/test2.mp3" type="audio/mpeg"></audio>
+            <q-btn color="primary" icon="check" label="TEST" @click="$router.push({name:'test'})" />
 
  
 </div>

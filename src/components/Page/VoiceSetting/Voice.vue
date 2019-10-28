@@ -1,38 +1,35 @@
 <!----------Make By YourName---------------->
  <template>
-<div >
-<q-layout  >
-    <q-parallax :height="880" >
-           <template v-slot:media>
-                <img src="../components/Image/runLogin.jpg">
-            
-            </template>
-    <center>
-        <div>
-            <logo />
+<div class="q-pa-xl">
+    <div class="q-gutter-md">
+        <div class="row">
+            <q-select style="width:70%;" 
+            emit-value map-options outlined v-model="model" :options="listSound"  
+            option-value="value"
+            option-label="name" label="เสียงแจ้งเตือน" />
+            &nbsp;&nbsp; &nbsp;
+            <q-btn @click="playSound(model)" round color="red-12" icon="play_arrow" />
         </div>
-        <register />
-    </center>
-    </q-parallax>
-</q-layout>
+
+        <center>
+            &nbsp;
+            <q-btn @click="setSound()" color="red-12" style="width:50%" label="ตกลง"/>
+        </center>
+    </div>
 </div>
 </template>
 
-    
 <script>
 import {
     get,
     sync,
     call
 } from "vuex-pathify";
-import register from "../components/Page/Regis/RegisterForm"
-import logo from "../components/Share/Logo"
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        register,
-        logo
+
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -41,12 +38,12 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
+            model: null,
+            
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-        
         /**** Call loading methods*/
         this.load();
     },
@@ -56,14 +53,19 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-
+        ...sync('sound/*'),
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        
+        ...call('sound/*'),
+        async setSound(){
+            this.typeSound = this.model;
+            await this.SetSound(this.model);
+        },
         /******* Methods default run ******/
         load: async function () {
-            
+            this.model = this.typeSound;
+            await this.loadSoundList();
         }
     },
 }

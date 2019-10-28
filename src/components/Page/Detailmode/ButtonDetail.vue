@@ -2,7 +2,7 @@
  <template>
     <div>
         <center>
-            <q-btn class=" q-mt-md" @click="$router.push({name:goPage})" style="width: 50%" label="ตกลง" type="submit" color="red-12" />
+            <q-btn class=" q-mt-md" @click="$router.replace({name:goPage})" style="width: 70%" label="ตกลง" type="submit" color="red-12" />
         </center>
     </div>
 </template>

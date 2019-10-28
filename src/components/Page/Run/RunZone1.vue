@@ -139,15 +139,7 @@ export default {
          ...call('heart/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
-        async updateDetail() {
-            this.details.runtime = this.time
-            await this.updateData(this.details)
-
-        },
-
-        handleTimeExpire() {
-            console.log('Find Cortana!')
-        },
+        
         startTimer() {
             this.start = 'start'
             console.log(this.start)

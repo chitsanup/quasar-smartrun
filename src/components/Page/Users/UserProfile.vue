@@ -4,34 +4,50 @@
 
     <div class="q-gutter-md">
         <div style="padding-top: 20px">
-        <q-input disable outlined v-model="listuser.email" label="อีเมล">
-            <template v-slot:prepend>
-                <q-icon name="mdi-email" />
-            </template>
-        </q-input>
-        </div>
-        
-        <div style="padding-top: 20px">
-        <q-input disable outlined v-model="listuser.name" label="ชื่อ">
-            <template v-slot:prepend>
-                <q-icon name="mdi-account-circle" />
-            </template>
-        </q-input>
-        </div>
-        <div style="padding-top: 20px">
-        <q-input disable type="number" outlined v-model="listuser.age" label="อายุ">
-            <template v-slot:prepend>
-                <q-icon name="mdi-calendar" />
-            </template>
-        </q-input>
+            <q-input disable outlined v-model="listuser.email" label="อีเมล">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-email" />
+                </template>
+            </q-input>
         </div>
 
         <div style="padding-top: 20px">
-        <q-input disable outlined v-model="listuser.gender" label="เพศ">
-            <template v-slot:prepend>
-                <q-icon name="mdi-gender-transgender" />
-            </template>
-        </q-input>
+            <q-input disable outlined v-model="listuser.name" label="ชื่อ">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-account-circle" />
+                </template>
+            </q-input>
+        </div>
+        <div style="padding-top: 20px">
+            <q-input disable type="number" outlined v-model="listuser.age" label="อายุ">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-calendar" />
+                </template>
+            </q-input>
+        </div>
+
+        <div style="padding-top: 20px">
+            <q-input disable outlined v-model="listuser.gender" label="เพศ">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-gender-transgender" />
+                </template>
+            </q-input>
+        </div>
+
+        <div style="padding-top: 20px">
+            <q-input disable outlined v-model="listuser.weight" label="น้ำหนัก">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-weight-kilogram" />
+                </template>
+            </q-input>
+        </div>
+
+        <div style="padding-top: 20px">
+            <q-input disable outlined v-model="listuser.height" label="ส่วนสูง">
+                <template v-slot:prepend>
+                    <q-icon name="mdi-human-handsdown" />
+                </template>
+            </q-input>
         </div>
     </div>
     <center>
@@ -39,7 +55,7 @@
             <q-btn class="q-mt-md" @click="$router.replace({name:'editprofile'})" style="width: 60%" label="แก้ไขข้อมูล" color="red-12" />
         </div>
     </center>
- 
+
 </div>
 </template>
 
@@ -83,8 +99,6 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
-
-       
 
         async load() {
             await this.getUser();

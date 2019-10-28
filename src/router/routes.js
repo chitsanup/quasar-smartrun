@@ -77,7 +77,7 @@ const routes = [
                         {
                           path: 'rundata/:id',
                           name: 'rundata',
-                          component: () => import('pages/Test2.vue'),
+                          component: () => import('pages/home/history/Detail.vue'),
                         },
               ]
             },
@@ -236,6 +236,12 @@ const routes = [
                 component: () => import('pages/home/setting/Bluetooth.vue'),
                
               },
+              {
+                path: 'voicesetting',
+                name: 'voicesetting',
+                component: () => import('pages/home/setting/Voice.vue'),
+               
+              },
       
               ]
             },
@@ -246,7 +252,20 @@ const routes = [
     
   {
     path: '/test',
+    name: 'test',
     component: () => import('pages/Test.vue'),
+   
+  },
+  {
+    path: '/test2',
+    name: 'test2',
+    component: () => import('pages/Test2.vue'),
+   
+  },
+  {
+    path: '/runfinishfake',
+    name: 'runfinishfake',
+    component: () => import('pages/runfinishfake.vue'),
    
   },
   

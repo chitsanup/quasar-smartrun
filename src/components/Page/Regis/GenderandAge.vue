@@ -23,7 +23,7 @@
             <div style="padding-top: 30px">
             <q-input type="number" outlined v-model="listuser.weight" label="น้ำหนัก" required>
                 <template v-slot:prepend>
-                    <q-icon name="mdi-calendar" />
+                    <q-icon name="mdi-weight-kilogram" />
                 </template>
             </q-input>
             </div>
@@ -31,7 +31,7 @@
             <div style="padding-top: 30px">
             <q-input type="number" outlined v-model="listuser.height" label="ส่วนสูง" required>
                 <template v-slot:prepend>
-                    <q-icon name="mdi-calendar" />
+                    <q-icon name="mdi-human-handsdown" />
                 </template>
             </q-input>
             </div>

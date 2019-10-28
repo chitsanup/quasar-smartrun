@@ -1,19 +1,18 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    
+
     <center>
-        
+
         <div>
-            <q-btn  class="q-mt-md" @click="logout()" label="ออกจากระบบ" style="width: 80%" color="deep-orange" />
+            <q-btn class="q-mt-md full-width" @click="askLogout()" label="ออกจากระบบ" color="deep-orange" />
         </div>
-        
+
     </center>
-    
+
 </div>
 </template>
 
-    
 <script>
 import {
     get,
@@ -52,11 +51,20 @@ export default {
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('authen/*'),
+        askLogout: async function () {
+            if (confirm(`คุณต้องการออกจากระบบหรือไม่`)) {
+                await this.logout();
+
+                await location.reload();
+            }
+        },
 
         async logout() {
             await this.userLogout();
-            await this.$router.replace({name:'login'});
-            
+            await this.$router.replace({
+                name: 'login'
+            });
+
         },
 
         async load() {

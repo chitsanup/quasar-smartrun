@@ -2,7 +2,7 @@
  <template>
 <div>
     <div class="q-pa-sm bg-red-12 text-white">
-
+        <q-btn @click="$router.replace({name:'detailZone2'})" flat round dense icon="mdi-chevron-left" />
         <center>
             <div>
                 <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" size="150px" :thickness="0.05" color="white" track-color="black">
@@ -36,13 +36,14 @@
                     <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}}</label><hr>
                 </div>
 
-                <center>
-                <div style="padding-top: 50px">
-                     <q-btn class="q-mt-md" style="width: 70%" @click="$router.replace({name:'runningzone2'})" color="red-12" text-color="white" label="เริ่มวิ่ง"  />
-                </div>
-                </center>
+                
 
             </div>
+            <center>
+                <div style="padding-top: 50px">
+                     <q-btn class="q-mt-md" style="width:70%" @click="startRun()" color="red-12" text-color="white" label="เริ่มวิ่ง"  />
+                </div>
+                </center>
         
     </div>
 </div>
@@ -86,26 +87,23 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
-        ...sync('heart/*')
+        ...sync('heart/*'),
+        ...sync('sound/*')
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('heart/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
-        /*async addDetail() {
-            this.details.runmode = this.name
-            this.details.hrbegin = this.hrbegin
-            console.log(this.details.runmode)
-            console.log(this.details.hrbegin)
-            let run = await this.addData(this.details)
-            if (run) {
-                await this.$router.replace({
-                    name: 'runningzone2'
-                })
-            }
-
+        ...call('sound/*'),
+        async startRun(){
+            this.initPlay('start.wav')
+            await setTimeout( ()=> {
+                this.$router.replace({name:'runningzone2'});
+            }, 3000)
+            
         },
+        
         /******* Methods default run ******/
         load: async function () {
             

@@ -1,22 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    
-    <!---- <input type="text" v-model="x" />
-    <button @click="saveData()">Save</button>
-    <button @click="Logout()">Logout</button> --->
-    <form @submit.prevent="addForm()">
-        <q-input v-model="data.runmode" />
-        <q-input v-model="data.runtime" />
-        <q-input v-model="data.rundistance" />
-        <q-input v-model="data.runcal" />
-        <q-input v-model="data.hrbegin" />
-        <q-input v-model="data.hrgraph" />
-        <q-input v-model="data.gpsdistance" />
-        <div>
-            <q-btn class="full-width q-mt-md" label="บันทึก" type="submit" color="red-12" />
-        </div>
-    </form>
+    <calorie/>
 </div>
 </template>
 
@@ -26,48 +11,40 @@ import {
     sync,
     call
 } from "vuex-pathify";
-import {
-    async
-} from 'q';
-
+import _ from 'lodash'
+import calorie from '../components/history/Detail/general/Calories'
 
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
+        calorie,
         
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
-
+        view: {
+            default: true
+        },
+        width: {
+            default: 500
+        },
+        height: {
+            default: 500
+        }
     },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-            confirm_password: '',
-            data: {
-                gpsdistance: "hkhskdkjh",
-                hrbegin: "600",
-                hrgraph: "ahsd",
-                runcal: "81",
-                rundistance: "25",
-                runmode: "zone3",
-                runtime: "30"
-            },
-            time: "00:00:00",
+
             
 
         };
-
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
-
         /**** Call loading methods*/
-        await this.load();
-    },
-    async created() {
-
+        this.load();
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
     async beforeRouteEnter(to, from, next) {
@@ -75,63 +52,61 @@ export default {
     },
     /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
     computed: {
+        ...sync('history/*'),
+        maxHeart() {
+            let max = this.getArrHeart();
 
-        ...sync('test/*'),
-        ...sync('authen/*'),
-        ...sync('datarun/*'),
+            return _.max(max);
+        },
+        minHeart() {
+            let min = this.getArrHeart();
 
+            return _.min(min);
+        },
+        avgHeart() {
+            let min = this.getArrHeart();
+            let avg = _.sum(min) / min.length;
+            return parseInt(avg)
+        },
+        graph() {
+            let heart = this.getArrHeart();
+            return [heart]
+        },
+        lables() {
+            let heart = this.getArrHeart();
+            let label = [];
+            let i = 1
+            heart.forEach((r) => {
+                  
+                     label.push(i++)
+                     this.width+=20
+                  
+            });
+            return label
+        }
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
-        ...call('test/*'),
-        ...call('authen/*'),
-        ...call('datarun/*'),
-
-        check() {
-            if (this.form.password == '1234') {
-                return "รหัสต้องไม่เป็น 1234";
-            }
+        ...call('history/*'),
+        getMax() {
 
         },
-        async addForm() { // method ของ form ที่สร้าง
-            //this.data.userid = this.listuser.id;
-            let run = await this.addData(this.data); //เรียกข้อมูลใน method ใน axios  //สร้างตัวแปรมารับ
-            //console.log(this.form); ดูที่ออกมา
-            if (run) { //ถ้าข้อมูลเป็นจริง
-                this.data = {} //หลังจากกรอกข้อมูลสำเร็จให้ set form ให้ว่าง
-                await location.reload();
-
-            } else {
-
-            }
+        getMin() {
 
         },
-
-        async prepareLogin() {
-            this.check();
-            if (this.confirm_password == this.form.password) {
-                await this.Login();
-            } else {
-                alert('รหัสไม่ตรงกัน');
-            }
-        },
-
-        saveData() {
-            localStorage.setItem('number', this.x);
-            alert('save success');
-            location.reload();
+        getArrHeart() {
+            let tmpData = this.historyDetail.data;
+            let heart = [];
+            tmpData.forEach((r) => {
+                let data = r.split(',');
+                if (data[1]) {
+                    heart.push(parseFloat(data[1]))
+                }
+            });
+            return heart
         },
         /******* Methods default run ******/
-        load: async function () {
-            await this.getUser();
-            await this.getData();
-            //this.x = localStorage.getItem('number');
-        },
-        Logout() {
-            localStorage.removeItem("number");
-            location.reload();
-        }
+        load: async function () {}
     },
-
 }
 </script>

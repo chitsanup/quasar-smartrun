@@ -12,14 +12,11 @@
         
        <div class="text-subtitle2">Status : {{status}}</div>
         <div>Name : <span>{{device? device.name : 'N/A'}}</span></div>
-        <div>Mac Address : <span>{{device ? device.id : 'N/A'}}</span></div>
-        <div>Heart Rate : <span>{{data ? data : 'N/A'}}</span></div>
+        
+        
     </q-card-section>
 
-    <q-card-actions>
-        <q-btn v-show="state == 2" :disable="state != 2" color="primary" label="Start Notification" @click.native="startNotify" />
-        <q-btn v-show="state == 3" :disable="state != 3" color="negative" label="Stop Notification" @click.native="stopNotify" />
-    </q-card-actions>
+    
 </q-card>
 </template>
 
