@@ -9,7 +9,8 @@
     "android": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
     "xx": "quasar build -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
     "serve": "npx quasar dev",
-    "all": "quasar build -m cordova -T android && cd src-cordova && cordova run android --release -- --keystore=keystore.jks --storePassword=password --alias=user --password=password && cd ../    "
+    "all": "quasar build -m cordova -T android && cd src-cordova && cordova run android --release -- --keystore=keystore.jks --storePassword=password --alias=user --password=password && cd ../    ",
+    "test:unit:ui": "majestic"
   },
   "dependencies": {
     "@dmaksimovic/vue-countdown": "^1.0.0",
@@ -33,10 +34,13 @@
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",
+    "@quasar/quasar-app-extension-testing": "^1.0.0",
+    "@quasar/quasar-app-extension-testing-unit-jest": "^1.0.0",
     "sass": "^1.17.4",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-vuetify": "^0.6.3",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.2.2",
+    "majestic": "^1.2.24"
   },
   "browserslist": [
     "last 1 version, not dead, ie >= 11"

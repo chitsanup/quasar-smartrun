@@ -4,7 +4,7 @@
 <div class="q-pa-md" >
     <form @submit.prevent="login()" class="q-gutter-md">
             
-            <q-input dark outlined type="email" v-model="user.email" label="อีเมล" required>
+            <q-input dark outlined type="email" v-model="user.email" name='email' label="อีเมล" required>
                 <template v-slot:prepend>
                     <q-icon name="mdi-email" />
                 </template>
@@ -15,7 +15,7 @@
             
             
 
-        <q-input dark outlined v-model="user.password" label="รหัสผ่าน" :type="isPwd ? 'password' : 'text'"  required>
+        <q-input dark name='password' outlined v-model="user.password" label="รหัสผ่าน" :type="isPwd ? 'password' : 'text'"  required>
             <template v-slot:prepend>
                 <q-icon name="mdi-lock-question" />
             </template>
@@ -26,7 +26,7 @@
 
 
         <div>
-            <q-btn class="q-mt-md" style="width: 80%" label="ลงชื่อเข้าใช้" type="submit" color="red-12" />
+            <q-btn name='submit' class="q-mt-md" style="width: 80%" label="ลงชื่อเข้าใช้" type="submit" color="red-12" />
         </div>
     </form>
 
@@ -77,7 +77,7 @@ export default {
         async login() {
             let user = await this.userLogin();
             if (user) {
-
+                
                 await location.reload();
 
             }

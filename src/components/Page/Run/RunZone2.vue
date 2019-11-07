@@ -195,7 +195,8 @@ export default {
                 }
 
             } else if (this.start == 'stop') {
-                this.$router.replace({
+                await this.stopNotify()
+                await this.$router.replace({
                 name: 'runfinish'
             })
 

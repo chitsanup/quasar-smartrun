@@ -34,11 +34,11 @@ const state = {
     hr: [],
     time: []
   },
-  values: [
-    
-],
-bel:[]
-
+  values: [],
+  bel: [],
+  locationDetail: {
+    data: [],
+},
 }
 
 const mutations = make.mutations(state)
@@ -125,7 +125,7 @@ const actions = {
 
   },
   async pushData() {
-    state.runtimeHr.hr.push(70)
+    state.runtimeHr.hr.push(state.data)
     state.runtimeHr.time.push(state.timeVuex)
   },
   async prepareRunZone() {

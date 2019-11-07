@@ -89,6 +89,7 @@ export default {
             await this.startNotify()
            await this.prepareRunZone()
             setTimeout(async () => {
+                await await this.stopNotify()
                 await this.$router.replace({
                     name: 'detailbeforerunzone2'
                 })

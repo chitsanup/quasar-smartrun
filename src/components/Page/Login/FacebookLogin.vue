@@ -71,7 +71,7 @@ export default {
                                             await this.$router.replace({name:'genderage'});
 
                                         } else {
-                                            await this.$router.replace({name:'/'});
+                                            await this.$router.replace({name:'home'});
                                         }
                                         await location.reload();
 

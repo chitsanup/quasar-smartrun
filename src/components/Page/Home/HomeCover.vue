@@ -6,7 +6,7 @@
 
             <q-space />
 
-            <q-btn flat round dense icon="mdi-settings-outline" @click="$router.replace({name:'appsetting'})" />
+            <q-btn name='appsetting' flat round dense icon="mdi-settings-outline" @click="$router.replace({name:'appsetting'})" />
         </q-toolbar>
         
 

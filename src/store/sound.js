@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { make } from 'vuex-pathify'
 import store from '.'
 import { loadavg } from 'os';
-const API = 'http://192.168.43.239:8000';
+const API = 'http://192.168.1.13:8000';
 const state = {
   sound: 9,
   listSound:[],

@@ -2,7 +2,7 @@
  <template>
 <div>
      
-    <maps/>
+    
 </div>
 </template>
 
@@ -14,13 +14,13 @@ import {
 } from "vuex-pathify";
 import _ from 'lodash'
 //import ganeral from '../components/history/Detail/General'
-import maps from '../components/history/Detail/Map'
+
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
         //ganeral
-        maps
+        
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {

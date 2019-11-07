@@ -1,7 +1,7 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    <calorie/>
+    
 </div>
 </template>
 
@@ -12,13 +12,13 @@ import {
     call
 } from "vuex-pathify";
 import _ from 'lodash'
-import calorie from '../components/history/Detail/general/Calories'
+
 
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        calorie,
+       
         
     },
     /*-------------------------Set Component---------------------------------------*/

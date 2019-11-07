@@ -13,7 +13,7 @@
             </div>
 
             <div style="padding-top: 20px">
-                <q-input outlined v-model="listuser.name" label="ชื่อ" required>
+                <q-input outlined v-model="listuser.name" name='username' label="ชื่อ" required>
                     <template v-slot:prepend>
                         <q-icon name="mdi-account-circle" />
                     </template>
@@ -21,7 +21,7 @@
             </div>
 
             <div style="padding-top: 20px">
-                <q-input type="number" outlined v-model="listuser.age" label="อายุ" required>
+                <q-input type="number" outlined v-model="listuser.age" name='age' label="อายุ" required>
                     <template v-slot:prepend>
                         <q-icon name="mdi-calendar" />
                     </template>
@@ -37,7 +37,7 @@
             </div>
 
             <div style="padding-top: 20px">
-                <q-input outlined v-model="listuser.weight" label="น้ำหนัก">
+                <q-input outlined v-model="listuser.weight" name='width' label="น้ำหนัก">
                     <template v-slot:prepend>
                         <q-icon name="mdi-weight-kilogram" />
                     </template>
@@ -45,7 +45,7 @@
             </div>
 
             <div style="padding-top: 20px">
-                <q-input outlined v-model="listuser.height" label="ส่วนสูง">
+                <q-input outlined v-model="listuser.height" name='height' label="ส่วนสูง">
                     <template v-slot:prepend>
                         <q-icon name="mdi-human-handsdown" />
                     </template>
@@ -54,7 +54,7 @@
 
             <div class="q-gutter-xl q-pa-md" style="padding-top: 50px">
                 <q-btn label="ยกเลิก" style="width:25%" @click="$router.replace({name:'userprofile'})" color="deep-orange" />
-                <q-btn label="บันทึก" style="width:25%" type="submit" color="green-6" />
+                <q-btn label="บันทึก" style="width:25%" name='submit' type="submit" color="green-6" />
             </div>
         </q-form>
     </center>

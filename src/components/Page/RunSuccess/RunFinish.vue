@@ -2,8 +2,11 @@
  <template>
 <div>
     <div>
-        <div>
-            <maps />
+        <div style="height: 18rem;">
+
+            <gmap-map :options="{streetViewControl : false,}" :center="locationCenter" :zoom="20" ref="mainmap" style="width: 100%; height: 18rem">
+                <gmap-polyline v-if="linePath.length > 0" :path="linePath" :editable="false" ref="polyline" />
+            </gmap-map>
         </div>
         <div class="row q-mt-md">
             <div class="q-pl-md q-pr-md q-gutter-sm">
@@ -23,7 +26,7 @@
                 <div class="column q-pl-xl">
                     <div class="col">
                         <div class="column" style="font-size:20px">
-                            <strong>95</strong>
+                            <strong>{{this.getAvg()}}</strong>
                         </div>
                         <div>
                             อัตราการเต้น <br> หัวใจเฉลี่ย
@@ -35,7 +38,7 @@
                 <div class="column q-ml-sm q-pl-md q-pr-md">
                     <div class="col">
                         <div class="column" style="font-size:20px">
-                            <strong>500</strong>
+                            <strong>{{cal}}</strong>
                         </div>
                         <div>
                             CAL
@@ -77,13 +80,11 @@
         </center>
         <hr>
         <center>
-        <div class="q-ma-md">
-            <graph-line :width="400" :height="300" :shape="'normal'" :axis-min="0" :axis-max="200" :axis-full-mode="true" :labels="bel" :values="values">
-                <note :text="'อัตราการเต้นหัวใจ'"></note>
-                
-                
-            </graph-line>
-        </div>
+            <div style="width:300px!important; overflow-x: scroll;" class="q-ma-md">
+                <graph-line :width="400" :height="300" :shape="'normal'" :axis-min="0" :axis-max="200" :axis-full-mode="true" :labels="bel" :values="values">
+
+                </graph-line>
+            </div>
         </center>
         <div>
             <q-btn @click="addForm()" class="full-width " label="เสร็จสิ้น" type="submit" color="red-12" />
@@ -100,13 +101,12 @@ import {
     call
 } from "vuex-pathify";
 
-import maps from '../../history/Detail/Map'
+
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-        
-        maps
+
     },
     /*-------------------------Set Component---------------------------------------*/
     props: {
@@ -118,9 +118,11 @@ export default {
     data() {
         return {
             details: {},
-            
-            
-            
+            locationCenter:{
+                lat:19.0266318,
+                lng:99.9265779
+            },
+            linePath:[],
 
         };
     },
@@ -138,6 +140,20 @@ export default {
         ...sync('datarun/*'),
         ...sync('authen/*'),
         ...sync('heart/*'),
+       
+        cal() {
+            let cal = 0;
+            let sex = this.listuser.gender
+            let age = this.listuser.age
+            let weight = this.listuser.weight
+            if (sex == 'ผู้ชาย') {
+                cal = (-55.0969 + (0.6309 * this.getAvg()) + (0.1988 * parseFloat(weight)) + (0.2017 * parseFloat(age))) / 4.184;
+            } else {
+                cal = (-20.4022 + (0.4472 * this.getAvg()) - (0.1263 * parseFloat(weight)) + (0.074 * parseFloat(age))) / 4.184
+            }
+            return cal.toFixed(2);
+        },
+        
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
@@ -147,30 +163,36 @@ export default {
         async addForm() {
             this.details.runmode = this.namezone;
             this.details.runtime = this.timeVuex;
+            this.details.runcalorie = this.cal;
+            this.details.hraverage = this.getAvg()
             //this.data.userid = this.listuser.id;
             let run = await this.addData(this.details);
-
-            if (run) {
+            /*if (run) {
                 this.data = {}
                 await this.$router.replace({
                     name: '/'
                 });
                 await location.reload();
+            } else {}*/
+        },
+        getAvg() {
+            let min = this.getArrHeart();
+            let avg = _.sum(min) / min.length;
+            return parseInt(avg)
+        },
+        getArrHeart() {
+            let heart = this.runtimeHr.hr;
 
-            } else {
-
-            }
-
+            return heart
         },
 
         /******* Methods default run ******/
         load: async function () {
             await this.getUser()
 
-            console.log(this.runtimeHr)
-
+            console.log(this.runtimeHr.hr)
+            console.log(this.cal)
             console.log(this.timeVuex)
-            console.log(this.namezone)
 
         }
     },

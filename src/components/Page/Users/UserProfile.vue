@@ -52,7 +52,7 @@
     </div>
     <center>
         <div style="padding-top: 10px">
-            <q-btn class="q-mt-md" @click="$router.replace({name:'editprofile'})" style="width: 60%" label="แก้ไขข้อมูล" color="red-12" />
+            <q-btn class="q-mt-md" name='editprofile' @click="$router.replace({name:'editprofile'})" style="width: 60%" label="แก้ไขข้อมูล" color="red-12" />
         </div>
     </center>
 

@@ -16,7 +16,8 @@ const state = {
         'หญิง', 'ชาย', 'อื่นๆ'
     ],
     rundatas:{},
-    run:{}
+    run:{},
+    
 
 
 }
@@ -28,6 +29,15 @@ const getters = {
 const mutations = make.mutations(state)
 
 const actions = {
+    async setUser(context,user){
+        state.user = user
+    },
+    async setRegis(context,form){
+        state.form = form
+    },
+    async setUpdate(context,listuser){
+        state.listuser = listuser
+    },
     async getUser(context, params) {
         let data = await axios.get('/api/auth/user')
             .then((r) => {
@@ -81,8 +91,11 @@ const actions = {
         let token = localStorage.getItem('api_token');
         return (token)?true:false;
     },
+
+
     
     async userLogin(context, params) {
+         
         let result = await axios.post('/api/auth/login', state.user)
             .then((r) => {
                 //alert('เข้าสู่ระบบสำเร็จ');
@@ -90,7 +103,7 @@ const actions = {
                 localStorage.setItem('api_token', r.data.access_token);
                 return true;
             }).catch((e) => {
-                alert('เข้าสู่ระบบไม่สำเร็จ');
+                //alert('เข้าสู่ระบบไม่สำเร็จ');
                 return false;
             });
 
@@ -158,3 +171,8 @@ export default {
     mutations,
     actions
 }
+
+
+
+
+
