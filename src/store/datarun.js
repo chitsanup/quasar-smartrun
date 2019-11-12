@@ -2,7 +2,7 @@ import axios from '../axios'
 import _ from 'lodash'
 import { make } from 'vuex-pathify'
 const state = {
-    
+    watchID : null
     
 }
 const getters = {

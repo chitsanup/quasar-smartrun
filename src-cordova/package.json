@@ -19,6 +19,7 @@
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-facebook4": "6.0.0",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-media": "^5.0.3",
     "cordova-plugin-x-toast": "^2.7.2"
   },
@@ -38,7 +39,8 @@
       "cordova-plugin-x-toast": {},
       "cordova-plugin-dialogs": {},
       "cordova-plugin-media": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android"

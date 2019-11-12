@@ -16,7 +16,7 @@ const state = {
         'หญิง', 'ชาย', 'อื่นๆ'
     ],
     rundatas:{},
-    run:{},
+    run:null,
     
 
 

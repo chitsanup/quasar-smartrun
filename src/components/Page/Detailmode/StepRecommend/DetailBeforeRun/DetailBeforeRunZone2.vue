@@ -33,7 +33,7 @@
                 </div>
                 <div style="padding-top: 20px">
                     <q-icon  style="font-size:30px" name="mdi-timer" />
-                    <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}}</label><hr>
+                    <label style="font-size:20px;filter: brightness(100%)"> เวลา : {{time}} นาที</label><hr>
                 </div>
 
                 

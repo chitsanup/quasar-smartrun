@@ -6,7 +6,7 @@
             <div>
                 <q-knob readonly :max="0" show-value font-size="30px" class="text-white q-ma-md" size="150px" :thickness="0.05" color="white" track-color="black">
                     <div class="column">
-                        <strong>{{data}}</strong>
+                        <strong>{{dataHr}}</strong>
                         <div class="q-pt-sm">BPM</div>
                         <div>
                             <p>{{total}}</p>
@@ -99,12 +99,12 @@ export default {
     /*-------------------------DataVarible---------------------------------------*/
     data() {
         return {
-
             start: 'start',
-            // date: 'Sep 28, 2017', // if you set the date option it will take place over the seconds option
             message: 'สิ้นสุดแล้ว',
             time: '',
             startCounter: 0,
+
+            interval: null,
         };
     },
     watch: {
@@ -115,7 +115,6 @@ export default {
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
         /**** Call loading methods*/
-
         this.load();
     },
     /*-------------------------Run Methods when Start Routed------------------------------------------*/
@@ -128,16 +127,43 @@ export default {
         state: sync('heart/state'),
         device: sync('heart/device'),
         ble: sync('heart/ble'),
-        data: sync('heart/data'),
+        dataHr: sync('heart/data'),
         ...sync('authen/*'),
         ...sync('heart/*'),
         ...sync('datarun/*'),
-        ...sync('sound/*')
+        ...sync('sound/*'),
+
     },
     created() {
-        setInterval(() => {
-            console.log('Hello')
-        }, 90000);
+
+        let time = this.startCounter % 5 // change this code from vuex or localstorage??
+
+        this.interval = setInterval(() => {
+
+            if (this.start == 'pause') {
+
+            } else if (this.start == 'start') {
+
+                if (this.dataHr < this.hr70 && this.dataHr >= this.hr60) {
+                    this.total = 'อยู่ในช่วง'
+
+                    this.initPlay('normal.wav')
+
+                } else if (this.dataHr > this.hr70) {
+                    this.total = 'เกินช่วง'
+                    this.initPlay('fast.wav')
+
+                } else if (this.dataHr < this.hr60) {
+                    this.total = 'ต่ำกว่าช่วง'
+                    this.initPlay('slow.wav')
+
+                }
+                return this.total
+                //read heart rate and then decide what sound to play 
+            }
+
+        }, this.startCounter % 5);
+
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
@@ -145,6 +171,10 @@ export default {
         ...call('authen/*'),
         ...call('datarun/*'),
         ...call('sound/*'),
+
+        onDeviceReady() {
+            console.log("navigator.geolocation works well");
+        },
 
         startTimer() {
             this.start = 'start'
@@ -157,10 +187,14 @@ export default {
 
         },
         stopTimer() {
+            clearInterval(this.interval);
             this.start = 'stop'
             this.startCounter = 0;
-            //this.initPlay('stop.wav')
-            
+            this.initPlay('stop.wav')
+            this.$router.replace({
+                name: 'runfinish'
+            })
+
         },
         stopTimeBegin() {
             this.start = 'stop'
@@ -175,39 +209,56 @@ export default {
 
                 let timecount = this.timeVuex;
                 timecount = timecount.split(':');
-                timecount = timecount[2]
-                this.startCounter = Number(timecount);
+                let h = parseInt(timecount[0])
+                let m = parseInt(timecount[1])
+                let s = parseInt(timecount[2])
+                //timecount = timecount[2]
+                this.startCounter = (h * 3600) + (m * 60) + s;
                 console.log(this.startCounter)
+                navigator.geolocation.getCurrentPosition(this.onSuccess);
                 // await this.timeCounter()
                 setTimeout(this.looping, 1000);
 
-                if (this.startCounter % 8 == 0) {
-                    
-                        this.pushData()
-                
+                if (this.startCounter % 5 == 0) {
+
+                    this.pushData()
 
                 }
-                if (this.timeVuex == '00:01:00') {
+                if (this.timeVuex == '00:05:00') {
                     await this.dataLine()
                     await this.stopTimer()
-                    
 
                 }
 
             } else if (this.start == 'stop') {
                 await this.stopNotify()
-                await this.$router.replace({
-                name: 'runfinish'
-            })
 
             }
         },
+        onSuccess(position) {
+            let map ='Latitude: ' + position.coords.latitude + '\n' +
+                'Longitude: ' + position.coords.longitude + '\n' +
+                'Altitude: ' + position.coords.altitude + '\n' +
+                'Accuracy: ' + position.coords.accuracy + '\n' +
+                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                'Heading: ' + position.coords.heading + '\n' +
+                'Speed: ' + position.coords.speed + '\n' +
+                'Timestamp: ' + position.timestamp + '\n';
+                console.log(map)
+        },
+
+        // onError Callback receives a PositionError object
+        //
+        onError(error) {
+            alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+        },
+
         /******* Methods default run ******/
         load: async function () {
             await this.stopTimeBegin()
             await this.startTimer();
-            
-
+            //navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
         }
     },
 }

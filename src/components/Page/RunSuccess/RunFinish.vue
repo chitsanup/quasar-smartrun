@@ -19,7 +19,7 @@
                     <strong>{{listuser.name}}</strong>
                 </div>
                 <q-breadcrumbs>
-                    <q-breadcrumbs-el>18/10/2019</q-breadcrumbs-el>
+                    <q-breadcrumbs-el>{{this.date()}}</q-breadcrumbs-el>
                 </q-breadcrumbs>
             </div>
             <center>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col">
                     <div class="column" style="font-size:20px">
-                        <strong>3.94</strong>
+                        <strong>0.94</strong>
                     </div>
                     <div>
                         กิโลเมตร
@@ -80,8 +80,8 @@
         </center>
         <hr>
         <center>
-            <div style="width:300px!important; overflow-x: scroll;" class="q-ma-md">
-                <graph-line :width="400" :height="300" :shape="'normal'" :axis-min="0" :axis-max="200" :axis-full-mode="true" :labels="bel" :values="values">
+            <div >
+                <graph-line style="height: 370px; width: 100%;" :shape="'normal'" :axis-min="0" :axis-max="220" :axis-full-mode="true" :labels="runtimeHr.time" :values="runtimeHr.hr">
 
                 </graph-line>
             </div>
@@ -101,7 +101,6 @@ import {
     call
 } from "vuex-pathify";
 
-
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
@@ -118,11 +117,11 @@ export default {
     data() {
         return {
             details: {},
-            locationCenter:{
-                lat:19.0266318,
-                lng:99.9265779
+            locationCenter: {
+                lat: 19.0266318,
+                lng: 99.9265779
             },
-            linePath:[],
+            linePath: [],
 
         };
     },
@@ -140,16 +139,18 @@ export default {
         ...sync('datarun/*'),
         ...sync('authen/*'),
         ...sync('heart/*'),
-       
+        
+
         cal() {
             let cal = 0;
             let sex = this.listuser.gender
             let age = this.listuser.age
             let weight = this.listuser.weight
-            if (sex == 'ผู้ชาย') {
-                cal = (-55.0969 + (0.6309 * this.getAvg()) + (0.1988 * parseFloat(weight)) + (0.2017 * parseFloat(age))) / 4.184;
+            let time = this.timeSec() / 60
+            if (sex == 'ชาย') {
+                cal = ((-55.0969 + (0.6309 * this.getAvg()) + (0.1988 * parseFloat(weight)) + (0.2017 * parseFloat(age))) / 4.184) * time ;
             } else {
-                cal = (-20.4022 + (0.4472 * this.getAvg()) - (0.1263 * parseFloat(weight)) + (0.074 * parseFloat(age))) / 4.184
+                cal = ((-20.4022 + (0.4472 * this.getAvg()) - (0.1263 * parseFloat(weight)) + (0.074 * parseFloat(age))) / 4.184) * time ;
             }
             return cal.toFixed(2);
         },
@@ -160,20 +161,42 @@ export default {
         ...call('datarun/*'),
         ...call('authen/*'),
         ...call('heart/*'),
+        timeSec() {
+            
+                let timesec =this.timeVuex.split(':')
+                let h = parseInt(timesec[0])   
+                let m = parseInt(timesec[1])
+                let s = parseInt(timesec[2])
+                let out = (h * 3600) + (m * 60) + s
+            return out;
+        },
+        date() {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            
+            return today
+        },
         async addForm() {
             this.details.runmode = this.namezone;
             this.details.runtime = this.timeVuex;
             this.details.runcalorie = this.cal;
             this.details.hraverage = this.getAvg()
+            this.details.daterun = this.date()
+            this.details.ygraph = this.ygraph
+            this.details.xgraph = this.xgraph
             //this.data.userid = this.listuser.id;
             let run = await this.addData(this.details);
-            /*if (run) {
+            if (run) {
                 this.data = {}
                 await this.$router.replace({
                     name: '/'
                 });
                 await location.reload();
-            } else {}*/
+            } else {}
         },
         getAvg() {
             let min = this.getArrHeart();
@@ -189,10 +212,11 @@ export default {
         /******* Methods default run ******/
         load: async function () {
             await this.getUser()
-
             console.log(this.runtimeHr.hr)
+            console.log(this.runtimeHr.time)
             console.log(this.cal)
             console.log(this.timeVuex)
+            console.log(this.timeSec())
 
         }
     },
