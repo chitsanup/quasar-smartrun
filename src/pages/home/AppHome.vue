@@ -65,6 +65,7 @@ export default {
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
         await this.checkToken();
+        navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
         //document.addEventListener("deviceready", this.onDeviceReady, false);
         //this.checKGenderage();
         /**** Call loading methods*/
@@ -80,6 +81,23 @@ export default {
     methods: {
         ...call('authen/*'),
         ...call('sound/*'),
+        onSuccess (position) {
+        console.log('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+    },
+
+    // onError Callback receives a PositionError object
+    //
+    onError(error) {
+        console.log('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    },
         async checkToken() {
             let token = await localStorage.getItem('api_token');
             if (!token) {

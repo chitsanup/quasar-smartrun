@@ -36,9 +36,11 @@ const state = {
   },
  ygraph : '',
   xgraph: '',
-  locationDetail: {
-    data: [],
-  },
+  latlng:[],
+  lat :'',
+  lng:'',
+  
+  
 }
 
 const mutations = make.mutations(state)
@@ -128,6 +130,14 @@ const actions = {
     state.runtimeHr.hr.push(state.data)
     state.runtimeHr.time.push('')
   },
+  async pushLatLng() {
+    state.latlng.push(
+      {
+          lat :state.lat,
+          lng :state.lng
+      }
+  )
+  },
   async prepareRunZone() {
     setTimeout(() => {
       axios.get('/api/auth/user')
@@ -146,7 +156,7 @@ const actions = {
     }, 10000)
 
   },
-
+  
 
   async startZone1({ state }) {
     axios.get('/api/auth/user')
@@ -213,6 +223,29 @@ const actions = {
               console.dir(result)
               var data = new Uint8Array(result)
               state.data = data[1]
+              state.hr60 = (220 - state.listuser.age - state.hrbegin) * (0.6) + state.hrbegin
+              state.hr70 = (220 - state.listuser.age - state.hrbegin) * (0.7) + state.hrbegin
+
+              if (state.data < state.hr70 && state.data >= state.hr60) {
+                state.total = 'อยู่ในช่วง'
+
+                dispatch('sound/initPlay', 'normal.wav')
+
+
+                /* setTimeout( () => {
+                  
+               }, 10000) */
+              }
+              else if (state.data > state.hr70) {
+                state.total = 'เกินช่วง'
+                dispatch('sound/initPlay', 'fast.wav')
+
+              } else if (state.data < state.hr60) {
+                state.total = 'ต่ำกว่าช่วง'
+                dispatch('sound/initPlay', 'slow.wav')
+
+              }
+              return state.total
               
             }, () => { })
         }

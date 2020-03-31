@@ -1,7 +1,12 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-    555
+    xcxcx
+   <gmap-map :options="{streetViewControl : false,}" :center="locationCenter" :zoom="20" ref="mainmap" >
+                <gmap-polyline v-if="linePath.length > 0" :path="linePath" :editable="false" ref="polyline" />
+            </gmap-map>
+                <div id="map"></div>
+
 </div>
 </template>
 
@@ -29,7 +34,14 @@ export default {
     data() {
         return {
 
-            
+              locationCenter: {
+                lat: 19.0266318,
+                lng: 99.9265779
+            },
+            linePath: [{
+                lat: 19.0266318,
+                lng: 99.9265779
+            }],
 
         };
     },
@@ -50,7 +62,7 @@ export default {
     methods: {
         showPosition(p){
             console.log(p.coords);
-            alert( p.coords.latitude )
+          //  alert( p.coords.latitude )
         },
         /******* Methods default run ******/
         load: async function () {

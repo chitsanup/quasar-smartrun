@@ -39,7 +39,7 @@
                 </div>
                 <div class="col">
                     <div class="column" style="font-size:20px">
-                        <strong>0.94</strong>
+                        <strong>{{this.getDistance()?this.getDistance(): '0.00'}}</strong>
                     </div>
                     <div>
                         กิโลเมตร
@@ -105,6 +105,7 @@ export default {
             startCounter: 0,
 
             interval: null,
+            soundLoop :null
         };
     },
     watch: {
@@ -134,47 +135,56 @@ export default {
         ...sync('sound/*'),
 
     },
-    created() {
-
-        let time = this.startCounter % 5 // change this code from vuex or localstorage??
+    /*created() {
+ 
+        let time = 1000 * 20 // change this code from vuex or localstorage??
 
         this.interval = setInterval(() => {
 
             if (this.start == 'pause') {
 
             } else if (this.start == 'start') {
-
+                console.log('hi')
+                
                 if (this.dataHr < this.hr70 && this.dataHr >= this.hr60) {
                     this.total = 'อยู่ในช่วง'
 
-                    this.initPlay('normal.wav')
+                    this.initPlay('normal.wav');
+                 
+
 
                 } else if (this.dataHr > this.hr70) {
                     this.total = 'เกินช่วง'
                     this.initPlay('fast.wav')
+                      
 
                 } else if (this.dataHr < this.hr60) {
                     this.total = 'ต่ำกว่าช่วง'
                     this.initPlay('slow.wav')
-
+                     
                 }
                 return this.total
                 //read heart rate and then decide what sound to play 
             }
 
-        }, this.startCounter % 5);
+        }, time);
 
-    },
+      /*  this.soundLoop = setInterval(() => {
+            this.playLoop();
+        },1000*10);
+
+    },*/
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('heart/*'),
         ...call('authen/*'),
         ...call('datarun/*'),
         ...call('sound/*'),
+        runSound(){
 
-        onDeviceReady() {
-            console.log("navigator.geolocation works well");
         },
+
+        
 
         startTimer() {
             this.start = 'start'
@@ -190,6 +200,7 @@ export default {
             clearInterval(this.interval);
             this.start = 'stop'
             this.startCounter = 0;
+            this.stopNotify()
             this.initPlay('stop.wav')
             this.$router.replace({
                 name: 'runfinish'
@@ -206,7 +217,6 @@ export default {
         looping: async function () {
 
             if (this.start == 'start') {
-
                 let timecount = this.timeVuex;
                 timecount = timecount.split(':');
                 let h = parseInt(timecount[0])
@@ -215,7 +225,9 @@ export default {
                 //timecount = timecount[2]
                 this.startCounter = (h * 3600) + (m * 60) + s;
                 console.log(this.startCounter)
-                navigator.geolocation.getCurrentPosition(this.onSuccess);
+                  navigator.geolocation.getCurrentPosition(this.onLatLong, this.onError);
+                this.getDistance()
+                
                 // await this.timeCounter()
                 setTimeout(this.looping, 1000);
 
@@ -224,8 +236,8 @@ export default {
                     this.pushData()
 
                 }
-                if (this.timeVuex == '00:05:00') {
-                    await this.dataLine()
+                if (this.timeVuex == '01:00:00') {
+                    
                     await this.stopTimer()
 
                 }
@@ -235,30 +247,41 @@ export default {
 
             }
         },
-        onSuccess(position) {
-            let map ='Latitude: ' + position.coords.latitude + '\n' +
-                'Longitude: ' + position.coords.longitude + '\n' +
-                'Altitude: ' + position.coords.altitude + '\n' +
-                'Accuracy: ' + position.coords.accuracy + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                'Heading: ' + position.coords.heading + '\n' +
-                'Speed: ' + position.coords.speed + '\n' +
-                'Timestamp: ' + position.timestamp + '\n';
-                console.log(map)
+        onLatLong(position) {
+            this.lat = position.coords.latitude
+            this.lng = position.coords.longitude
+            this.pushLatLng()
+                console.log(this.latlng)      
         },
-
+        
         // onError Callback receives a PositionError object
         //
         onError(error) {
             alert('code: ' + error.code + '\n' +
                 'message: ' + error.message + '\n');
         },
+        getDistance() {
+            var distance = 0;
+
+            for (var i = 0; i < this.latlng.length - 1; i++) {
+
+                var pos1 = new google.maps.LatLng(this.latlng[i].lat, this.latlng[i].lng);
+
+                var pos2 = new google.maps.LatLng(this.latlng[i + 1].lat, this.latlng[i + 1].lng);
+
+                distance += google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
+                console.log('map',distance);
+            }
+            if(distance){
+                return (distance/1000).toFixed(2)
+            }
+
+        },
 
         /******* Methods default run ******/
         load: async function () {
             await this.stopTimeBegin()
             await this.startTimer();
-            //navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
         }
     },
 }

@@ -3,8 +3,9 @@ import _ from 'lodash'
 import { make } from 'vuex-pathify'
 import store from '.'
 import { loadavg } from 'os';
-const API = 'http://192.168.1.13:8000';
+const API = 'http://10.94.1.132:8000';
 const state = {
+  fileSound:'',
   sound: 9,
   listSound:[],
   typeSound:(localStorage.getItem('type_sound'))?localStorage.getItem('type_sound'):'female'
@@ -23,6 +24,7 @@ const actions = {
       state.sound = 0
       await actions.play(context, file);
       console.log(state.sound);
+      
 
 
     } else if (file == 'slow.wav' && state.sound != 1) {
@@ -41,7 +43,12 @@ const actions = {
       console.log(state.sound);
     }
 
+    state.fileSound = file;
 
+  },
+
+  async playLoop(context, params){
+    await actions.play(context, state.fileSound); 
   },
 
   async play(context, file) {

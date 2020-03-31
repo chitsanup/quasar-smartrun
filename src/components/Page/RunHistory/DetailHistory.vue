@@ -140,6 +140,13 @@ export default {
     methods: {
 
         ...call('authen/*'),
+        async lineGps(){
+           // var myObject = eval('(' + this.run.gpsdistance + ')');
+            let d = JSON.parse(this.run.gpsdistance );
+            this.linePath = d;
+            this.locationCenter = d[0]
+           
+        },
         lineGraphValues(){
             let graphX = this.lineGraphX();
             let graphY = this.lineGraphY();
@@ -197,6 +204,8 @@ export default {
         load: async function () {
             await this.getUser();
             await this.getDataById(this.$route.params.id);
+           await this.lineGps();
+           // console.log(this.run.gpsdistance.split(','))
         }
     },
 }

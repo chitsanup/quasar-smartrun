@@ -81,7 +81,7 @@ const actions = {
                 state.form = {};
                 return true;
             }).catch((e) => {
-                alert('ไม่สำเร็จ');
+                alert('อีเมลนี้มีผู้ใช้แล้ว กรุณาลองใหม่อีกครั้ง');
                 return false;
             });
         return result;
@@ -103,7 +103,7 @@ const actions = {
                 localStorage.setItem('api_token', r.data.access_token);
                 return true;
             }).catch((e) => {
-                //alert('เข้าสู่ระบบไม่สำเร็จ');
+                alert('เข้าสู่ระบบไม่สำเร็จ ตรวจสอบอีเมลหรือรหัสผ่านของคุณ');
                 return false;
             });
 

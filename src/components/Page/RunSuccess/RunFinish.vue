@@ -4,8 +4,8 @@
     <div>
         <div style="height: 18rem;">
 
-            <gmap-map :options="{streetViewControl : false,}" :center="locationCenter" :zoom="20" ref="mainmap" style="width: 100%; height: 18rem">
-                <gmap-polyline v-if="linePath.length > 0" :path="linePath" :editable="false" ref="polyline" />
+            <gmap-map :options="{streetViewControl : false,}" :center="this.latlng[0]" :zoom="20" ref="mainmap" style="width: 100%; height: 18rem">
+                <gmap-polyline v-if="this.latlng.length > 0" :path="this.latlng" :editable="false" ref="polyline" />
             </gmap-map>
         </div>
         <div class="row q-mt-md">
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col">
                     <div class="column" style="font-size:20px">
-                        <strong>0.94</strong>
+                        <strong>{{this.getDistance()?this.getDistance():'0.00'}}</strong>
                     </div>
                     <div>
                         กิโลเมตร
@@ -80,7 +80,7 @@
         </center>
         <hr>
         <center>
-            <div >
+            <div>
                 <graph-line style="height: 370px; width: 100%;" :shape="'normal'" :axis-min="0" :axis-max="220" :axis-full-mode="true" :labels="runtimeHr.time" :values="runtimeHr.hr">
 
                 </graph-line>
@@ -117,16 +117,13 @@ export default {
     data() {
         return {
             details: {},
-            locationCenter: {
-                lat: 19.0266318,
-                lng: 99.9265779
-            },
-            linePath: [],
-
+            google: null,
         };
     },
     /*-------------------------Run Methods when Start this Page------------------------------------------*/
     async mounted() {
+        this.google = new google.maps.LatLng(0, 0);
+        await this.dataLine()
         /**** Call loading methods*/
         this.load();
     },
@@ -139,7 +136,6 @@ export default {
         ...sync('datarun/*'),
         ...sync('authen/*'),
         ...sync('heart/*'),
-        
 
         cal() {
             let cal = 0;
@@ -148,26 +144,30 @@ export default {
             let weight = this.listuser.weight
             let time = this.timeSec() / 60
             if (sex == 'ชาย') {
-                cal = ((-55.0969 + (0.6309 * this.getAvg()) + (0.1988 * parseFloat(weight)) + (0.2017 * parseFloat(age))) / 4.184) * time ;
+                cal = ((-55.0969 + (0.6309 * this.getAvg()) + (0.1988 * parseFloat(weight)) + (0.2017 * parseFloat(age))) / 4.184) * time;
             } else {
-                cal = ((-20.4022 + (0.4472 * this.getAvg()) - (0.1263 * parseFloat(weight)) + (0.074 * parseFloat(age))) / 4.184) * time ;
+                cal = ((-20.4022 + (0.4472 * this.getAvg()) - (0.1263 * parseFloat(weight)) + (0.074 * parseFloat(age))) / 4.184) * time;
             }
             return cal.toFixed(2);
         },
-        
+
     },
     /*-------------------------Methods------------------------------------------*/
     methods: {
         ...call('datarun/*'),
         ...call('authen/*'),
         ...call('heart/*'),
+        location() {
+            this.locationCenter = this.latlng[0]
+            return this.locationCenter
+        },
         timeSec() {
-            
-                let timesec =this.timeVuex.split(':')
-                let h = parseInt(timesec[0])   
-                let m = parseInt(timesec[1])
-                let s = parseInt(timesec[2])
-                let out = (h * 3600) + (m * 60) + s
+
+            let timesec = this.timeVuex.split(':')
+            let h = parseInt(timesec[0])
+            let m = parseInt(timesec[1])
+            let s = parseInt(timesec[2])
+            let out = (h * 3600) + (m * 60) + s
             return out;
         },
         date() {
@@ -177,7 +177,7 @@ export default {
             var yyyy = today.getFullYear();
 
             today = mm + '/' + dd + '/' + yyyy;
-            
+
             return today
         },
         async addForm() {
@@ -188,6 +188,8 @@ export default {
             this.details.daterun = this.date()
             this.details.ygraph = this.ygraph
             this.details.xgraph = this.xgraph
+            this.details.rundistance = this.getDistance()
+            this.details.gpsdistance = JSON.stringify(this.latlng)
             //this.data.userid = this.listuser.id;
             let run = await this.addData(this.details);
             if (run) {
@@ -208,6 +210,23 @@ export default {
 
             return heart
         },
+        getDistance() {
+            var distance = 0;
+
+            for (var i = 0; i < this.latlng.length - 1; i++) {
+
+                var pos1 = new google.maps.LatLng(this.latlng[i].lat, this.latlng[i].lng);
+
+                var pos2 = new google.maps.LatLng(this.latlng[i + 1].lat, this.latlng[i + 1].lng);
+
+                distance += google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
+                console.log('map',distance);
+            }
+            if(distance){
+                return (distance/1000).toFixed(2)
+            }
+
+        },
 
         /******* Methods default run ******/
         load: async function () {
@@ -216,7 +235,8 @@ export default {
             console.log(this.runtimeHr.time)
             console.log(this.cal)
             console.log(this.timeVuex)
-            console.log(this.timeSec())
+            console.log(JSON.stringify(this.latlng))
+            console.log(this.getDistance())
 
         }
     },
