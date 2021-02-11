@@ -17,7 +17,7 @@
     "@mdi/font": "^4.2.95",
     "@mdi/js": "^4.2.95",
     "@quasar/extras": "^1.0.0",
-    "apexcharts": "^3.10.0",
+    "apexcharts": "^3.24.0",
     "axios": "^0.18.1",
     "cordova-file-helper": "^1.4.0",
     "moment": "^2.24.0",
