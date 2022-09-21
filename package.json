@@ -29,7 +29,7 @@
     "vue-select-image": "^1.7.0",
     "vue-toasted": "^1.1.27",
     "vue2-google-maps": "^0.10.7",
-    "vuetify": "^2.0.10",
+    "vuetify": "^2.6.10",
     "vuex-pathify": "^1.2.4"
   },
   "devDependencies": {
